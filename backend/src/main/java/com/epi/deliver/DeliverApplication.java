@@ -1,13 +1,13 @@
-package com.epi.epideliver;
+package com.epi.deliver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EpideliverApplication {
+public class DeliverApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EpideliverApplication.class, args);
+		SpringApplication.run(DeliverApplication.class, args);
 	}
 
 }
