@@ -6,6 +6,22 @@ VALUES
 'BASF',
 'teste');
 
+INSERT INTO `tab_cliente`
+(`nome`,
+`video`)
+VALUES
+(
+'Itautec',
+'testeUri');
+
+INSERT INTO `tab_cliente`
+(`nome`,
+`video`)
+VALUES
+(
+'Usiminas',
+'testeUri');
+
 INSERT INTO `tab_epi`
 (`id_cliente`,
 `codigo`,

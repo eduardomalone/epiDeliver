@@ -2,16 +2,11 @@ package com.epi.deliver.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,12 +21,6 @@ public class TabSoliciatacao implements Serializable{
 	private Long idFuncio;
 	private LocalDateTime data;
 	
-//	@ManyToMany
-//	@JoinTable(name="tab_solicitacao_itemSolicitacao",
-//	joinColumns = @JoinColumn(name = "id_solicitacao"),
-//	inverseJoinColumns = @JoinColumn(name = "id_item_solicitacao")
-//	)
-//	private Set<TabItemSolicitacao> itensSolicitacao = new HashSet<>();
 	
 	public TabSoliciatacao() {
 	}
