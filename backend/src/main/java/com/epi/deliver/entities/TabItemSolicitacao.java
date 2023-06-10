@@ -2,6 +2,7 @@ package com.epi.deliver.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,18 +22,18 @@ public class TabItemSolicitacao implements Serializable{
 	private Long idSolicitacao;
 	private Long idEpi;
 	private String codigoBarra;
-	private LocalDateTime dataInclusao;
+	private Date dataInclusao;
 	private Long idUsuarioBaixa;
 	private String ip;
-	private LocalDateTime dataBaixa;
+	private Date dataBaixa;
 	
 	
 	public TabItemSolicitacao() {
 	}
 
 
-	public TabItemSolicitacao(Long id, Long idSolicitacao, Long idEpi, String codigoBarra, LocalDateTime dataInclusao,
-			Long idUsuarioBaixa, String ip, LocalDateTime dataBaixa) {
+	public TabItemSolicitacao(Long id, Long idSolicitacao, Long idEpi, String codigoBarra, Date dataInclusao,
+			Long idUsuarioBaixa, String ip, Date dataBaixa) {
 		this.id = id;
 		this.idSolicitacao = idSolicitacao;
 		this.idEpi = idEpi;
@@ -111,12 +112,12 @@ public class TabItemSolicitacao implements Serializable{
 	}
 
 
-	public LocalDateTime getDataInclusao() {
+	public Date getDataInclusao() {
 		return dataInclusao;
 	}
 
 
-	public void setDataInclusao(LocalDateTime dataInclusao) {
+	public void setDataInclusao(Date dataInclusao) {
 		this.dataInclusao = dataInclusao;
 	}
 
@@ -141,12 +142,12 @@ public class TabItemSolicitacao implements Serializable{
 	}
 
 
-	public LocalDateTime getDataBaixa() {
+	public Date getDataBaixa() {
 		return dataBaixa;
 	}
 
 
-	public void setDataBaixa(LocalDateTime dataBaixa) {
+	public void setDataBaixa(Date dataBaixa) {
 		this.dataBaixa = dataBaixa;
 	}
 	

@@ -2,6 +2,7 @@ package com.epi.deliver.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,25 +10,25 @@ import javax.persistence.Id;
 
 import com.epi.deliver.entities.TabSoliciatacao;
 
-public class SolicitacoesDTO implements Serializable{
+public class SolicitacaoDTO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private Long idFuncio;
-	private LocalDateTime data;
+	private Date data;
 	
 	
-	public SolicitacoesDTO() {
+	public SolicitacaoDTO() {
 	}
 
-	public SolicitacoesDTO(Long id, Long idFuncio, LocalDateTime data) {
+	public SolicitacaoDTO(Long id, Long idFuncio, Date data) {
 		this.id = id;
 		this.idFuncio = idFuncio;
 		this.data = data;
 	}	
 	
-	public SolicitacoesDTO(TabSoliciatacao entity) {
+	public SolicitacaoDTO(TabSoliciatacao entity) {
 		id = entity.getId();
 		idFuncio = entity.getIdFuncio();
 		data = entity.getData();
@@ -49,12 +50,12 @@ public class SolicitacoesDTO implements Serializable{
 		this.idFuncio = idFuncio;
 	}
 
-	public LocalDateTime getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(LocalDateTime data) {
-		this.data = data;
+	public void setData(Date date) {
+		this.data = date;
 	}
 	
 

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.epi.deliver.entities.TabFuncXepi;
 
 
-public class FuncXepi implements Serializable{
+public class FuncXepiDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -13,16 +13,16 @@ public class FuncXepi implements Serializable{
 	private Long idFuncio;
 	private Long idEpi;
 	
-	public FuncXepi() {
+	public FuncXepiDTO() {
 	}
 
-	public FuncXepi(Long id, Long idFuncio, Long idEpi) {
+	public FuncXepiDTO(Long id, Long idFuncio, Long idEpi) {
 		this.id = id;
 		this.idFuncio = idFuncio;
 		this.idEpi = idEpi;
 	}
 
-	public FuncXepi(TabFuncXepi entity) {
+	public FuncXepiDTO(TabFuncXepi entity) {
 		id = entity.getId();
 		idFuncio = entity.getIdFuncio();
 		idEpi = entity.getIdEpi();

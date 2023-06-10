@@ -62,26 +62,36 @@
 			<artifactId>validation-api</artifactId>
 			<version>2.0.1.Final</version>
 		</dependency>
-
-
+		<dependency>
+  			<groupId>org.modelmapper</groupId>
+ 			<artifactId>modelmapper</artifactId>
+  			<version>3.1.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20090211</version>
 		</dependency>
 
-
-
-		<!-- <dependency> <groupId>com.microsoft.sqlserver</groupId> <artifactId>sqljdbc4</artifactId> 
-			<version>4.0</version> </dependency> -->
-
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-
+		<dependency>
+    		<groupId>com.aspose</groupId>
+    		<artifactId>aspose-barcode</artifactId>
+    		<version>20.3</version>
+   		 	<classifier>jdk17</classifier>
+		</dependency>
 
 	</dependencies>
+	<repositories>
+		<repository>
+    		<id>AsposeJavaAPI</id>
+    		<name>Aspose Java API</name>
+    		<url>https://repository.aspose.com/repo/</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>

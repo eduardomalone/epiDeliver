@@ -2,6 +2,7 @@ package com.epi.deliver.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,13 +20,13 @@ public class TabSoliciatacao implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Long idFuncio;
-	private LocalDateTime data;
+	private Date data;
 	
 	
 	public TabSoliciatacao() {
 	}
 
-	public TabSoliciatacao(Long id, Long idFuncio, LocalDateTime data) {
+	public TabSoliciatacao(Long id, Long idFuncio, Date data) {
 		super();
 		this.id = id;
 		this.idFuncio = idFuncio;
@@ -73,11 +74,11 @@ public class TabSoliciatacao implements Serializable{
 		this.idFuncio = idFuncio;
 	}
 
-	public LocalDateTime getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(LocalDateTime data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
