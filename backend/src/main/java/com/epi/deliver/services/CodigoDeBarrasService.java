@@ -1,6 +1,7 @@
 package com.epi.deliver.services;
 
 import java.io.IOException;
+import java.rmi.server.ObjID;
 
 import org.springframework.stereotype.Service;
 
@@ -14,13 +15,13 @@ public class CodigoDeBarrasService {
 	
 	public String gerarCodigoDeBarras(FuncionarioDTO funcionario, PedidoDTO pedidoDTO, String codigoEpi) throws IOException {
 		
-		
+		ObjID uid = new ObjID();
 		String idSolicitacao = pedidoDTO.getSolicitacaoDTO().getId().toString();
 		String idFuncio = funcionario.getId().toString();
 		String regFunc = funcionario.getRegistro();
 		// idItem = pedidoDTO.getItems().get(pedidoDTO.getItems().size()-1).getId().toString();
 		String codEpi = codigoEpi;
-		String codBArras = codigoEpi+idFuncio+regFunc+idSolicitacao;
+		String codBArras = codigoEpi+idFuncio+regFunc+idSolicitacao+uid.hashCode();
 		
 		BarcodeGenerator generator = new BarcodeGenerator(EncodeTypes.CODE_128, codBArras);
 		// definir resolução

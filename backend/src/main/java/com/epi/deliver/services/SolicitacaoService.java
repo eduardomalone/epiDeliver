@@ -83,26 +83,31 @@ public class SolicitacaoService {
 		}
 		itemSolicitacaoList = itemrepository.saveAll(itemSolicitacaoList);
 		
-		ModelMapper modelMapper = new ModelMapper();
-		Type listType = new TypeToken<List<ItemSolicitacaoDTO>>(){}.getType();
-		List<ItemSolicitacaoDTO> postDtoList = modelMapper.map(itemSolicitacaoList,listType);
+		SolicitacaoMapper modelSolicit = new SolicitacaoMapper();
+		List<ItemSolicitacaoDTO> postDtoList = modelSolicit.convertListDTO(itemSolicitacaoList);
+		
+		
 		pedidoDTO.setItemSolicitacaoList(postDtoList);
 		return pedidoDTO;
 	}
 	
 	@Transactional
-	public PedidoDTO baixaSolicictacaoIdSolicit(Long id) throws Exception {
+	public ItemSolicitacaoDTO baixaSolicictacaoIdSolicit(Long id) throws Exception {
 		DatasUtil dataAtual = new DatasUtil();
 		TabItemSolicitacao entity = itemrepository.getOne(id);
 		entity.setDataBaixa(dataAtual.dataAtualFormatada());
-		return null;
+		entity = itemrepository.save(entity);
+		return new ItemSolicitacaoDTO(entity);
 	}
 	
 	@Transactional
-	public PedidoDTO baixaSolicictacaoCodBarras(String codBarras) throws Exception {
+	public ItemSolicitacaoDTO baixaSolicictacaoCodBarras(String codBarras, Long id) throws Exception {
 		DatasUtil dataAtual = new DatasUtil();
 		Optional<TabItemSolicitacao> entity = itemrepository.findByCodigoBarra(codBarras);
-		return null;
+		entity.get().setDataBaixa(dataAtual.dataAtualFormatada());
+		entity.get().setIdUsuarioBaixa(id);
+		itemrepository.save(entity.get());
+		return new ItemSolicitacaoDTO(entity.get());
 	}
 	
 	@Transactional
