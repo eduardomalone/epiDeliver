@@ -1,0 +1,35 @@
+
+import { EpiDTO, ItemSolicitacaoDTO } from "./types";
+import ProductCard from "./ProductCard";
+import { checkIsSelected } from "./helpers";
+import { useLocation } from "react-router-dom";
+
+type Props = {
+  //products: ItemSolicitacaoDTO[];
+  products: EpiDTO[];
+  selectedProducts: EpiDTO[];
+  onSelectProduct: (product: EpiDTO) => void;
+}
+
+function ProductsList( {products, selectedProducts, onSelectProduct}: Props ) {
+    const location = useLocation()
+    console.log('### location ###')
+    console.log(location.state)
+    return (
+      <div className="orders-list-container">
+        resuuuumooooooo
+        <div className="orders-list-items">
+            {/* {products.map(product => (
+                <ProductCard 
+                  key={product.id} 
+                  product={product}
+                  onSelectProduct={onSelectProduct}
+                  isSelected={checkIsSelected(selectedProducts, product)}
+                 />
+            ))} */}
+        </div>
+      </div>
+    )
+  }
+  
+  export default ProductsList;

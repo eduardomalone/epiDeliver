@@ -1,0 +1,24 @@
+import axios from "axios";
+import { SolicitacaoRequest } from "./Orders/types";
+
+const API_URL = 'http://localhost:8080';
+
+export function fetchMontaTelaEpi(registro:string, idCliente:string){
+    //console.log('###################### tentou chamar a API')
+    return axios(`${API_URL}/montaTelaEpi?registro=`+registro+`&idCliente=`+idCliente);
+}
+
+export function fetchFuncionario(registro:string, idCliente:string){
+    //console.log('###################### tentou chamar a API')
+    return axios(`${API_URL}/funcionarios?registro=`+registro+`&idCliente=`+idCliente);
+}
+
+export function fetchSalvarSolicitacao(payload: any){
+    console.log('###################### tentou chamar a API')
+    console.log(payload)
+    
+    return axios.post(`${API_URL}/solicitacao`, payload);
+}
+
+
+
