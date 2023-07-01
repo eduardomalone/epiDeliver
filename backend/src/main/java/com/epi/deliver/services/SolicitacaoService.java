@@ -45,7 +45,7 @@ public class SolicitacaoService {
 
 	@Transactional
 	//public PedidoDTO criaSolicitacao(Long idFuncio, List<ItemSolicitacaoDTO> itens) throws IOException {
-	public PedidoDTO criaSolicitacao(FuncionarioDTO funcionario, List<EpiDTO> itens) throws IOException, Exception {
+	public PedidoDTO criaSolicitacao(FuncionarioDTO funcionario, List<EpiDTO> itens, List<String> codBarras) throws IOException, Exception {
 				
 		PedidoDTO pedidoDTO = new PedidoDTO();
 		DatasUtil dataAtual = new DatasUtil();
@@ -60,13 +60,13 @@ public class SolicitacaoService {
 		TabSoliciatacao solicitacao = new TabSoliciatacao();
 		solicitacao.setIdFuncio(dto.getIdFuncio());
 		solicitacao.setData(dto.getData());
-		repository.save(solicitacao);
-		repository.flush();
+		//repository.save(solicitacao);
+		//repository.flush();
 		
 		pedidoDTO.setSolicitacaoDTO(new SolicitacaoDTO(entity));
 		pedidoDTO.setFuncionarioDTO(funcionario);
 		List<ItemSolicitacaoDTO> items2 = new ArrayList<>();
-		System.out.println("#########" + solicitacao.getId());
+		System.out.println("######### idSolicitacao" + solicitacao.getId());
 		
 		ItemSolicitacaoMapper mapper = new ItemSolicitacaoMapper();
 		List<TabItemSolicitacao> itemSolicitacaoList = new ArrayList<>();
@@ -75,7 +75,7 @@ public class SolicitacaoService {
 		for (int i = 0; i < itens.size(); i++) {
 			ItemSolicitacaoDTO itemSolicit = new ItemSolicitacaoDTO();
 			itemSolicit.setIdSolicitacao(pedidoDTO.getSolicitacaoDTO().getId());
-			itemSolicit.setCodigoBarra(codigoDeBarrasService.gerarCodigoDeBarras(funcionario, pedidoDTO, itens.get(i).getCodigo()));
+			itemSolicit.setCodigoBarra(codBarras.get(i));
 			itemSolicit.setIdEpi(itens.get(i).getId());
 			itemSolicit.setDataInclusao(pedidoDTO.getSolicitacaoDTO().getData());
 			

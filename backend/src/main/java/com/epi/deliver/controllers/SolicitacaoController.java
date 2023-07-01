@@ -27,18 +27,12 @@ public class SolicitacaoController {
 	@Autowired
 	private SolicitacaoService service;
 	
-//	@GetMapping
-//	public ResponseEntity<PedidoDTO> montaTelaEpi(@RequestParam Long idFuncio){
-//		PedidoDTO funcio = service.criaSolicitacao(idFuncio);
-//		return ResponseEntity.ok().body(funcio);
-//	}
-	
-	
+		
 	@PostMapping
 	public ResponseEntity<String>criaSolicitacao(@RequestBody SolicitacaoRequest request)throws IOException, Exception{
 		
 		try {
-			PedidoDTO pedidoDTO = service.criaSolicitacao(request.getFuncionarioDTO(), request.getListaEpiDTO());
+			PedidoDTO pedidoDTO = service.criaSolicitacao(request.getFuncionarioDTO(), request.getListaEpiDTO(), request.getListaCodBarras());
 			
 			JSONObject pedidoJson = new JSONObject(pedidoDTO);
 			

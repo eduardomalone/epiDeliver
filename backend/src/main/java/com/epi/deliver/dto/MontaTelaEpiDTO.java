@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MontaTelaEpiDTO {
 	
-	private FuncionarioDTO funcionarioDTO;
+	private List<FuncionarioDTO> funcionarioDTO;
 	private List<EpiDTO> listaEpiDTO;
 	
 	
@@ -12,16 +12,16 @@ public class MontaTelaEpiDTO {
 	}
 	
 	
-	public MontaTelaEpiDTO(FuncionarioDTO funcionarioDTO, List<EpiDTO> listaEpiDTO) {
+	public MontaTelaEpiDTO(List<FuncionarioDTO> funcionarioDTO, List<EpiDTO> listaEpiDTO) {
 		this.funcionarioDTO = funcionarioDTO;
 		this.listaEpiDTO = listaEpiDTO;
 	}
 
 	
-	public FuncionarioDTO getFuncionarioDTO() {
+	public List<FuncionarioDTO> getFuncionarioDTO() {
 		return funcionarioDTO;
 	}
-	public void setFuncionarioDTO(FuncionarioDTO funcionarioDTO) {
+	public void setFuncionarioDTO(List<FuncionarioDTO> funcionarioDTO) {
 		this.funcionarioDTO = funcionarioDTO;
 	}
 	public List<EpiDTO> getListaEpiDTO() {

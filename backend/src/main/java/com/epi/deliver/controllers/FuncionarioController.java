@@ -25,4 +25,11 @@ public class FuncionarioController {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@GetMapping("/")
+	public ResponseEntity<List<FuncionarioDTO>> findFuncionarios(){
+		List<FuncionarioDTO> list = service.findAll();
+		return ResponseEntity.ok().body(list);
+	}
+
+	
 }

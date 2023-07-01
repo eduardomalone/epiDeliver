@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.epi.deliver.dto.EpiDTO;
 import com.epi.deliver.dto.FuncXepiDTO;
 import com.epi.deliver.dto.FuncionarioDTO;
 import com.epi.deliver.dto.MontaTelaEpiDTO;
@@ -22,19 +23,30 @@ public class MontaTelaEpiService {
 	@Autowired
 	private EpiService epiService;
 	
-	public MontaTelaEpiDTO montaTelaEpi(String registro, Long idCliente) {
+	public List<MontaTelaEpiDTO> montaTelaEpi(String registro, Long idCliente) {
 		
 		MontaTelaEpiDTO montaTelaEpiDTO = new MontaTelaEpiDTO();
 		List<FuncionarioDTO> lista = funcionarioService.findFuncio(registro, idCliente);
-		montaTelaEpiDTO.setFuncionarioDTO(lista.get(0));
-		
-		List<FuncXepiDTO> listaFuncXepi = funcXepiService.findByIdFuncio(montaTelaEpiDTO.getFuncionarioDTO().getId());
+		montaTelaEpiDTO.setFuncionarioDTO(lista);
+		ArrayList<MontaTelaEpiDTO> listaIdEpiRetorno = new ArrayList<>();
 		ArrayList<Long> listaIdEpi = new ArrayList<>();
-		for (FuncXepiDTO i : listaFuncXepi) {
-			listaIdEpi.add(i.getIdEpi());
+		
+		if(!montaTelaEpiDTO.getFuncionarioDTO().isEmpty() && !montaTelaEpiDTO.getFuncionarioDTO().get(0).getCoringa().equals(null)) {
+			if(!montaTelaEpiDTO.getFuncionarioDTO().get(0).getCoringa().equalsIgnoreCase("S")) {
+				List<FuncXepiDTO> listaFuncXepi = funcXepiService.findByIdFuncio(montaTelaEpiDTO.getFuncionarioDTO().get(0).getId());
+				for (FuncXepiDTO i : listaFuncXepi) {
+					listaIdEpi.add(i.getIdEpi());
+					montaTelaEpiDTO.setListaEpiDTO(epiService.findAll(listaIdEpi));
+				}
+				
+			}else {
+				montaTelaEpiDTO.setListaEpiDTO(epiService.findAllIdCliente(idCliente));
 			}
-		montaTelaEpiDTO.setListaEpiDTO(epiService.findAll(listaIdEpi));
-		return montaTelaEpiDTO;
+			
+			listaIdEpiRetorno.add(montaTelaEpiDTO);
+			
+		}
+		return listaIdEpiRetorno;
 	}
 	
 

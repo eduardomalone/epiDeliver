@@ -9,6 +9,7 @@ public class SolicitacaoRequest {
 
 	FuncionarioDTO funcionarioDTO;
 	List<EpiDTO> listaEpiDTO;
+	List<String> listaCodBarras;
 	
 	
 	public FuncionarioDTO getFuncionarioDTO() {
@@ -23,6 +24,13 @@ public class SolicitacaoRequest {
 	public void setListaEpiDTO(List<EpiDTO> listaEpiDTO) {
 		this.listaEpiDTO = listaEpiDTO;
 	}
+	public List<String> getListaCodBarras() {
+		return listaCodBarras;
+	}
+	public void setListaCodBarras(List<String> listaCodBarras) {
+		this.listaCodBarras = listaCodBarras;
+	}
+	
 	
 	
 }

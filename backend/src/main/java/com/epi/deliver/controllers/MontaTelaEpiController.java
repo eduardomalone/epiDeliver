@@ -1,5 +1,7 @@
 package com.epi.deliver.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +19,10 @@ public class MontaTelaEpiController {
 	private MontaTelaEpiService service;
 	
 	@GetMapping
-	public ResponseEntity<MontaTelaEpiDTO> montaTelaEpi(@RequestParam String registro, @RequestParam Long idCliente){
-		MontaTelaEpiDTO funcio = service.montaTelaEpi(registro, idCliente);
+	public ResponseEntity<List<MontaTelaEpiDTO>> montaTelaEpi(@RequestParam String registro, @RequestParam Long idCliente){
+		List<MontaTelaEpiDTO> funcio = service.montaTelaEpi(registro, idCliente);
+		
+		System.out.println("########## montaTelaEpi ############");
 		return ResponseEntity.ok().body(funcio);
 	}
 

@@ -31,5 +31,12 @@ public class EpiService {
 		return list.stream().map(x -> new EpiDTO(x)).collect(Collectors.toList());
 		
 	}
+	
+	@Transactional(readOnly = true)
+	public List<EpiDTO>findAllIdCliente(Long inCliente){
+		List<TabEpi> list = repository.findByIdCliente(inCliente);
+		return list.stream().map(x -> new EpiDTO(x)).collect(Collectors.toList());
+		
+	}
 
 }

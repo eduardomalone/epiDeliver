@@ -21,6 +21,15 @@ public class FuncionarioService {
 	@Transactional(readOnly = true)
 	public List<FuncionarioDTO>findFuncio(String registro, Long idCliente){
 		List<TabFuncionario> list = repository.findByRegistroAndIdCliente(registro, idCliente);
+		if(!list.isEmpty()) {}
+		return list.stream().map(x -> new FuncionarioDTO(x)).collect(Collectors.toList());
+		
+	}
+	
+	@Transactional(readOnly = true)
+	public List<FuncionarioDTO>findAll(){
+		List<TabFuncionario> list = repository.findAll();
+		if(!list.isEmpty()) {}
 		return list.stream().map(x -> new FuncionarioDTO(x)).collect(Collectors.toList());
 		
 	}

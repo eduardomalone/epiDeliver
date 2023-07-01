@@ -12,6 +12,7 @@ public interface EpiRepository extends JpaRepository<TabEpi, Long>{
 	List<TabEpi> findAll();
 	
 	List<TabEpi> findByIdIn(List<Long>ids);
+	List<TabEpi> findByIdCliente(Long id);
 	
 	Optional<TabEpi> findById(Long id);
 	
