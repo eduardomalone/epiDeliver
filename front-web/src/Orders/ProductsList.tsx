@@ -17,6 +17,7 @@ function ProductsList( {products, selectedProducts, onSelectProduct, status2}: P
     console.log(products)
 
     const [status, setStatus] = useState<boolean>(status2);
+    console.log(setStatus(status2))
     
     return (
       <>

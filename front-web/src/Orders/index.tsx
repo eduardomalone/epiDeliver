@@ -62,6 +62,7 @@ function Orders() {
   const listaItens = selectedProducts;
   console.log(' #### selected itens ####')
   console.log(selectedProducts)
+  console.log(setStatus(status))
 
   // momnta tela dos EPIs atraves do registro do func e idCliente
   useEffect(() => {

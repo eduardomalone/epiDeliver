@@ -10,7 +10,6 @@ type Props = {
 function ImpressaoCard({ product, registro, codBarras }: Props) {
 
   var React = require('react');
-  var ReactDOM = require('react-dom');
   var Barcode = require('react-barcode');
 
   return (
