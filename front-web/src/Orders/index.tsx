@@ -76,7 +76,8 @@ function Orders() {
           console.log('###-Erro ao montar tela-####', error.response)
         }
         )
-  }, []);
+      //}, []);
+      },);
 
   const handleSelectProduct = (product: EpiDTO) => {
     const isAlreadySelected = checkIsSelected(selectedProducts, product);
