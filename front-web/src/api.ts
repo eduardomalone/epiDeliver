@@ -2,6 +2,7 @@ import axios from "axios";
 
 
 const API_URL = 'https://sistemaepi.herokuapp.com'
+//const API_URL = 'http://localhost:8080'
 
 export function fetchMontaTelaEpi(registro:string, idCliente:string){
     //console.log('###################### tentou chamar a API')

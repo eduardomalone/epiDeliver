@@ -13,7 +13,7 @@ function FuncionarioCard(this: any, { funcionario }: Props) {
     function onError(e: any) {
         e.target.src = '/func_imgs/func_default.svg';
     }
-
+    console.log(' ##### FuncionarioCard ####')
     return (
         <div className="">
             <img className=""

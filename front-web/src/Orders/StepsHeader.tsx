@@ -6,6 +6,7 @@ type Props = {
 }
 
 function StepsHeader({ funcionarios }: Props) {
+    console.log(' ##### StepsHeader ####')
     return (
         <div className="orders-steps-container">
             <div className="orders-steps-content">
