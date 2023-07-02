@@ -52,7 +52,7 @@ function Resumo(this: any) {
     }
 
     const date = new Date();
-    let dataHMS = date.getFullYear()+""+(date.getMonth() + 1)+""+date.getDate()+""+date.getHours()+""+date.getMinutes()+""+date.getSeconds();
+    let dataHMS = date.getFullYear()+""+(date.getMonth() + 1)+""+date.getHours()+""+date.getMinutes()+""+date.getSeconds();
     var listaCodBarras: any[] = []
     var func = funcionario
 
