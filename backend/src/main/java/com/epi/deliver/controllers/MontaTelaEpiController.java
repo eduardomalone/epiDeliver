@@ -21,7 +21,6 @@ public class MontaTelaEpiController {
 	@GetMapping
 	public ResponseEntity<List<MontaTelaEpiDTO>> montaTelaEpi(@RequestParam String registro, @RequestParam Long idCliente){
 		List<MontaTelaEpiDTO> funcio = service.montaTelaEpi(registro, idCliente);
-		
 		System.out.println("########## montaTelaEpi ############");
 		return ResponseEntity.ok().body(funcio);
 	}
