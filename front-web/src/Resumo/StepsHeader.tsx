@@ -1,6 +1,4 @@
 import { FuncionarioDTO } from "../Orders/types";
-import FuncionarioCard from "./FuncionarioCard";
-
 
 type Props = {
     funcionario: FuncionarioDTO;
@@ -8,13 +6,15 @@ type Props = {
 
 function StepsHeader({ funcionario }: Props) {
     return (
-        <div className="orders-steps-container">
-            <div className="orders-steps-content">
-                <div className="steps-title">
-                    <FuncionarioCard key={funcionario.nome} funcionario={funcionario} />
+        <>
+            <div className="orders-steps-container">
+                <div className="orders-steps-content2" /*style={{alignItems:'center'}}*/>
+                    <div className="steps-title">
+                        Itens Selecionados:
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -4,15 +4,13 @@ import StepsHeader from './StepsHeader';
 import './styles.css';
 import ProductsList from './ProductsList';
 import { EpiDTO, FuncionarioDTO } from './types';
-import { fetchFuncionario, fetchMontaTelaEpi, fetchSalvarSolicitacao } from '../api';
+import { fetchMontaTelaEpi, fetchSalvarSolicitacao } from '../api';
 import { ReactComponent as MainImage } from './epiLogo.svg';
 import OrderSummary from './OrderSummary';
 import { checkIsSelected } from './helpers';
 import { toast } from 'react-toastify';
 import { useLocation } from "react-router";
 import { Link, useHistory } from "react-router-dom";
-import Home from '../Home';
-import { exit } from 'process';
 
 var registro: string;
 var idCliente: string;
@@ -22,16 +20,13 @@ const params = new URLSearchParams(search);
 const foox = params.get('registro');
 const foo3x = params.get('idCli');
 
-
-console.log('###', foox)
-console.log('###', foo3x)
+console.log('### registro:', foox)
+console.log('### idCli:', foo3x)
 
 function getRegistro(texto: string) {
-  console.log('##### teeee', texto)
   if (texto == null || texto === undefined) {
     texto = " _ "
   }
-
   let arrayReturn: string[]
   arrayReturn = texto.split("_");
   registro = arrayReturn[0]
@@ -49,45 +44,26 @@ function getIdCliente(texto: string) {
 }
 
 
-
 function Orders() {
 
   let history = useHistory();
-
   function handleClick() {
     setTimeout(() => {
       history.push(`/home`);
     }, 3000);
-    return <Home />;
-
+    return;
   }
 
-
-
-  //const state = location.state as string
-  //const [products, setProducts] = useState<ItemSolicitacaoDTO[]>([]);
   const location = useLocation()
   const [products, setProducts] = useState<EpiDTO[]>([]);
   const [selectedProducts, setSelectedProducts] = useState<EpiDTO[]>([]);
   const [funcionarios, setFuncionarios] = useState<FuncionarioDTO[]>([]);
-  const [infoRegistro, setInfoRegistro] = useState<string>("");
   const [status, setStatus] = useState<boolean>(true);
-  const totalPrice = selectedProducts.reduce((sum, item) => {
-    return sum + item.validade
-  }, 0)
   const listaItens = selectedProducts;
-  console.log(' selected itens ####')
+  console.log(' #### selected itens ####')
   console.log(selectedProducts)
 
-  function validaFunc() {
-
-    toast.warning('######################', {
-      position: toast.POSITION.TOP_CENTER
-    });
-    handleClick();
-
-
-  }
+  // momnta tela dos EPIs atraves do registro do func e idCliente
   useEffect(() => {
     if (location)
       fetchMontaTelaEpi(getRegistro(location.state as string), getIdCliente(location.state as string))
@@ -96,21 +72,10 @@ function Orders() {
           setFuncionarios(response.data[0].funcionarioDTO)
         })
         .catch(error => {
-          console.log('###-error-####', error.response)
-          // toast.warning('Funcional não encontrada', {
-          //   position: toast.POSITION.TOP_CENTER
-          // });
-          // handleClick();
-
-          //setInfoRegistro('###')
-          //return;
+          console.log('###-Erro ao montar tela-####', error.response)
         }
-
         )
-
-
   }, []);
-  //validaFunc()
 
   const handleSelectProduct = (product: EpiDTO) => {
     const isAlreadySelected = checkIsSelected(selectedProducts, product);
@@ -138,6 +103,7 @@ function Orders() {
     } else {
       fetchSalvarSolicitacao(payload)
         .then((response) => {
+          //sucesso na chamada
           toast.error(`Pedido enviado com sucesso! - n ${response.data.solicitacaoDTO.id}`, {
             position: toast.POSITION.TOP_CENTER
           });
@@ -149,18 +115,11 @@ function Orders() {
             position: toast.POSITION.TOP_CENTER
           });
         })
-
     }
   }
-
-  function sumaryTeste(){
-
-    return true
-  }
-
   return (
     <>
-      {!funcionarios[0] && 
+      {!funcionarios[0] &&
         (<div className="home-container">
           <div className="home-content">
             <div className="home-actions">
@@ -189,7 +148,7 @@ function Orders() {
           </div>
         </div>)
       }
-      {funcionarios[0]  &&(
+      {funcionarios[0] && (
         <div className="orders-container">
           <StepsHeader funcionarios={funcionarios} />
           <ProductsList
@@ -197,49 +156,45 @@ function Orders() {
             onSelectProduct={handleSelectProduct}
             selectedProducts={selectedProducts}
             status2={status}
-          //AnimationPage={AnimationPage}
           />
-          </div>
-          )}
-          
-          {products[0] &&(
-          <div>
+        </div>
+      )}
+
+      {products[0] && (
+        <div>
           <OrderSummary
             amount={selectedProducts.length}
-            totalPrice={totalPrice}
             listaItens={listaItens}
             selectedProducts={selectedProducts}
             onSubmit={handleSubmit}
             funcionario={funcionarios[0]}
-
           />
         </div>)}
 
-        {!products[0] && (<div className="home-container">
-          <div className="home-content">
-            <div className="home-actions">
-              <h1 className="home-title">
+      {!products[0] && (<div className="home-container">
+        <div className="home-content">
+          <div className="home-actions">
+            <h1 className="home-title">
               Não existem equipamentos cadastrados!
-              </h1>
-              <h3 className="home-subtitle">
-                Clique no botão abaixo para fazer uma nova pesquisa
-              </h3>
-              <h1>
-                <div>
-                  <Link
-                    to={{
-                      pathname: `/Home/`,
-                      state: ('')
-                    }}
-                    className="home-btn-order">
-                    Home
-                  </Link>
-                </div>
-              </h1>
-            </div>
+            </h1>
+            <h3 className="home-subtitle">
+              Clique no botão abaixo para fazer uma nova pesquisa
+            </h3>
+            <h1>
+              <div>
+                <Link
+                  to={{
+                    pathname: `/Home/`,
+                    state: ('')
+                  }}
+                  className="home-btn-order">
+                  Home
+                </Link>
+              </div>
+            </h1>
           </div>
-        </div>)}
-      
+        </div>
+      </div>)}
     </>
   )
 

@@ -1,136 +1,63 @@
 
 import { Link } from 'react-router-dom';
-import Resumo from '../Resumo';
-import { useState } from 'react';
-import { EpiDTO, FuncionarioDTO } from './types';
+import { FuncionarioDTO } from './types';
+import { toast } from 'react-toastify';
 
 type Props = {
     amount: number;
-    totalPrice: number;
     listaItens: any;
     selectedProducts: any;
     onSubmit: () => void;
     funcionario: FuncionarioDTO
-    //status3: any;
 }
 
-var varTeste: any;
+function OrderSummary({ amount, listaItens, selectedProducts, onSubmit, funcionario }: Props) {
 
-function OrderSummary({amount, totalPrice, listaItens, selectedProducts, onSubmit, funcionario}: Props){
-    
-    const [status, setStatus] = useState<boolean>(false);
-    function mudaStatus(){
-        if(status === true){
-            setStatus(false)
-        }else{
-            setStatus(true)
-        } 
+    function validaItens() {
+        if (selectedProducts.length === 0) {
+            console.log('### setSelectedProducts uuuuu ###')
+            toast.warning(' Selecione um dos Itens ou Retorne para a pagina anterior!', {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
     }
 
-    const payload = {
-        funcionarioDTO: funcionario,
-        listaEpiDTO: selectedProducts
-      }
-    return(
-
+    return (
         <>
-        {!status && (
-            <div className="order-summary-container">
-            <div className="order-summary-content">
-                <div>
-                    <span className="amount-selected-container">
-                         
-                        <strong className="amount-selected">QTD Itens: { amount }</strong>
-                    </span>
-                    {/* <span className="ORDER-SUMMARY-TOTAL">
-                        <strong className="amount-selected">R$ {totalPrice}</strong>
-                        Valor Total
-                    </span> */}
-                    {/* <span className="ORDER-SUMMARY-TOTAL">
-                        <strong className="amount-selected">R$ {listaItens.codigo}</strong>
-                        Valor Total
-                    </span>
-                    <span className="ORDER-SUMMARY-TOTAL">
-                        <strong className="amount-selected">{listaItens.codigo}</strong>
-                        itens
-                    </span> */}
+            {(
+                <div className="order-summary-container">
+                    <div className="order-summary-content">
+                        <div>
+                            {selectedProducts[0] && (
+                                <div>
+                                    <button
+                                        className="order-summary-make-order">
+                                        <Link style={{ color: 'inherit', textDecoration: 'inherit' }}
+                                            to={{
+                                                pathname: `/resumo`,
+                                                state: {
+                                                    funcionario: funcionario,
+                                                    selectedProducts: selectedProducts
+                                                }
+                                            }}
+                                        >
+                                            Fazer Solicitação
+                                        </Link>
+                                    </button>
+                                </div>
+                            )}
+                            {!selectedProducts[0] && (
+                                <>
+                                    <button className="order-summary-make-order" onClick={validaItens}>
+                                        Fazer Solicitação
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    {selectedProducts.map((item: any) => (
-                        <li>{item.descricao}</li>
-                    ))}       
-                </div>
-                <button 
-                    className="order-summary-make-order"
-                    // onClick={onSubmit} >
-                    onClick={onSubmit} >
-                    Fazer solicitacao
-                </button>
-                <button 
-                    className="order-summary-make-order"
-                    // onClick={onSubmit} >
-                    onClick={onSubmit} >
-                    Pagina de resumo
-                </button>
-                <div>
-                    {}
-                    <Link
-                        to={{
-                            pathname: `/resumo`,
-                            //state: { value},
-                            state: {funcionario: funcionario,
-                                    selectedProducts: selectedProducts
-                            }
-                        }}
-                        //to="solicitacao" className="home-btn-order"
-                        className="home-btn-order">
-                        Fazer Solicitação
-                    </Link>
-                </div>    
-            </div>
-
-        </div>)}
-        
-        {/* {status &&(
-            <span>
-                <h1>
-                    Resumo
-                </h1>
-                <button 
-                    className="order-summary-make-order"
-                    // onClick={onSubmit} >
-                    onClick={onSubmit} >
-                    Fazer solicitacao
-                </button>
-            </span>
-        )} */}
-
-                {/* <button 
-                    className="order-summary-make-order"
-                    
-                    onClick={mudaStatus} >
-                    Teste Resumo
-                </button> */}
-        
-         
-            {/* <div className="order-summary-container">
-            <div className="order-summary-content">
-                <div>
-                    {selectedProducts.map((item: any) => (
-                        <li>{item.descricao}</li>
-                    ))}       
-                </div>
-                <button 
-                    className="order-summary-make-order"
-                    // onClick={onSubmit} >
-                    onClick={onSubmit} >
-                    Resumo da solicitacao
-                </button>    
-            </div>
-
-        </div> */}
+            )}
         </>
-        
     )
 }
 

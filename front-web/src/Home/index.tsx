@@ -2,13 +2,16 @@ import './styles.css';
 import { ReactComponent as MainImage } from './epiLogo.svg';
 import * as React from 'react';
 import Footer from '../Footer';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 
-const idCliente = "_1"
 
-function retornaCliente(x: string){
-    let y = x+idCliente
+//const idCliente = "_1"
+const idCliente = "_4"
+
+//pega o Id do cliente de acordo com a home criada
+function retornaCliente(x: string) {
+    let y = x + idCliente
     return y
 }
 
@@ -16,6 +19,16 @@ function Home() {
 
     const [idCliente] = useState('_1');
     const [value, setValue] = useState("");
+
+    // redireciona para a pagina de descanso
+    let history = useHistory();
+    function contadorTelaDescanso() {
+        setTimeout(() => {
+            history.push(`/ItemSolicitacao`);
+        }, 180000);
+        return;
+    }
+
     return (
         <>
             <div className="home-container">
@@ -38,14 +51,12 @@ function Home() {
                                 />
                             </div>
                             <div>
-                                {}
+                                { }
                                 <Link
                                     to={{
                                         pathname: `/solicitacao/${value}&idCli=${idCliente}`,
-                                        //state: { value},
                                         state: (retornaCliente(value as string))
                                     }}
-                                    //to="solicitacao" className="home-btn-order"
                                     className="home-btn-order">
                                     Fazer Solicitação
                                 </Link>
@@ -58,6 +69,7 @@ function Home() {
                 </div>
             </div>
             <Footer />
+            {contadorTelaDescanso()}
         </>
     )
 }

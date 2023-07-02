@@ -1,31 +1,37 @@
 
-import { EpiDTO} from "../Orders/types";
+import { EpiDTO } from "../Orders/types";
 
-type Props ={
-    product: EpiDTO
+type Props = {
+  product: EpiDTO
+  registro: string
 }
 
-console.log()
-function ProductCard({ product}: Props){
+function ProductCard({ product, registro }: Props) {
 
-    return(     
+  function onError(e: any) {
+    e.target.src = '/epi_imgs/epi_padrao.jpg';
+  }
+  return (
+    <>
       <div className="order-card-container">
         <h3 className="order-card-title">
         </h3>
-        {/* <img 
-            src= {'/epi_imgs/'+product.codigo+'.jpg'}
-            className="order-card-image" 
-            alt={product.codigo}
-            onError={(e) => onError(e)}
-        /> */}
+        <img
+          //src= {'/codigo_barras.jpeg'}
+          src={'/epi_imgs/' + product.codigo + '.jpg'}
+          className="order-card-image"
+          alt={product.codigo}
+          onError={(e) => onError(e)}
+        />
         <div className="order-card-description">
-            <h3>Descricão:</h3>
-            <p>
+          <h3>Descricão:</h3>
+          <p>
             {product.descricao}
-            </p>
+          </p>
         </div>
       </div>
-    )
+    </>
+  )
 }
 
 export default ProductCard;
