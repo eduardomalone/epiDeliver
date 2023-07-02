@@ -17,7 +17,8 @@ function retornaCliente(x: string) {
 
 function Home() {
 
-    const [idCliente] = useState('_4');
+    //const [idCliente] = useState('_4');
+    const [idCliente] = useState('_1');
     const [value, setValue] = useState("");
 
     // redireciona para a pagina de descanso

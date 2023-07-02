@@ -7,7 +7,7 @@ type Props = {
 }
 
 function ProductCard({ product, onSelectProduct, isSelected }: Props) {
-
+  console.log(' ##### ProductCard ####')
   var repoGitImg = 'https://eduardomalone.github.io/img/epi_imgs/'
 
   // busca img padrao
