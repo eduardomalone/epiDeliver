@@ -79,15 +79,15 @@ function Orders() {
   console.log(' selected itens ####')
   console.log(selectedProducts)
 
-  function validaFunc() {
+  // function validaFunc() {
 
-    toast.warning('######################', {
-      position: toast.POSITION.TOP_CENTER
-    });
-    handleClick();
+  //   toast.warning('######################', {
+  //     position: toast.POSITION.TOP_CENTER
+  //   });
+  //   handleClick();
 
 
-  }
+  // }
   useEffect(() => {
     if (location)
       fetchMontaTelaEpi(getRegistro(location.state as string), getIdCliente(location.state as string))
