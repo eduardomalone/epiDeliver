@@ -83,8 +83,8 @@ function Resumo(this: any) {
                 toast.error(`Pedido enviado com sucesso! - id: ${response.data.solicitacaoDTO.id}`, {
                     position: toast.POSITION.TOP_CENTER
                 });
-                console.log('### solicitacao gerada com sucesso ###')
                 setIdSolicitacao(response.data.solicitacaoDTO.id)
+                console.log('### solicitacao gerada com sucesso ###', idSolicitacao)
             })
             .catch(() => {
                 toast.warning('Erro ao enviar pedido', {
