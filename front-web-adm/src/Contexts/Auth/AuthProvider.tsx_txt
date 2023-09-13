@@ -1,0 +1,75 @@
+// import { useEffect, useState } from "react"
+// import { AuthContext } from "./AuthContext.tsx_txt"
+// import { User, UserLogin } from "../../Types/User";
+// import { useApi } from "../../API/useApi";
+
+// export const AuthProvider = ({ children }: { children: JSX.Element }) => {
+
+//     const [user, setUser] = useState<User | null>(null);
+//     const [userLogin, setUserLogin] = useState<UserLogin | null>(null);
+//     const api = useApi();
+//     const singin = async (login: string, senha: string) => {
+//         const data = await api.signin(login, senha);
+//         console.log('#### singin xxxxxx ###', data.autorizado);
+//         console.log('#### login xxxxxx ###', data.login);
+
+//         if (data.funcionario && data.login && data.autorizado) {
+//             setUser(data.funcionario);
+//             setUserLogin(data.login);
+//             setToken(data.funcionario.idCliente);
+//             console.log('userPerfil####', userLogin)
+//             console.log('user####', user)
+//             return true;
+//         }
+//         return false;
+//     }
+
+//     const atualizaSenha = async (login: string, senha: string, novaSenha: string) => {
+
+//         const data = await api.atualizaSenha(login, senha, novaSenha);
+//         console.log('#### singin xxxxxx ###', data.autorizado);
+
+//         if (data.funcionario && data.login && data.autorizado) {
+//             setUser(data.funcionario);
+//             setToken(data.funcionario.idCliente);
+//             return true;
+//         }
+//         return false;
+//     }
+
+//     const tokenJwt = async (login: string, senha: string) => {
+//         const data = await api.tokenJWT(login, senha);
+//         console.log('#### JWT ###', data)
+//         if (data) {
+//             setToken(data);
+//         }
+//         return data;
+//     }
+
+//     const singout = async () => {
+//         setUser(null);
+//         setUserLogin(null);
+//         setToken('');
+//         await api.logout();
+//     }
+
+//     const setToken = (token: string) => {
+//         localStorage.setItem('authToken', token);
+//     }
+
+//     useEffect(() => {
+//         const acessLocal = localStorage.getItem('authToken')
+//         if(acessLocal !== undefined && acessLocal !== '' && acessLocal !== null){
+//             setToken(acessLocal)
+//         }
+//         else{
+//             setToken('');
+//         }
+//     }, [])
+
+//     return (
+//         <AuthContext.Provider value={{ user, userLogin, singout, tokenJwt, atualizaSenha, singin }}>
+//             {children}
+//         </AuthContext.Provider>
+//     )
+// }

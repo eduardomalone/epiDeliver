@@ -1,0 +1,11 @@
+import { LayoutBaseDePagina } from "../layouts/LayoutBaseDePagina";
+
+
+export const DashBoard = () => {
+
+    return (
+        <LayoutBaseDePagina titulo = 'Page INI'>
+            testeando
+        </LayoutBaseDePagina>
+    );
+};
