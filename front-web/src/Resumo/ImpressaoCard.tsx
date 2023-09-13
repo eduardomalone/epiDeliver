@@ -26,7 +26,7 @@ function ImpressaoCard({ product, registro, codBarras }: Props) {
             //textAlign= {"center"}
             //textPosition= {"bottom"}
             //textMargin= {2}
-            fontSize={10}
+            fontSize={5}
             //marginRight= {20}
             marginLeft={10}
           />

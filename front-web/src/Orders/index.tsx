@@ -61,8 +61,6 @@ function Orders() {
 
   }
 
-
-
   //const state = location.state as string
   //const [products, setProducts] = useState<ItemSolicitacaoDTO[]>([]);
   const location = useLocation()
