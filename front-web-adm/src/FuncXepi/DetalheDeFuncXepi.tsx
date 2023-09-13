@@ -42,8 +42,8 @@ export const DetalheDeFuncXepi: React.FC = () => {
     const [textoDaBuscaEPI, setTextoDaBuscaEPI] = useState('');
     const [idFunc, setIdFunc] = useState('');
     const [idEpi, setIdEpi] = useState('');
-    const { user, userLogin, updateLogin, isAuthenticated,logout } = useAuThContext();
-    const perfilLOG = Number(process.env.REACT_APP_IDPerfilLogistica);
+    const { userLogin, isAuthenticated,logout } = useAuThContext();
+    //const perfilLOG = Number(process.env.REACT_APP_IDPerfilLogistica);
     const perfilADM = Number(process.env.REACT_APP_IDPerfilAdm);
     const perfilADMSIST = Number(process.env.REACT_APP_IDPerfilAdmSist);
     const [perfTeste, setPerfTeste] = useState<number>(Number(localStorage.getItem('APP_ACCESS_USER')));

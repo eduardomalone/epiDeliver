@@ -4,7 +4,6 @@ import { useState } from "react";
 import * as yup from "yup";
 import { useHistory } from "react-router-dom";
 import useNavigate from "react-use-navigate";
-import HomeADM from "../HomeADM";
 
 const loginSchema = yup.object().shape({
     registro: yup.string().required(),
@@ -22,8 +21,8 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
     const [registroError, setRegistroError] = useState('');
     const [senhaError, setSenhaError] = useState('');
     const [ isLoading, setIsLoading ] = useState(false);
-    const navigate = useHistory();
-    const useNav = useNavigate();
+    //const navigate = useHistory();
+    //const useNav = useNavigate();
     
 
     const handleSubmit = () => {

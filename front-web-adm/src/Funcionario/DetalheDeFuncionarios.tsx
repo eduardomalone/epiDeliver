@@ -51,8 +51,8 @@ export const DetalheDeFuncionarios: React.FC = () => {
     const [perf, setPerf] = useState('');
     const navigate = useHistory();
     const formRef = useRef<FormHandles>(null);
-    const { user, userLogin, updateLogin, isAuthenticated, logout } = useAuThContext();
-    const perfilLOG = Number(process.env.REACT_APP_IDPerfilLogistica);
+    const {  userLogin,  isAuthenticated, logout } = useAuThContext();
+
     const perfilADM = Number(process.env.REACT_APP_IDPerfilAdm);
     const perfilADMSIST = Number(process.env.REACT_APP_IDPerfilAdmSist);
     const [perfTeste, setPerfTeste] = useState<number>(Number(localStorage.getItem('APP_ACCESS_USER')));
@@ -141,6 +141,7 @@ export const DetalheDeFuncionarios: React.FC = () => {
 
 
     useEffect(() => {
+        console.log(funcionario)
         setPerfTeste(Number(localStorage.getItem('APP_ACCESS_USER')))
         if (id !== 'novo') {
             setIsLoading(true);
@@ -168,7 +169,7 @@ export const DetalheDeFuncionarios: React.FC = () => {
                 perf: ''
             });
         }
-    }, [id, navigate]);
+    }, [id, navigate, funcionario]);
 
     function validaAutenticado() {
         // import { useAuThContext } from "../contexts_/AuthContext";

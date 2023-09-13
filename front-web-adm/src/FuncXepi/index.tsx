@@ -26,9 +26,9 @@ function FuncXepi() {
     const [textoDaBusca, setTextoDaBusca] = useState('');
     const { debounce } = useDebounce();
     const navigate = useHistory();
-    const { user, userLogin, updateLogin, isAuthenticated, logout } = useAuThContext();
+    const {  userLogin, isAuthenticated, logout } = useAuThContext();
 
-    const perfilLOG = Number(process.env.REACT_APP_IDPerfilLogistica);
+    //const perfilLOG = Number(process.env.REACT_APP_IDPerfilLogistica);
     const perfilADM = Number(process.env.REACT_APP_IDPerfilAdm);
     const perfilADMSIST = Number(process.env.REACT_APP_IDPerfilAdmSist);
     const [perfTeste, setPerfTeste] = useState<number>(Number(localStorage.getItem('APP_ACCESS_USER')));

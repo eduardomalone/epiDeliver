@@ -1,6 +1,6 @@
 import './styles.css';
-import { Link, useHistory } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import {  useHistory } from 'react-router-dom';
+import {  useState } from 'react';
 //import { AuthContext } from '../Contexts/Auth/AuthContext.tsx_txt';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import BadgeIcon from '@mui/icons-material/Badge';
@@ -8,19 +8,19 @@ import HeadsetIcon from '@mui/icons-material/Headset';
 import EngineeringIcon from '@mui/icons-material/Engineering';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import AssessmentIcon from '@mui/icons-material/Assessment';
-import { Box, Button, Card, CardContent, Grid, Icon, IconButton, LinearProgress, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow, TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Card, CardContent, Grid, Icon, Typography } from '@mui/material';
 import { useAuThContext } from '../contexts_/AuthContext';
 
 
 
 function HomeADM() {
     //const auth = useContext(AuthContext);
-    const [barCode, setBarcode] = useState('');
-    const { isAuthenticated, login, user, userLogin } = useAuThContext();
+    //const [barCode, setBarcode] = useState('');
+    const {  user } = useAuThContext();
     // console.log('###### USER ######', auth.user);
     // console.log('###### USERLOGIN ######', auth.userLogin);
     const navigate = useHistory();
-    const perfilLOG = Number(process.env.REACT_APP_IDPerfilLogistica);
+    //const perfilLOG = Number(process.env.REACT_APP_IDPerfilLogistica);
     const perfilADM = Number(process.env.REACT_APP_IDPerfilAdm);
     const perfilADMSIST = Number(process.env.REACT_APP_IDPerfilAdmSist);
 

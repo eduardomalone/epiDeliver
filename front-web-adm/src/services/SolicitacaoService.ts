@@ -17,7 +17,7 @@ export const getByCodBarras = async (codBarras: string): Promise<any> => {
         const { data } = await api.get(`solicitacao/busca?cobBarras=`+codBarras);
 
         if(data){
-            console.log("######## getByName:",data)
+            console.log("######## getByName:",data, apiUrl, cli)
             return{
                 data
             }

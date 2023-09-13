@@ -42,7 +42,7 @@ export const DetalheDeEpi: React.FC = () => {
     const navigate = useHistory();
     const formRef = useRef<FormHandles>(null);
     const [epi, setEpi] = useState<Epi | undefined>();
-    const { user, userLogin, updateLogin, isAuthenticated,logout } = useAuThContext();
+    const { user, userLogin,  isAuthenticated,logout } = useAuThContext();
     const perfilLOG = Number(process.env.REACT_APP_IDPerfilLogistica);
     const perfilADM = Number(process.env.REACT_APP_IDPerfilAdm);
     const perfilADMSIST = Number(process.env.REACT_APP_IDPerfilAdmSist);
@@ -104,9 +104,9 @@ export const DetalheDeEpi: React.FC = () => {
         });
     }
 
-    function aoClicarEmCarga() {
-        navigate.push('/cargaFuncionarios')
-     }
+    // function aoClicarEmCarga() {
+    //     navigate.push('/cargaFuncionarios')
+    //  }
 
     function aoClicarEmNovo() {
         navigate.push('/detalhe/epis/novo')
@@ -133,6 +133,7 @@ export const DetalheDeEpi: React.FC = () => {
 
     useEffect(() => {
         setPerfTeste(Number(localStorage.getItem('APP_ACCESS_USER')))
+        console.log(epi, user, perfilLOG )
         if (id !== 'novo') {
             setIsLoading(true);
             getById(Number(id)).then((response) => {
@@ -154,7 +155,7 @@ export const DetalheDeEpi: React.FC = () => {
                 validade: ''
             });
         }
-    }, [id, navigate, userLogin]);
+    }, [id, navigate, userLogin, epi, user, perfilLOG]);
 
 
     return (

@@ -1,6 +1,6 @@
 import './styles.css';
 import { useHistory, useLocation } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 //import { AuthContext } from '../Contexts/Auth/AuthContext.tsx_txt';
 import { fetchBuscarSolicitacao, fetchSolicitacaoBaixa } from '../api';
 import { EpiDTO, ItemSolicitacao, ItemSolicitacaoEpiDTO } from '../Types/User';
@@ -19,7 +19,7 @@ function UpdateOrders() {
     console.log(' ##### ProductCard ####')
     var repoGitImg = 'https://eduardomalone.github.io/img/epi_imgs/'
     const location = useLocation();
-    const { isAuthenticated, login, user, userLogin } = useAuThContext();
+    //const { isAuthenticated, login, user, userLogin } = useAuThContext();
     //const auth = useContext(AuthContext);
     const [itemSolicitEpi, setItemSolicitEpi] = useState<ItemSolicitacaoEpiDTO>();
     const [epiDTO, setEpiDTO] = useState<EpiDTO>();

@@ -3,7 +3,7 @@ import {ReactComponent as Logo} from './eng.svg';
 import {ReactComponent as Logout} from './logout.svg';
 import { Link } from 'react-router-dom';
 //import { AuthContext } from '../Contexts/Auth/AuthContext.tsx_txt';
-import { useContext } from 'react';
+//import { useContext } from 'react';
 import { useAuThContext } from '../contexts_/AuthContext';
 //import { useDrawerContext } from '../MenuLateral/DrawerContext';
 //import { Avatar, Box, Divider, Drawer, Icon, List, ListItemButton, ListItemIcon, ListItemText, useMediaQuery, useTheme } from "@mui/material"
@@ -12,7 +12,7 @@ import { useAuThContext } from '../contexts_/AuthContext';
 function Navbar(){
     //const { toggleDrawerOpen } = useDrawerContext();
     //const auth = useContext(AuthContext);
-    const {user, userLogin, updateLogin, logout } = useAuThContext();
+    const {user, logout } = useAuThContext();
     function handleLogout() {
         //await auth.singout();
         //atualiza a pagina

@@ -38,9 +38,8 @@ export const CargaFuncionario: React.FC = () => {
     const navigate = useHistory();
     const formRef = useRef<FormHandles>(null);
     const formRefPic = useRef<FormHandles>(null);
-    const { user, userLogin, updateLogin, isAuthenticated,logout } = useAuThContext();
+    const {  userLogin, isAuthenticated,logout } = useAuThContext();
 
-    const perfilLOG = Number(process.env.REACT_APP_IDPerfilLogistica);
     const perfilADM = Number(process.env.REACT_APP_IDPerfilAdm);
     const perfilADMSIST = Number(process.env.REACT_APP_IDPerfilAdmSist);
     const [perfTeste, setPerfTeste] = useState<number>(Number(localStorage.getItem('APP_ACCESS_USER')));

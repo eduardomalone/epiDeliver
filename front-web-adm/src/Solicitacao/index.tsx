@@ -1,6 +1,6 @@
 import './styles.css';
 import { useHistory } from 'react-router-dom';
-import { ReactNode, useContext, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { Box, Button, Grid, Icon, IconButton, LinearProgress, Paper, TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useDrawerContext } from '../MenuLateral/DrawerContext';
@@ -21,7 +21,7 @@ function onError(e: any) {
 function Solicitacoes() {
     var repoGitImg = 'https://eduardomalone.github.io/img/epi_imgs/'
     //const auth = useContext(AuthContext);
-    const { isAuthenticated, login, user, userLogin } = useAuThContext();
+    const { user } = useAuThContext();
     const theme = useTheme();
     const smDown = useMediaQuery(theme.breakpoints.down('sm'));
     const mdDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -31,7 +31,7 @@ function Solicitacoes() {
 
     const [textoDaBusca, setTextoDaBusca] = useState('');
     const { debounce } = useDebounce();
-    const navigate = useHistory();
+    //const navigate = useHistory();
     const [itemSolicitEpi, setItemSolicitEpi] = useState<ItemSolicitacaoEpiDTO>();
     const [epiDTO, setEpiDTO] = useState<EpiDTO>();
     const [itemSolicitacaoDTO, setItemSolicitacaoDTO] = useState<ItemSolicitacao>();

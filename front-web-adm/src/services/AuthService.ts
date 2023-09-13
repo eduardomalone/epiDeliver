@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { User } from '../Types/User';
+//import { User } from '../Types/User';
 
 const api = axios.create({
     baseURL: process.env.REACT_APP_API
@@ -13,12 +13,6 @@ const cli = ({
     idCliente: process.env.REACT_APP_IDcli
 })
     
-
-
-interface IAuth {
-    accessToken: string;
-}
-
 
 const auth = async (login: string, senha: string): Promise<any> => {
 
