@@ -13,7 +13,7 @@ import com.epi.deliver.entities.TabSoliciatacao;
 
 public class SolicitacaoMapper {
 	
-	 private ModelMapper modelMapper;
+	 	private ModelMapper modelMapper;
 
 	    public SolicitacaoMapper() {
 	        modelMapper = new ModelMapper();

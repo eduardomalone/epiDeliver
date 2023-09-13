@@ -12,6 +12,7 @@ public class EpiDTO implements Serializable{
 	private Long idCliente;
 	private String codigo;
 	private String descricao;
+	private String status;
 	private int validade;
 	
 	
@@ -19,12 +20,13 @@ public class EpiDTO implements Serializable{
 	}
 
 
-	public EpiDTO(Long id, Long idCliente, String codigo, String descricao, int validade) {
+	public EpiDTO(Long id, Long idCliente, String codigo, String descricao, int validade, String status) {
 		this.id = id;
 		this.idCliente = idCliente;
 		this.codigo = codigo;
 		this.descricao = descricao;
 		this.validade = validade;
+		this.status = status;
 	}
 
 
@@ -34,6 +36,7 @@ public class EpiDTO implements Serializable{
 		codigo = entity.getCodigo();
 		descricao = entity.getDescricao();
 		validade = entity.getValidade();
+		status = entity.getStatus();
 	}
 
 
@@ -84,6 +87,16 @@ public class EpiDTO implements Serializable{
 
 	public void setValidade(int validade) {
 		this.validade = validade;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 		

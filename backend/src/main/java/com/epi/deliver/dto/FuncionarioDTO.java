@@ -16,10 +16,12 @@ public class FuncionarioDTO implements Serializable{
 	private String setor;
 	private String codFuncao;
 	private String coringa;
+	private String status;
+	private Long perf;
 	
 	
 	public FuncionarioDTO(Long id, Long idCliente, String registro, String nome, String setor, String codFuncao,
-			String coringa) {
+			String coringa, String status, Long perf) {
 		this.id = id;
 		this.idCliente = idCliente;
 		this.registro = registro;
@@ -27,6 +29,8 @@ public class FuncionarioDTO implements Serializable{
 		this.setor = setor;
 		this.codFuncao = codFuncao;
 		this.coringa = coringa;
+		this.status = status;
+		this.setPerf(perf);
 	}
 
 	public FuncionarioDTO(TabFuncionario entity) {
@@ -37,6 +41,7 @@ public class FuncionarioDTO implements Serializable{
 		setor = entity.getSetor();
 		codFuncao = entity.getCodFuncao();
 		coringa = entity.getCoringa();
+		status = entity.getStatus();
 	}
 
 	public FuncionarioDTO() {
@@ -96,6 +101,22 @@ public class FuncionarioDTO implements Serializable{
 
 	public void setCoringa(String coringa) {
 		this.coringa = coringa;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Long getPerf() {
+		return perf;
+	}
+
+	public void setPerf(Long perf) {
+		this.perf = perf;
 	}
 
 

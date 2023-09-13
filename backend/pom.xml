@@ -77,6 +77,13 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
+		<dependency>
+		    <groupId>com.auth0</groupId>
+		    <artifactId>java-jwt</artifactId>
+		    <version>3.16.0</version>
+		</dependency>
+		
 		<dependency>
     		<groupId>com.aspose</groupId>
     		<artifactId>aspose-barcode</artifactId>

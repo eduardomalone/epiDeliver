@@ -115,7 +115,15 @@ public class SolicitacaoService {
 		TabSoliciatacao entity = new TabSoliciatacao(null, dto.getIdFuncio(), dto.getData());
 		entity = repository.save(entity);
 		return new SolicitacaoDTO(entity);
-		
+	}
+	
+	@Transactional
+	public ItemSolicitacaoDTO buscaSolicictacaoCodBarras(String codBarras) throws Exception {
+		Optional<TabItemSolicitacao> entity = itemrepository.findByCodigoBarra(codBarras);
+		if(entity.isEmpty()) {
+			return new ItemSolicitacaoDTO();
+		}
+		return new ItemSolicitacaoDTO(entity.get());
 	}
 
 }

@@ -12,20 +12,23 @@ public class FuncXepiDTO implements Serializable{
 	private Long id;
 	private Long idFuncio;
 	private Long idEpi;
+	private String status;
 	
 	public FuncXepiDTO() {
 	}
 
-	public FuncXepiDTO(Long id, Long idFuncio, Long idEpi) {
+	public FuncXepiDTO(Long id, Long idFuncio, Long idEpi, String status) {
 		this.id = id;
 		this.idFuncio = idFuncio;
 		this.idEpi = idEpi;
+		this.setStatus(status);
 	}
 
 	public FuncXepiDTO(TabFuncXepi entity) {
 		id = entity.getId();
 		idFuncio = entity.getIdFuncio();
 		idEpi = entity.getIdEpi();
+		setStatus(entity.getStatus());
 	}
 
 	public Long getId() {
@@ -50,6 +53,14 @@ public class FuncXepiDTO implements Serializable{
 
 	public void setIdEpi(Long idEpi) {
 		this.idEpi = idEpi;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	

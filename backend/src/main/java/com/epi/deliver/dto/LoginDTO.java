@@ -2,7 +2,10 @@ package com.epi.deliver.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.Id;
+
 import com.epi.deliver.entities.TabLogin;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class LoginDTO  implements Serializable {
@@ -10,10 +13,12 @@ public class LoginDTO  implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	private Long id;
 	private Long idPerfil;
 	private Long idFuncio;
 	private String login;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String senha;
 	
 	

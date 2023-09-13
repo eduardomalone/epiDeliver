@@ -2,6 +2,7 @@ package com.epi.deliver.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,14 +20,16 @@ public class TabFuncXepi implements Serializable{
 	private Long id;
 	private Long idFuncio;
 	private Long idEpi;
+	private String status;
 	
 	public TabFuncXepi() {
 	}
 
-	public TabFuncXepi(Long id, Long idFuncio, Long idEpi) {
+	public TabFuncXepi(Long id, Long idFuncio, Long idEpi, String status) {
 		this.id = id;
 		this.idFuncio = idFuncio;
 		this.idEpi = idEpi;
+		this.status = status; 
 	}
 
 	@Override
@@ -76,6 +79,14 @@ public class TabFuncXepi implements Serializable{
 
 	public void setIdEpi(Long idEpi) {
 		this.idEpi = idEpi;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 

@@ -23,10 +23,11 @@ public class TabFuncionario implements Serializable{
 	private String setor;
 	private String codFuncao;
 	private String coringa;
+	private String status;
 	
 	
 	public TabFuncionario(Long id, Long idCliente, String registro, String nome, String setor, String codFuncao,
-			String coringa) {
+			String coringa, String status) {
 		this.id = id;
 		this.idCliente = idCliente;
 		this.registro = registro;
@@ -34,6 +35,7 @@ public class TabFuncionario implements Serializable{
 		this.setor = setor;
 		this.codFuncao = codFuncao;
 		this.coringa = coringa;
+		this.status = status;
 	}
 
 
@@ -135,6 +137,16 @@ public class TabFuncionario implements Serializable{
 
 	public void setCoringa(String coringa) {
 		this.coringa = coringa;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

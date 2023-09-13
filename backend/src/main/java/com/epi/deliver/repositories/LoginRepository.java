@@ -7,12 +7,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.epi.deliver.entities.TabLogin;
 
-public interface LoginRepository extends JpaRepository<TabLogin, Long>{
-	
+public interface LoginRepository extends JpaRepository<TabLogin, Long> {
+
 	List<TabLogin> findAll();
-	
+
 	Optional<TabLogin> findByLogin(String login);
 	
+	Optional<TabLogin> findByIdFuncioAndLogin(Long idFuncio, String login);
+
+
 	Optional<TabLogin> findById(Long id);
 
 }
