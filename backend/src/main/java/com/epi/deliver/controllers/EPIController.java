@@ -12,13 +12,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.epi.deliver.dto.EpiDTO;
+import com.epi.deliver.dto.FuncionarioDTO;
+import com.epi.deliver.dto.LoginDTO;
 import com.epi.deliver.services.EpiService;
+import com.epi.deliver.services.FuncionarioService;
+import com.epi.deliver.services.LoginService;
 
 @RestController
 @RequestMapping(value = "/epis")
 public class EpiController {
-	
+
 	@Autowired
 	private EpiService service;
 	
