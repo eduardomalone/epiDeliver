@@ -6,7 +6,7 @@ import { fetchBuscarSolicitacao, fetchSolicitacaoBaixa } from '../api';
 import { EpiDTO, ItemSolicitacao, ItemSolicitacaoEpiDTO } from '../Types/User';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useAuThContext } from '../contexts_/AuthContext';
+//import { useAuThContext } from '../contexts_/AuthContext';
 
 // busca img padrao
 function onError(e: any) {

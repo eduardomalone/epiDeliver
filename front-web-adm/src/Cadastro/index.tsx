@@ -38,6 +38,7 @@ export const Cadastrar = () => {
     }
 
     useEffect(() => {
+       setSenhaDiferente(false);
        setPerfTeste(Number(localStorage.getItem('APP_ACCESS_USER')))
        console.log(user, senhaDiferente, senha2Error, perfilLOG)
        //const [perfTeste, setPerfTeste] = useState<number>();
