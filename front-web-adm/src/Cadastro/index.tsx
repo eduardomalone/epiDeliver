@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuThContext } from "../contexts_/AuthContext";
 import * as yup from "yup";
-import { Box, Card, CardContent, Typography, TextField, CardActions, Button, CircularProgress } from "@mui/material";
+import { Box, Card, CardContent, Typography, TextField, CardActions, Button } from "@mui/material";
 
 const loginSchema = yup.object().shape({
     login: yup.string().required(),
@@ -42,7 +42,7 @@ export const Cadastrar = () => {
        console.log(user, senhaDiferente, senha2Error, perfilLOG)
        //const [perfTeste, setPerfTeste] = useState<number>();
        //perfTeste
-        }, []);
+        }, [user, senhaDiferente, senha2Error, perfilLOG]);
 
     function validaAutenticado(){
         console.log('### userLogin ###', userLogin)
@@ -87,24 +87,24 @@ export const Cadastrar = () => {
         console.log('##### xxxxxxx atualizouuuuu ###')
     }
 
-    const handleLogin = async () => {
-        setIsLoading(true);
-        if (login && senha && senha2) {
-            loginSchema
-                .validate({ login, senha, senha2 }, { abortEarly: false })
-            const isLogged = await updateLogin(login, senha, senha2);
-            setIsLoading(false);
-            console.log('##### atualizouuuuu ###', isLogged)
-            toast.error(`Senha atualizada com sucesso!`, {
-                position: toast.POSITION.TOP_CENTER
-            });
-            handleClickHome();
-        } else {
-            setIsLoading(false);
-            console.log('##### nauuuummmm atualizouuuuu ###')
-            setSenhaDiferente(true);
-        }
-    }
+    // const handleLogin = async () => {
+    //     setIsLoading(true);
+    //     if (login && senha && senha2) {
+    //         loginSchema
+    //             .validate({ login, senha, senha2 }, { abortEarly: false })
+    //         const isLogged = await updateLogin(login, senha, senha2);
+    //         setIsLoading(false);
+    //         console.log('##### atualizouuuuu ###', isLogged)
+    //         toast.error(`Senha atualizada com sucesso!`, {
+    //             position: toast.POSITION.TOP_CENTER
+    //         });
+    //         handleClickHome();
+    //     } else {
+    //         setIsLoading(false);
+    //         console.log('##### nauuuummmm atualizouuuuu ###')
+    //         setSenhaDiferente(true);
+    //     }
+    // }
 
 
 

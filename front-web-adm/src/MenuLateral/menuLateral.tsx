@@ -1,5 +1,5 @@
 import { Avatar, Box, Divider, Drawer, Icon, List, ListItemButton, ListItemIcon, ListItemText, useMediaQuery, useTheme } from "@mui/material"
-import React, { useContext, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import HomeIcon from '@mui/icons-material/Home';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import EngineeringIcon from '@mui/icons-material/Engineering';
@@ -10,7 +10,7 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 //import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 //import { AuthContext } from "../Contexts/Auth/AuthContext.tsx_txt";
 import { useDrawerContext } from "./DrawerContext";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useAuThContext } from "../contexts_/AuthContext";
 
 interface IListItemLinkProps {
@@ -49,7 +49,7 @@ export const MenuLateral: React.FC<any> = ({ children }) => {
     const smDown = useMediaQuery(theme.breakpoints.down('sm'));
     const { isDrawerOpen, toggleDrawerOpen } = useDrawerContext();
     //const auth = useContext(AuthContext);
-    const {user, userLogin, updateLogin } = useAuThContext();
+    const {user} = useAuThContext();
     const perfilLOG = Number(process.env.REACT_APP_IDPerfilLogistica);
     const perfilADM = Number(process.env.REACT_APP_IDPerfilAdm);
     const perfilADMSIST = Number(process.env.REACT_APP_IDPerfilAdmSist);
@@ -104,7 +104,7 @@ useEffect(() => {
                                 to="/solicitacoes"
                                 onClick={smDown ? toggleDrawerOpen : undefined}
                             />
-                            {perfilADM  === perfTeste as number || perfilADMSIST  === perfTeste as number &&(
+                            {(perfilADM  === perfTeste as number || perfilADMSIST  === perfTeste as number) &&(
                                 <ListItemLink
                                 icon={<ManageAccountsIcon></ManageAccountsIcon>}
                                 label="Atualiza Senha"
@@ -112,7 +112,7 @@ useEffect(() => {
                                 onClick={smDown ? toggleDrawerOpen : undefined}
                             />
                              )}
-                            {perfilADM  === perfTeste as number || perfilADMSIST  === perfTeste as number &&(
+                            {(perfilADM  === perfTeste as number || perfilADMSIST  === perfTeste as number) &&(
                             <ListItemLink
                                 icon={<BadgeIcon></BadgeIcon>}
                                 label="Funcionários"
@@ -120,7 +120,7 @@ useEffect(() => {
                                 onClick={smDown ? toggleDrawerOpen : undefined}
                             />
                             )}
-                            {perfilADM  === perfTeste as number || perfilADMSIST  === perfTeste as number &&(
+                            {(perfilADM  === perfTeste as number || perfilADMSIST  === perfTeste as number) &&(
                             <ListItemLink
                                 icon={<HeadsetIcon></HeadsetIcon>}
                                 label="EPIs"
@@ -128,7 +128,7 @@ useEffect(() => {
                                 onClick={smDown ? toggleDrawerOpen : undefined}
                             />
                             )}
-                            {perfilADM  === perfTeste as number || perfilADMSIST  === perfTeste as number &&(
+                            {(perfilADM  === perfTeste as number || perfilADMSIST  === perfTeste as number) &&(
                             <ListItemLink
                                 icon={<EngineeringIcon></EngineeringIcon>}
                                 label="FuncXepis"
@@ -136,7 +136,7 @@ useEffect(() => {
                                 onClick={smDown ? toggleDrawerOpen : undefined}
                             />
                             )}
-                            {perfilADM  === perfTeste as number || perfilADMSIST  === perfTeste as number &&(
+                            {(perfilADM  === perfTeste as number || perfilADMSIST  === perfTeste as number) &&(
                             <ListItemLink
                                 icon={<AssessmentIcon></AssessmentIcon>}
                                 label="Relatórios"

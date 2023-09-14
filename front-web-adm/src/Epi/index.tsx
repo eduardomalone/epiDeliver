@@ -5,7 +5,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { Box, Button, Icon, IconButton, LinearProgress, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow, TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useDrawerContext } from '../MenuLateral/DrawerContext';
-import { deleteById, getAll, getByCod, getByDesc } from '../services/EpiService';
+import { deleteById, getAll, getByDesc } from '../services/EpiService';
 import { Epi } from '../Types/Epi';
 import { useDebounce } from '../hook/UseDebounce';
 import AddIcon from '@mui/icons-material/Add';

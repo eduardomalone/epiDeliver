@@ -134,7 +134,7 @@ export const DetalheDeFuncXepi: React.FC = () => {
                 registro: ''
             });
         }
-    }, [funcXepi, id, navigate]);
+    }, [funcXepi, id, navigate, userLogin.idPerfil]);
 
     function aoMudarTextoDeBusca(novoTexto: string) {
         setTextoDaBusca(novoTexto);

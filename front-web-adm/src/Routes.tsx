@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./Navbar";
-import Orders from "./HomeADM";
 //import { AuthProvider } from "./Contexts/Auth/AuthProvider.tsx_txt";
 //import { RequireAuth } from "./Contexts/Auth/RequireAuth.tsx_txt";
 import UpdateOrders from "./UpdateOrders";
@@ -19,13 +18,13 @@ import { DetalheDeFuncXepi } from "./FuncXepi/DetalheDeFuncXepi";
 //import { AlteraSenha } from "./AlteraSenha/index.tsx_txt";
 import Solicitacao from "./Solicitacao";
 //import { Login } from "./Login";
-import { AuthProvider, useAuThContext } from "./contexts_/AuthContext";
+import { AuthProvider } from "./contexts_/AuthContext";
 import { Login } from "./Login/Login";
 import HomeADM from "./HomeADM";
 
 function Routes() {
 
-    const { isAuthenticated, login, user, userLogin } = useAuThContext();
+    //const { isAuthenticated, login, user, userLogin } = useAuThContext();
     return (
 
         <AuthProvider>

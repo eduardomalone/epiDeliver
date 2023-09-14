@@ -2,8 +2,8 @@ import { Box, Button, Card, CardActions, CardContent, CircularProgress, TextFiel
 import { useAuThContext } from "../contexts_/AuthContext";
 import { useState } from "react";
 import * as yup from "yup";
-import { useHistory } from "react-router-dom";
-import useNavigate from "react-use-navigate";
+//import { useHistory } from "react-router-dom";
+//import useNavigate from "react-use-navigate";
 
 const loginSchema = yup.object().shape({
     registro: yup.string().required(),
