@@ -62,12 +62,17 @@ public class LoginController {
 	
 	@PostMapping("/validarSenha")
 	public ResponseEntity<MontaTelaLoginDTO> validarSenha ( @RequestBody LoginDTORequest senha){
+		
 	
 		MontaTelaLoginDTO telaLogin = serviceTelaLogin.validaTelaLogin(senha.getLogin(), senha.getSenha(), senha.getIdCliente());
+		
+		System.out.println("### var telaLogin - func ### " + telaLogin.getFuncionario().getRegistro());
+		System.out.println("### var telaLogin - login.perfil ### " + telaLogin.getLogin().getIdPerfil());
 		
 		boolean valid = false;
 		if(telaLogin.getFuncionario() == null || telaLogin.getFuncionario().getId() == null) {
 			telaLogin.setAutorizado(valid);
+			System.out.println("###  if func ou func.id NULL ### ");
 			return ResponseEntity.status(HttpStatus.OK).body(telaLogin);
 		}
 		

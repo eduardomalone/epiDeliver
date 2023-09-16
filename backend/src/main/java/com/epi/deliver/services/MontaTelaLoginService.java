@@ -23,6 +23,7 @@ public class MontaTelaLoginService {
 	public MontaTelaLoginDTO validaTelaLogin(String registro, String senha,Long idCliente) {
 		
 		MontaTelaLoginDTO montaTelaLoginDTO = new MontaTelaLoginDTO();
+		System.out.println("### MontaTelaLoginService - request ### " + "registro:" + registro + "senha" +senha + "idCliente:" + idCliente);
 		FuncionarioDTO infoFuncio = new FuncionarioDTO();
 		LoginDTO loginDTO = new LoginDTO();
 		// busca IdFuncionario
@@ -30,6 +31,7 @@ public class MontaTelaLoginService {
 		
 		List<FuncionarioDTO> lista = new ArrayList<>();
 		lista = funcionarioService.findFuncio(registro, idCliente);
+		System.out.println("### MontaTelaLoginService - func ### ");
 		if(lista != null && !lista.isEmpty()) {
 			infoFuncio = lista.get(0);
 		}
@@ -41,6 +43,8 @@ public class MontaTelaLoginService {
 		
 		montaTelaLoginDTO.setFuncionario(infoFuncio);
 		montaTelaLoginDTO.setLogin(loginDTO);
+		
+		System.out.println("### montaTelaLoginDTO ### " + montaTelaLoginDTO.getFuncionario().getNome());
 		
 		return montaTelaLoginDTO;
 	}
