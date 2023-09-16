@@ -4,7 +4,7 @@ import StepsHeader from './StepsHeader';
 import './styles.css';
 import ProductsList from './ProductsList';
 import { EpiDTO, FuncionarioDTO } from './types';
-import {  fetchMontaTelaEpi, fetchSalvarSolicitacao } from '../api';
+import { fetchMontaTelaEpi, fetchSalvarSolicitacao } from '../api';
 import { ReactComponent as MainImage } from './epiLogo.svg';
 import OrderSummary from './OrderSummary';
 import { checkIsSelected } from './helpers';
@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 import { useLocation } from "react-router";
 import { Link, useHistory } from "react-router-dom";
 import Home from '../Home';
+import { Box, Card, CardContent, Grid } from '@mui/material';
 
 var registro: string;
 var idCliente: string;
@@ -90,15 +91,25 @@ function Orders() {
     if (location)
       fetchMontaTelaEpi(getRegistro(location.state as string), getIdCliente(location.state as string))
         .then((response) => {
-          setProducts(response.data[0].listaEpiDTO);
-          setFuncionarios(response.data[0].funcionarioDTO)
+          console.log('###-testando-####', response)
+          console.log('###-response.data[0]-####', response.data[0])
+          setFuncionarios(response.data[0].funcionarioDTO);
+
+          if(response.data[0].listaEpiDTO !== null){
+            setProducts(response.data[0].listaEpiDTO);
+            //setProducts([])
+          }else{
+            
+          }
+          
+          
         })
         .catch(error => {
-          console.log('###-error-####', error.response)
-          // toast.warning('Funcional não encontrada', {
+          console.log('###-error-####', )
+          // toast.warning('Equipamentos não encontrados', {
           //   position: toast.POSITION.TOP_CENTER
           // });
-          // handleClick();
+          //handleClick;
 
           //setInfoRegistro('###')
           //return;
@@ -106,8 +117,8 @@ function Orders() {
 
         )
 
-      //}, []);
-  }, );
+    //}, []);
+  }, [location]);
   //validaFunc()
 
   const handleSelectProduct = (product: EpiDTO) => {
@@ -158,50 +169,61 @@ function Orders() {
 
   return (
     <>
-      {!funcionarios[0] && 
-        (<div className="home-container">
-          <div className="home-content">
-            <div className="home-actions">
-              <h1 className="home-title">
-                Funcional não encontrada!
-              </h1>
-              <h3 className="home-subtitle">
-                Clique no botão abaixo para fazer uma nova pesquisa
-              </h3>
-              <h1>
-                <div>
-                  <Link
-                    to={{
-                      pathname: `/Home/`,
-                      state: ('')
-                    }}
-                    className="home-btn-order">
-                    Home
-                  </Link>
+      <Box height='100%' width='100%' display='flex' alignItems='center' justifyContent='center' marginTop={10}>
+        <Card style={{ border: "none", boxShadow: "none" }}>
+          <CardContent>
+            <Box display='flex' flexDirection='column' gap={2} width={650} >
+              {!funcionarios[0] &&
+                (
+                
+                <div className="home-container">
+                  <div className="home-content">
+                    <div className="home-actions">
+                      <h1 className="home-title">
+                        Funcional não encontrada!
+                      </h1>
+                      <h3 className="home-subtitle">
+                        Clique no botão abaixo para fazer uma nova pesquisa
+                      </h3>
+                      <h1>
+                        <div>
+                          <Link
+                            to={{
+                              pathname: `/Home/`,
+                              state: ('')
+                            }}
+                            className="home-btn-order">
+                            Home
+                          </Link>
+                        </div>
+                      </h1>
+                    </div>
+                    <div className="home-image">
+                      <MainImage />
+                    </div>
+                  </div>
                 </div>
-              </h1>
-            </div>
-            <div className="home-image">
-              <MainImage />
-            </div>
-          </div>
-        </div>)
-      }
-      {funcionarios[0]  &&(
+                )
+              }
+            </Box>
+          </CardContent>
+        </Card>
+      </Box>
+      {funcionarios[0] && products[0] &&(
         <div className="orders-container">
           <StepsHeader funcionarios={funcionarios} />
           <ProductsList
             products={products}
             onSelectProduct={handleSelectProduct}
             selectedProducts={selectedProducts}
-            //status2={status}
+          //status2={status}
           //AnimationPage={AnimationPage}
           />
-          </div>
-          )}
-          
-          {products[0] &&(
-          <div>
+        </div>
+      )}
+
+      {products[0] && (
+        <div>
           <OrderSummary
             amount={selectedProducts.length}
             //totalPrice={totalPrice}
@@ -212,32 +234,39 @@ function Orders() {
 
           />
         </div>)}
-
-        {!products[0] && (<div className="home-container">
-          <div className="home-content">
-            <div className="home-actions">
-              <h1 className="home-title">
-              Não existem equipamentos cadastrados!
-              </h1>
-              <h3 className="home-subtitle">
-                Clique no botão abaixo para fazer uma nova pesquisa
-              </h3>
-              <h1>
-                <div>
-                  <Link
-                    to={{
-                      pathname: `/Home/`,
-                      state: ('')
-                    }}
-                    className="home-btn-order">
-                    Home
-                  </Link>
+      <Box height='100%' width='100%' display='flex' alignItems='center' justifyContent='center' marginTop={10}>
+        <Card style={{ border: "none", boxShadow: "none" }}>
+          <CardContent>
+            <Box display='flex' flexDirection='column' gap={2} width={650} >
+              {funcionarios[0] && !products[0] && (<div className="home-container">
+                <div className="home-content">
+                  <div className="home-actions">
+                    <h1 className="home-title">
+                      Não existem equipamentos cadastrados!
+                    </h1>
+                    <h3 className="home-subtitle">
+                      Clique no botão abaixo para fazer uma nova pesquisa
+                    </h3>
+                    <h1>
+                      <div>
+                        <Link
+                          to={{
+                            pathname: `/Home/`,
+                            state: ('')
+                          }}
+                          className="home-btn-order">
+                          Home
+                        </Link>
+                      </div>
+                    </h1>
+                  </div>
                 </div>
-              </h1>
-            </div>
-          </div>
-        </div>)}
-      
+              </div>)}
+
+            </Box>
+          </CardContent>
+        </Card>
+      </Box>
     </>
   )
 

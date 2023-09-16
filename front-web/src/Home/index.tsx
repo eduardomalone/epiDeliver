@@ -1,10 +1,10 @@
 import './styles.css';
 import { ReactComponent as MainImage } from './epiLogo.svg';
 import * as React from 'react';
-import Footer from '../Footer';
+//import Footer from '../Footer';
 import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
-import { Box, Button, Card, CardContent, Grid, Paper, TextField, Typography, useTheme } from '@mui/material';
+import { Box, Button, Card,  CardContent, Grid, Paper, TextField, Typography, useTheme } from '@mui/material';
 
 
 
@@ -36,39 +36,32 @@ function Home() {
     return (
         <>
 
-            <Box height='100%' width='100%' display='flex'>
-
-                <Grid container margin={2}>
-                    <Grid item container spacing={2}>
-                    <Grid item xs={12} sm={6}>
-                            <Card>
-                                <CardContent>
-                                    <Typography variant='h5' align='center'>
-                                        <h1 className="home-title">
-                                            Solicite seu EPI <br /> Trabalhe com SEGURANÇA
-                                        </h1>
-                                    </Typography>
-                                    <Box padding={6} display='flex' justifyContent='center' alignItems='center'>
-                                        <h1 className="py-5"> Digite sua Funcional</h1>
-                                    </Box>
-                                    <Box>
-                            <Box height={theme.spacing(30)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center" marginTop={1}>
-                                
-                                {/* <input
-                                    value={value}
-                                    onChange={(e) => { setValue((e.target.value)) }}
-                                    className='home-input-order'
-                                /> */}
-                                
-                                <TextField
-                                    autoFocus
-                                    fullWidth
-                                    size="small"
-                                    placeholder="Funcional..."
-                                    value={value}
-                                    onChange={e => { setValue(e.target.value); }}
-                                />
-                                <Box flex={1} display="flex" justifyContent="end">
+            {/* <Box width='100vw' height='100vh' display='flex' alignItems='center' justifyContent='center'
+                sx={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    backgroundImage: "url('/epi_imgs/epi_padrao.jpg')",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                }}
+            >
+                <Card>
+                    <CardContent>
+                        <Box display='flex' flexDirection='column' gap={2} width={300} >
+                            <Typography variant="h6" align="center" sx={{ fontWeight: 'bold', m: 1 }}>
+                                SOLICITE SEU EPI
+                            </Typography>
+                            <Typography variant="h6" align="center">Informe a Funcional </Typography>
+                            <TextField
+                                autoFocus
+                                fullWidth
+                                size="small"
+                                placeholder="Funcional..."
+                                value={value}
+                                onChange={e => { setValue(e.target.value); }}
+                            />
+                        </Box>
+                        <CardActions>
+                            <Box width='100%' display='flex' justifyContent='center'>
 
                                 <Link
                                     to={{
@@ -84,32 +77,71 @@ function Home() {
                                         Buscar
                                     </Button>
                                 </Link>
-
-                                    {/* <Button
-                                        //onClick={() => navigate.push('/detalhe/funcionarios/novo')}
-                                        
-                                        variant="contained"
-                                        color="warning"
-                                        disableElevation
-                                        //endIcon={<Icon><AddIcon /></Icon>}
-                                    >Buscar</Button> */}
-                                </Box>
                             </Box>
-                        </Box>
+                        </CardActions>
+                    </CardContent>
+                </Card>
+
+            </Box> */}
+
+            <Box height='100%' width='100%' display='flex' >
+
+                <Grid container margin={3} >
+                    <Grid item container spacing={2}>
+                        <Grid item xs={12} sm={6} xl={3}>
+                            <Card style={{ border: "none", boxShadow: "none" }}>
+                                <CardContent>
+                                    <Typography variant='h5' align='center'>
+                                        <h1 className="home-title">
+                                            Solicite seu EPI <br /> <br />Trabalhe com SEGURANÇA
+                                        </h1>
+                                    </Typography>
+                                    <Box padding={5} display='flex' justifyContent='center' alignItems='center'>
+                                        <h1 className=""> Digite sua Funcional</h1>
+                                    </Box>
+                                    <Box>
+                                        <Box height={theme.spacing(30)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center" marginTop={1}>
+                                            <TextField
+                                                autoFocus
+                                                fullWidth
+                                                size="small"
+                                                placeholder="Funcional..."
+                                                value={value}
+                                                onChange={e => { setValue(e.target.value); }}
+                                            />
+                                            <Box flex={1} display="flex" justifyContent="end">
+
+                                                <Link
+                                                    to={{
+                                                        pathname: `/solicitacao/${value}&idCli=${idCliente}`,
+                                                        state: (retornaCliente(value as string))
+                                                    }}
+                                                    className="">
+                                                    <Button
+                                                        variant="contained"
+                                                        color="warning"
+                                                        disableElevation
+                                                    >
+                                                        Buscar
+                                                    </Button>
+                                                </Link>
+                                            </Box>
+                                        </Box>
+                                    </Box>
                                 </CardContent>
                             </Card>
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <Card>
+                        <Grid item xs={12} sm={6} xl={3}>
+                            <Card style={{ border: "none", boxShadow: "none" }}>
                                 <CardContent>
-                                    <Typography variant='h5' align='center'>
-                                        <h3 className="home-subtitle">
-                                            Escolha seu EPI e retire-o no departamento indicado
-                                        </h3>
-                                    </Typography>
                                     <Box padding={6} display='flex' justifyContent='center' alignItems='center'>
                                         <MainImage />
                                     </Box>
+                                    <Typography variant='h6' align='center'>
+                                        <h1 className="home-title">
+                                        Escolha seu EPI <br />
+                                        </h1>
+                                    </Typography>
                                 </CardContent>
                             </Card>
                         </Grid>
@@ -155,7 +187,7 @@ function Home() {
                     </div>
                 </div>
             </div> */}
-            <Footer />
+            {/* <Footer /> */}
             {contadorTelaDescanso()}
         </>
     )
