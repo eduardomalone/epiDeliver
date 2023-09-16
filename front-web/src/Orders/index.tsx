@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 import { useLocation } from "react-router";
 import { Link, useHistory } from "react-router-dom";
 import Home from '../Home';
-import { Box, Card, CardContent, Grid } from '@mui/material';
+import { Box, Card, CardContent } from '@mui/material';
 
 var registro: string;
 var idCliente: string;
