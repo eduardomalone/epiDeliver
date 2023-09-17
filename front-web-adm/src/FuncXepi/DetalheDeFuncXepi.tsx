@@ -109,7 +109,7 @@ export const DetalheDeFuncXepi: React.FC = () => {
         setPerfTeste(Number(localStorage.getItem('APP_ACCESS_USER')))
         //const [perfTeste, setPerfTeste] = useState<number>();
         //perfTeste
-         }, [userLogin.idPerfil]);
+         }, []);
 
     useEffect(() => {
         setPerfTeste(userLogin.idPerfil)
@@ -134,7 +134,7 @@ export const DetalheDeFuncXepi: React.FC = () => {
                 registro: ''
             });
         }
-    }, [funcXepi, id, navigate, userLogin.idPerfil]);
+    }, []);
 
     function aoMudarTextoDeBusca(novoTexto: string) {
         setTextoDaBusca(novoTexto);
@@ -159,7 +159,7 @@ export const DetalheDeFuncXepi: React.FC = () => {
                     });
                 })
         });
-        console.log('######', funcXepis)
+        //console.log('######', funcXepis)
     }
 
     function aoMudarTextoDeBuscaEPI(novoTextoEPI: string) {

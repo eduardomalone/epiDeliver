@@ -155,7 +155,7 @@ export const DetalheDeEpi: React.FC = () => {
                 validade: ''
             });
         }
-    }, [id, navigate, userLogin, epi, user, perfilLOG]);
+    }, []);
 
 
     return (

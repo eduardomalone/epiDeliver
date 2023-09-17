@@ -52,7 +52,6 @@ export const DetalheDeFuncionarios: React.FC = () => {
     const navigate = useHistory();
     const formRef = useRef<FormHandles>(null);
     const {  userLogin,  isAuthenticated, logout } = useAuThContext();
-    const [numberPerf, setNumberPerf] = useState<number>();
 
     const perfilADM = Number(process.env.REACT_APP_IDPerfilAdm);
     const perfilADMSIST = Number(process.env.REACT_APP_IDPerfilAdmSist);
@@ -134,11 +133,11 @@ export const DetalheDeFuncionarios: React.FC = () => {
         // });
     }
 
-    // function valida() {
-    //     console.log('#### x', perf)
-    //     const numberPerf = parseInt(perf);
-    //     return numberPerf
-    // }
+    function valida() {
+        console.log('#### x', perf)
+        const numberPerf = parseInt(perf);
+        return numberPerf
+    }
 
 
     useEffect(() => {
@@ -153,8 +152,7 @@ export const DetalheDeFuncionarios: React.FC = () => {
                 console.log('###### response - getById', response.data);
                 setPerf(response.data.perf)
                 formRef.current?.setData(response.data)
-                setNumberPerf(parseInt(perf));
-               // valida()
+                valida()
             })
                 .catch(error => {
                     setIsLoading(false);
@@ -171,7 +169,7 @@ export const DetalheDeFuncionarios: React.FC = () => {
                 perf: ''
             });
         }
-    }, [id, navigate, funcionario, perf]);
+    }, []);
 
     function validaAutenticado() {
         // import { useAuThContext } from "../contexts_/AuthContext";
@@ -286,9 +284,9 @@ export const DetalheDeFuncionarios: React.FC = () => {
                                     <Typography variant='h6'>Geral</Typography>
                                 </Grid>
                                 <Grid container item direction="row" spacing={2}>
-                                    <Grid item xs={12} sm={12} md={6} lg={4} xl={2}>
+                                    <Grid item xs={12} sm={12}>
                                         <VTextField
-                                            fullWidth
+                                            fullWidth={true}
                                             label='Nome Completo'
                                             name='nome'
                                             disabled={isLoading}
@@ -334,7 +332,7 @@ export const DetalheDeFuncionarios: React.FC = () => {
                                             label='Coringa'
                                             name='coringa'
                                             disabled={isLoading}
-                                        />
+                                        /> (S/N)
                                     </Grid>
                                 </Grid>
                                 <Grid container item direction="row" spacing={2}>
@@ -347,9 +345,9 @@ export const DetalheDeFuncionarios: React.FC = () => {
                                         value={perf}
                                     /> */}
                                         <Box display='flex' justifyContent='center' alignItems='center'>
-                                            <input type="radio" value="" name="perf" checked={ numberPerf === 99} onChange={() => teste(99)} /> N/I
-                                            <input type="radio" value="2" name="perf2" checked={numberPerf === 2} onChange={() => teste(2)} /> ADM
-                                            <input type="radio" value="3" name="perf3" checked={numberPerf === 3} onChange={() => teste(3)} /> LOG
+                                            <input type="radio" value="" name="perf" checked={valida() === 99} onChange={() => teste(99)} /> N/I
+                                            <input type="radio" value="2" name="perf2" checked={valida() === 2} onChange={() => teste(2)} /> ADM
+                                            <input type="radio" value="3" name="perf3" checked={valida() === 3} onChange={() => teste(3)} /> LOG
                                         </Box>
                                     </Grid>
                                 </Grid>
