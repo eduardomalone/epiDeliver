@@ -155,7 +155,8 @@ export const DetalheDeEpi: React.FC = () => {
                 validade: ''
             });
         }
-    }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
 
 
     return (

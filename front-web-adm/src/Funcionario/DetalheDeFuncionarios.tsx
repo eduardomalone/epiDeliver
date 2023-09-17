@@ -169,6 +169,7 @@ export const DetalheDeFuncionarios: React.FC = () => {
                 perf: ''
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     function validaAutenticado() {

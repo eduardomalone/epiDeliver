@@ -134,6 +134,7 @@ export const DetalheDeFuncXepi: React.FC = () => {
                 registro: ''
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     function aoMudarTextoDeBusca(novoTexto: string) {
@@ -159,7 +160,7 @@ export const DetalheDeFuncXepi: React.FC = () => {
                     });
                 })
         });
-        //console.log('######', funcXepis)
+        console.log('######', funcXepis)
     }
 
     function aoMudarTextoDeBuscaEPI(novoTextoEPI: string) {
