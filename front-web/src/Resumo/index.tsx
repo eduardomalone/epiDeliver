@@ -32,7 +32,7 @@ function Resumo(this: any) {
     function handleClickHome() {
         setTimeout(() => {
             history.push(`/home`);
-        }, 3000);
+        }, 2000);
         return;
     }
 

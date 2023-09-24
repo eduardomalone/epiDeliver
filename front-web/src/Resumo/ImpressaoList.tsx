@@ -1,3 +1,4 @@
+// import { Box, CardContent, Grid } from "@mui/material";
 import { EpiDTO, FuncionarioDTO } from "../Orders/types";
 import ImpressaoCard from "./ImpressaoCard";
 
@@ -11,9 +12,10 @@ function ImpressaoList({ selectedProducts, registro, listaCod }: Props) {
 
   return (
     <>
+
       {(
         <div className="orders-list-container">
-          <div className="orders-list-items">
+          <div className="">
             {selectedProducts.map((product, index) => (
               <ImpressaoCard
                 key={product.id}
@@ -24,8 +26,7 @@ function ImpressaoList({ selectedProducts, registro, listaCod }: Props) {
             ))}
           </div>
         </div>
-      )
-      }
+      )}
     </>
   )
 }
