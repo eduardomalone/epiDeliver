@@ -12,6 +12,8 @@ import AssessmentIcon from '@mui/icons-material/Assessment';
 import { useDrawerContext } from "./DrawerContext";
 import { useHistory } from "react-router-dom";
 import { useAuThContext } from "../contexts_/AuthContext";
+import LogoutIcon from '@mui/icons-material/Logout';
+
 
 interface IListItemLinkProps {
     to: string;
@@ -61,6 +63,16 @@ export const MenuLateral: React.FC<any> = ({ children }) => {
     console.log('### perfil adm',perfilADM)
     console.log('### perfil log',perfilLOG)
     console.log('### perfil admsist',perfilADMSIST)
+
+    const {logout } = useAuThContext();
+    function handleLogout() {
+        //await auth.singout();
+        //atualiza a pagina
+        // eslint-disable-next-line no-self-assign
+        //window.location.href = window.location.href;
+        logout()
+    }
+
     //console.log('### perfil bd', auth.userLogin?.idPerfil)
     //console.log('### var perfil bd', perfilBD)
 // REACT_APP_IDPerfilAdmSist=1
@@ -72,9 +84,6 @@ useEffect(() => {
     //const [perfTeste, setPerfTeste] = useState<number>();
     //perfTeste
      }, []);
-
-
-
 
 
     return (
@@ -144,6 +153,12 @@ useEffect(() => {
                                 onClick={smDown ? toggleDrawerOpen : undefined}
                             />
                             )}
+                            <ListItemLink
+                                icon={<LogoutIcon></LogoutIcon>}
+                                label="Sair"
+                                to="/home"
+                                onClick={handleLogout}
+                            />
                             {/* <ListItemButton >
                                 <ListItemIcon >
                                     <HomeIcon />
