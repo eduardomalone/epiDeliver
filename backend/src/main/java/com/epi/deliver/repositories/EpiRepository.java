@@ -29,7 +29,7 @@ public interface EpiRepository extends JpaRepository<TabEpi, Long>{
 	
 	TabEpi save(TabEpi tabEpi);
 	
-	String queryUpdateDelete = "update dbepi.tab_epi x set x.status = ?2 where x.id = ?1";
+	String queryUpdateDelete = "update tab_epi x set x.status = ?2 where x.id = ?1";
 	@Modifying(clearAutomatically = true)
 	@Query(value = queryUpdateDelete, nativeQuery = true) 
 	void updateDelete(Long id, String statusInativo);

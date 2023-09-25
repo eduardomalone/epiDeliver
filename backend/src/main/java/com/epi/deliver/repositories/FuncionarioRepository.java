@@ -31,7 +31,7 @@ public interface FuncionarioRepository extends JpaRepository<TabFuncionario, Lon
 	TabFuncionario save (FuncionarioDTO funcionario);
 	
 
-	String queryUpdateDelete = "update dbepi.tab_funcionario x set x.status = ?2 where x.id = ?1";
+	String queryUpdateDelete = "update tab_funcionario x set x.status = ?2 where x.id = ?1";
 	@Modifying(clearAutomatically = true)
 	@Query(value = queryUpdateDelete, nativeQuery = true) 
 	void updateDelete(Long id, String statusInativo);
