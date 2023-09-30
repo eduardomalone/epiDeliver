@@ -8,9 +8,10 @@ import { fetchSalvarSolicitacao } from "../api"
 import { toast } from 'react-toastify';
 import { useHistory } from "react-router-dom";
 import { ReactComponent as MainImage } from './printer-svgrepo-com.svg';
-import { useState } from "react"
+import { useRef, useState } from "react"
 import ImpressaoList from "./ImpressaoList"
 import ImpressaoHeader from "./ImpressaoHeader"
+import ReactToPrint from 'react-to-print';
 
 
 function Resumo(this: any) {
@@ -25,6 +26,7 @@ function Resumo(this: any) {
     let funcionario: any = location.state.funcionario
     const arrayEpi: EpiDTO[] = location.state.selectedProducts as EpiDTO[]
     const [barCode, setBarcode] = useState<any>();
+    const ref = useRef<HTMLDivElement | null>(null);
 
     console.log('###### funcionario ######', funcionario.registro)
 
@@ -52,14 +54,14 @@ function Resumo(this: any) {
     }
 
     const date = new Date();
-    let dataHMS = date.getFullYear()+""+(date.getMonth() + 1)+""+date.getHours()+""+date.getMinutes()+""+date.getSeconds();
+    let dataHMS = date.getFullYear() + "" + (date.getMonth() + 1) + "" + date.getHours() + "" + date.getMinutes() + "" + date.getSeconds();
     var listaCodBarras: any[] = []
     var func = funcionario
 
     //monta codBarras
-    function montaCodBarras(){
-        arrayEpi.map((x) =>(
-            listaCodBarras.push(x.codigo+(func.registro)+dataHMS)
+    function montaCodBarras() {
+        arrayEpi.map((x) => (
+            listaCodBarras.push(x.codigo + (func.registro) + dataHMS)
         ))
         console.log('##### codBarras ####', listaCodBarras)
         setBarcode(listaCodBarras)
@@ -69,8 +71,9 @@ function Resumo(this: any) {
     function goBack() {
         window.history.back()
     }
-    
+
     const handleSubmit = () => {
+
         const produtos = arrayEpi;
         const payload = {
             funcionarioDTO: funcionario,
@@ -105,7 +108,7 @@ function Resumo(this: any) {
                                     <ProductsList
                                         selectedProducts={arrayEpi}
                                         registro={funcionario}
-                                        />
+                                    />
                                 </div>
                                 <div className="order-summary-container">
                                     <div className="order-summary-content">
@@ -125,30 +128,38 @@ function Resumo(this: any) {
                         </div>
                     )}
                     {statusImp && (
-                        <div className="">
-                            <div className="orders-container">
-                                <ImpressaoHeader funcionario={funcionario} />
-                                <ImpressaoList
-                                    selectedProducts={arrayEpi}
-                                    registro={funcionario}
-                                    listaCod={barCode}
-                                />
-                            </div>
-                            <div className="order-summary-container">
-                                <div className="order-summary-content">
-                                    <button
-                                        className="order-summary-make-order"
-                                        onClick={ativaLogoImp} >
-                                        Imprimir Solicitação
-                                    </button>
-                                    <button
-                                        className="order-summary-make-order"
-                                        onClick={handleClickHome} >
-                                        Finalizar
-                                    </button>
+                        <>
+                            <div className="">
+                                <div className="orders-container" ref={ref}>
+                                    <ImpressaoHeader funcionario={funcionario} />
+                                    <ImpressaoList
+                                        selectedProducts={arrayEpi}
+                                        registro={funcionario}
+                                        listaCod={barCode}
+                                    />
+                                </div>
+                                <div className="order-summary-container">
+                                    <div className="order-summary-content">
+                                        <ReactToPrint
+                                            bodyClass="print-agreement"
+                                            content={() => ref.current}
+                                            trigger={() => (
+                                                <button
+                                                    className="order-summary-make-order"
+                                                    onClick={ativaLogoImp} >
+                                                    Imprimir Solicitação
+                                                </button>
+                                            )}
+                                        />
+                                        <button
+                                            className="order-summary-make-order"
+                                            onClick={handleClickHome} >
+                                            Finalizar
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </>
                     )}
                 </div>
             )}

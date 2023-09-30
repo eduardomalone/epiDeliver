@@ -26,7 +26,7 @@ function ImpressaoCard({ product, registro, codBarras }: Props) {
           {/* <Box padding={0} display='flex' alignItems='center' justifyItems='center' > */}
             {/* <div className=""> */}
               <div className="orders-list-items">
-                <p style={{color: "red important"}}>
+                <p>
                   {product.descricao}
                 </p>
                 <h1 >

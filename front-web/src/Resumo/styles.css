@@ -183,6 +183,11 @@
   text-align: center;
 }
 
+.print-agreement {
+  margin: 40px;
+  /* size: 10px 225px; */
+}
+
 .steps-items {
   list-style-type: none;
 }
