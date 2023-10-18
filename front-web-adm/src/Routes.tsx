@@ -21,6 +21,10 @@ import Solicitacao from "./Solicitacao";
 import { AuthProvider } from "./contexts_/AuthContext";
 import { Login } from "./Login/Login";
 import HomeADM from "./HomeADM";
+import HomeRelatorio from "./Relatorio";
+import RelatorioSolicitacoes from "./Relatorio/RelatorioSolicitacoes";
+import RelatorioSolicitacoesBaixa from "./Relatorio/RelatorioSolicitacoesBaixa";
+import RelatorioSolicitacoesBaixaFunc from "./Relatorio/RelatorioSolicitacoesBaixaFunc";
 
 function Routes() {
 
@@ -37,6 +41,18 @@ function Routes() {
                             <Switch>
                                 <Route path="/cadastrar">
                                     <Cadastrar />
+                                </Route>
+                                <Route path="/relatorios/solicitacaoDatas">
+                                    <RelatorioSolicitacoes />
+                                </Route>
+                                <Route path="/relatorios/solicitacaoDatasBaixa">
+                                    <RelatorioSolicitacoesBaixa />
+                                </Route>
+                                <Route path="/relatorios/solicitacaoDatasBaixaFunc">
+                                    <RelatorioSolicitacoesBaixaFunc />
+                                </Route>
+                                <Route path="/relatorios">
+                                    <HomeRelatorio />
                                 </Route>
                                 <Route path="/updateOrders">
                                     {/* <RequireAuth level={''}> */}
@@ -78,11 +94,6 @@ function Routes() {
                                     <DetalheDeFuncXepi />
                                     {/* </RequireAuth> */}
                                 </Route>
-                                {/* <Route path="/alteraSenha">
-                                <RequireAuth level={''}>
-                                <AlteraSenha />
-                                </RequireAuth>
-                            </Route> */}
                                 <Route path="/solicitacoes">
                                     {/* <RequireAuth level={''}> */}
                                     <Solicitacao />

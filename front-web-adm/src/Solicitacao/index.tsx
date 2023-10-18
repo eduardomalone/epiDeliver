@@ -112,7 +112,7 @@ function Solicitacoes() {
                 {barraDeFerramentas && (
                     <Box>
                         {/* Ola {auth.user?.nome}, seja bem vindo! <br /> */}
-                        <Box height={theme.spacing(5)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center" marginTop={1}>
+                        <Box height={theme.spacing(10)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center" marginTop={1}>
                             <TextField
                                 autoFocus
                                 fullWidth

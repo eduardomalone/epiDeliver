@@ -13,7 +13,7 @@ import { useAuThContext } from '../contexts_/AuthContext';
 
 
 
-function HomeADM() {
+function HomeRelatorio() {
     //const auth = useContext(AuthContext);
     //const [barCode, setBarcode] = useState('');
     const {  user } = useAuThContext();
@@ -38,25 +38,15 @@ function HomeADM() {
 
     return (
         <>
-            <Box>
-                <div className="home-content">
-                    <div className="home-actions">
-                        {/* <h1 className="home-actions">Entrega de Equipamentos</h1> */}
-                        <h3 className="home-subtitle">
-                            Ola {user?.nome}, seja bem vindo! <br />
-                        </h3>
-                    </div>
-                </div>
-            </Box>
             <Box width='100%' display='flex'>
 
                 <Grid container margin={2}>
                     <Grid item container spacing={2}>
                         <Grid item xs={12} sm={6} lg={4} xl={3}>
                             <Card>
-                                <CardContent onClick={() => navigate.push('/solicitacoes')}>
+                                <CardContent onClick={() => navigate.push('/relatorios/solicitacaoDatas')}>
                                     <Typography variant='h5' align='center'>
-                                        Solicitações
+                                    Solicitações
                                     </Typography>
                                     <Box padding={6} display='flex' justifyContent='center' alignItems='center'>
                                         <Typography >
@@ -71,9 +61,9 @@ function HomeADM() {
                         {(showCard() && 
                         <Grid item xs={12} sm={6} lg={4} xl={3}>
                             <Card>
-                                <CardContent onClick={() => navigate.push('/cadastrar')}>
+                                <CardContent onClick={() => navigate.push('/relatorios/solicitacaoDatasBaixa')}>
                                     <Typography variant='h5' align='center'>
-                                        Atualiza Senha
+                                    Solicitações/Baixas
                                     </Typography>
                                     <Box padding={6} display='flex' justifyContent='center' alignItems='center'>
                                         <Typography>
@@ -90,9 +80,9 @@ function HomeADM() {
                             {(showCard() && 
                         <Grid item xs={12} sm={6} lg={4} xl={3}>
                             <Card>
-                                <CardContent onClick={() => navigate.push('/funcionarios')}>
+                                <CardContent onClick={() => navigate.push('/relatorios/solicitacaoDatasBaixaFunc')}>
                                     <Typography variant='h5' align='center'>
-                                        Funcionários
+                                    Solic. Baixas/Func
                                     </Typography>
                                     <Box padding={6} display='flex' justifyContent='center' alignItems='center'>
                                         <Typography>
@@ -105,12 +95,12 @@ function HomeADM() {
                             </Card>
                         </Grid>
                         )}
-                        {(showCard() &&
+                        {/* {(showCard() &&
                         <Grid item xs={12} sm={6} lg={4} xl={3}>
                             <Card>
                                 <CardContent onClick={() => navigate.push('/epis')}>
                                     <Typography variant='h5' align='center'>
-                                        EPIs
+                                        Relatorio 4
                                     </Typography>
                                     <Box padding={6} display='flex' justifyContent='center' alignItems='center'>
                                         <Typography >
@@ -140,27 +130,7 @@ function HomeADM() {
                                 </CardContent>
                             </Card>
                         </Grid>
-                        )}
-                        {(showCard() &&
-                        <Grid item xs={12} sm={6} lg={4} xl={3}>
-                            <Card>
-                                <CardContent onClick={() => navigate.push('/relatorios')}>
-                                    <Typography variant='h5' align='center'>
-                                        Relatórios
-                                    </Typography>
-                                    <Box padding={6} display='flex' justifyContent='center' alignItems='center'>
-                                        <Typography>
-                                            <Icon fontSize='large'>
-                                                {/* <ManageAccountsIcon fontSize='large'></ManageAccountsIcon> */}
-                                                <AssessmentIcon fontSize='large'></AssessmentIcon>
-                                            </Icon>
-                                        </Typography>
-                                    </Box>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                        )}
-                        
+                        )} */}
                     </Grid>
                 </Grid>
             </Box>
@@ -168,4 +138,4 @@ function HomeADM() {
     )
 }
 
-export default HomeADM;
+export default HomeRelatorio;
