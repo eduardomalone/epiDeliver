@@ -1,17 +1,14 @@
 import './styles.css';
-import { useHistory } from 'react-router-dom';
+
 import { ReactNode, useEffect, useState } from 'react';
 import { Box, Button, Icon, IconButton, LinearProgress, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow, TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useDrawerContext } from '../MenuLateral/DrawerContext';
 //import { BarraDeFerramentasListagem } from '../BarraFerramentas/BarraDeFerramentasListagem';
 import { solicitacoesDatasBaixaFunc } from '../services/RelatoriosService';
-import { Funcionario } from '../Types/Funcionarios';
-import { useDebounce } from '../hook/UseDebounce';
 import { useAuThContext } from '../contexts_/AuthContext';
 import { RelatorioDataSolicitacaoBaixaFunc } from '../Types/Relatorios';
 import React from "react";
-import { Nullable } from "primereact/ts-helpers";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import { useRef } from 'react';
 import { DownloadTableExcel } from 'react-export-table-to-excel';
