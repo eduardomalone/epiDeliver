@@ -1,6 +1,6 @@
 import './styles.css';
 import { ReactNode, useEffect, useState } from 'react';
-import { Box, Button, Icon, IconButton, LinearProgress, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow, TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Button, Icon, IconButton, LinearProgress, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow, Typography, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useDrawerContext } from '../MenuLateral/DrawerContext';
 import { solicitacoesDatasBaixa } from '../services/RelatoriosService';

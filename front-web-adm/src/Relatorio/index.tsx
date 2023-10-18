@@ -6,16 +6,10 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import BadgeIcon from '@mui/icons-material/Badge';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import { Box, Card, CardContent, Grid, Icon, Typography } from '@mui/material';
-import { useAuThContext } from '../contexts_/AuthContext';
 
 
 
 function HomeRelatorio() {
-    //const auth = useContext(AuthContext);
-    //const [barCode, setBarcode] = useState('');
-    const {  user } = useAuThContext();
-    // console.log('###### USER ######', auth.user);
-    // console.log('###### USERLOGIN ######', auth.userLogin);
     const navigate = useHistory();
     //const perfilLOG = Number(process.env.REACT_APP_IDPerfilLogistica);
     const perfilADM = Number(process.env.REACT_APP_IDPerfilAdm);
