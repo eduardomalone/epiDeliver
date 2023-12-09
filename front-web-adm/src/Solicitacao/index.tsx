@@ -1,5 +1,5 @@
 import './styles.css';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { Box, Button, Grid, Icon, IconButton, LinearProgress, Paper, TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useDrawerContext } from '../MenuLateral/DrawerContext';
@@ -10,10 +10,22 @@ import { useAuThContext } from "../contexts_/AuthContext";
 import { EpiDTO, ItemSolicitacao, ItemSolicitacaoEpiDTO } from '../Types/User';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+
 
 
 function onError(e: any) {
     e.target.src = '/epi_imgs/epi_padrao.jpg';
+}
+
+function refreshPage() {
+    // setTimeout(()=>{
+    //     window.location.reload();
+    // }, 5000);
+
+    //window.location.href="/solicitacoes"
+    //inputRef.current.value = "";
+    console.log('page to reload')
 }
 
 
@@ -27,10 +39,8 @@ function Solicitacoes() {
     const { toggleDrawerOpen } = useDrawerContext();
     const barraDeFerramentas: ReactNode = <></>;
     const [isLoading, setIsLoading] = useState<boolean>(false);
-
     const [textoDaBusca, setTextoDaBusca] = useState('');
     const { debounce } = useDebounce();
-    //const navigate = useHistory();
     const [itemSolicitEpi, setItemSolicitEpi] = useState<ItemSolicitacaoEpiDTO>();
     const [epiDTO, setEpiDTO] = useState<EpiDTO>();
     const [itemSolicitacaoDTO, setItemSolicitacaoDTO] = useState<ItemSolicitacao>();
@@ -51,15 +61,74 @@ function Solicitacoes() {
                 .catch(() => {
                     setIsLoading(false);
                     setItemSolicitacaoDTO(undefined)
+                    setTextoDaBusca(''); 
+                    setItemSolicitacaoDTO(undefined);
                     console.log('### erro no filtro por codBarras ###',)
                     toast.warning('Código de Barras não encontrado !', {
                         position: toast.POSITION.TOP_CENTER
                     });
+                    refreshPage()
+                    //window.location.reload();
+                    //navigate.push(`/solicitacoes`)
                 })
         });
     }
 
+    useEffect(() => {
+        //setPerfTeste(Number(localStorage.getItem('APP_ACCESS_USER')))
+        //const [perfTeste, setPerfTeste] = useState<number>();
+        //perfTeste
+        lerScanner();
+         }, []);
 
+    async function ligarScanner() {
+        const options = {
+          method: 'POST',
+          url: 'http://127.0.0.1:5000/scanner',
+          headers: {'Content-Type': 'application/json'},
+          data: {CMD: 'ligarScanner', PARAM: ''}
+        };
+        try{
+          const {data,status}= await axios.request(options)
+          console.log(data)
+          return data
+        }catch(ex) {
+          console.log(ex)
+          return ''
+        }
+        
+      }
+      async function recebeScanner() {
+        const options = {
+          method: 'GET',
+          url: 'http://127.0.0.1:5000/scanner',
+          headers: {'Content-Type': 'application/json'},
+          data: {}
+        };
+        try{
+          const {data,status}= await axios.request(options);
+          return data;
+      }
+      catch(ex){
+        console.error(ex);
+        return '';
+      }
+    
+      }
+    
+      async function lerScanner() {
+        await ligarScanner();
+        await new Promise (r=>setTimeout(r,1000));
+        for (let i=0;i<5;i++){
+          const valRet = await recebeScanner();
+          console.log(valRet);
+          await new Promise (r=>setTimeout(r,3000));
+          if (valRet!=='') i=5;
+        }
+    
+      }
+    
+    
     function baixaSolicitacoes() {
         const payload = {
             idFuncBaixa: user.id,
@@ -81,10 +150,13 @@ function Solicitacoes() {
                 })
                 .catch(() => {
                     setIsLoading(false);
+                    setTextoDaBusca(''); 
+                    setItemSolicitacaoDTO(undefined);
                     console.log('### erro no filtro por nome ###',)
                     toast.warning('Erro ao dar baixa na solicitação!', {
                         position: toast.POSITION.TOP_CENTER
                     });
+                    setTextoDaBusca(''); 
                 })
         });
     }
@@ -114,6 +186,7 @@ function Solicitacoes() {
                         {/* Ola {auth.user?.nome}, seja bem vindo! <br /> */}
                         <Box height={theme.spacing(10)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center" marginTop={1}>
                             <TextField
+                                id='input'
                                 autoFocus
                                 fullWidth
                                 size="small"

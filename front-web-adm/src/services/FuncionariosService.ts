@@ -130,3 +130,20 @@ export const cargaFuncionario = async (id: number, path: string): Promise<any> =
         return new Error((error as {message: string }).message || 'Erro ao deletar registro.')
     }
 };
+
+
+export const cargaFunc = async ( path: string): Promise<any> => {
+    try {
+        const { data } = await api.get(`/carga/func?idCli=${cli.idCliente}&path=${path}`);
+        if(data){
+            console.log("######## cargaFUNC:", data)
+            return{
+                data
+            }
+        }
+    } catch(error){
+        console.log("######## cargaFUNC ERRO",error);
+        throw new Error('Falha na leitura ou no processamento do arquivo!');
+       // return new Error((error as {message: string }).message || 'Erro ao efetuar carga EPI.')
+    }
+};

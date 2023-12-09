@@ -104,9 +104,9 @@ export const DetalheDeEpi: React.FC = () => {
         });
     }
 
-    // function aoClicarEmCarga() {
-    //     navigate.push('/cargaFuncionarios')
-    //  }
+    function aoClicarEmCarga() {
+        navigate.push('/cargaEpi')
+     }
 
     function aoClicarEmNovo() {
         navigate.push('/detalhe/epis/novo')
@@ -193,7 +193,7 @@ export const DetalheDeEpi: React.FC = () => {
                             Salvar
                         </Typography>
                     </Button>
-                    {/* <Button
+                    <Button
                         onClick={aoClicarEmCarga}
                         disableElevation
                         variant="contained"
@@ -203,7 +203,7 @@ export const DetalheDeEpi: React.FC = () => {
                         <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
                         Carga
                         </Typography>
-                    </Button> */}
+                    </Button>
                     {id !== 'novo' && (
                         <Button
                         onClick={() => handleDelete(Number(id))}

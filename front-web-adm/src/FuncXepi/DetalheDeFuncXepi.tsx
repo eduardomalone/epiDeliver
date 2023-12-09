@@ -204,6 +204,10 @@ export const DetalheDeFuncXepi: React.FC = () => {
         return true
     }
 
+    function aoClicarEmCarga() {
+        navigate.push('/cargaFuncXepi')
+    }
+
     return (
 
         <>
@@ -226,7 +230,7 @@ export const DetalheDeFuncXepi: React.FC = () => {
                         {id === 'novo' ? 'Novo Func X EPI' : ('Editar: ' + codigo)}
                     </Typography>
                 </Box>
-                <Box height={theme.spacing(5)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center">
+                <Box height={theme.spacing(10)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={2} alignItems="center">
                     <Button
                         onClick={() => formRef.current?.submitForm()}
                         disableElevation
@@ -239,6 +243,17 @@ export const DetalheDeFuncXepi: React.FC = () => {
                             Salvar
                         </Typography>
                     </Button>
+                    <Button
+                            onClick={aoClicarEmCarga}
+                            disableElevation
+                            variant="contained"
+                            color="warning"
+                            startIcon={<Icon><Save /></Icon>}
+                        >
+                            <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+                                Carga
+                            </Typography>
+                        </Button>
                     {id !== 'novo' && (
                         <Button
                         onClick={() => deleteById(Number(id))}
@@ -288,7 +303,7 @@ export const DetalheDeFuncXepi: React.FC = () => {
                         </Grid>
                     </Grid>
                     <Box>
-                        <Box height={theme.spacing(5)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center" marginTop={1}>
+                        <Box height={theme.spacing(8)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center" marginTop={1}>
                             <TextField
                                 size="small"
                                 placeholder="Digite o Registro..."
@@ -345,7 +360,7 @@ export const DetalheDeFuncXepi: React.FC = () => {
                                 <Typography variant='h6'>EPI</Typography>
                             </Grid>
                         </Grid>
-                        <Box height={theme.spacing(5)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center" marginTop={1}>
+                        <Box height={theme.spacing(8)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center" marginTop={1}>
                             <TextField
                                 size="small"
                                 placeholder="Digite o Código..."

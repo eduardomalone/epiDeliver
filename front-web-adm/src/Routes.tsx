@@ -25,6 +25,9 @@ import HomeRelatorio from "./Relatorio";
 import RelatorioSolicitacoes from "./Relatorio/RelatorioSolicitacoes";
 import RelatorioSolicitacoesBaixa from "./Relatorio/RelatorioSolicitacoesBaixa";
 import RelatorioSolicitacoesBaixaFunc from "./Relatorio/RelatorioSolicitacoesBaixaFunc";
+import CargaEpi from "./Epi/CargaEpi";
+import CargaFuncXepi from "./FuncXepi/CargaFuncXepi";
+import ResultadoRelatorio from "./FuncXepi/ResultadoRelatorio";
 
 function Routes() {
 
@@ -74,6 +77,11 @@ function Routes() {
                                     <CargaFuncionario />
                                     {/* </RequireAuth> */}
                                 </Route>
+                                <Route path="/cargaEpi">
+                                    {/* <RequireAuth level={''}> */}
+                                    <CargaEpi />
+                                    {/* </RequireAuth> */}
+                                </Route>
                                 <Route path="/epis">
                                     {/* <RequireAuth level={''}> */}
                                     <Epis />
@@ -87,6 +95,16 @@ function Routes() {
                                 <Route path="/funcXepi">
                                     {/* <RequireAuth level={''}> */}
                                     <FuncXepi />
+                                    {/* </RequireAuth> */}
+                                </Route>
+                                <Route path="/cargaFuncXepi">
+                                    {/* <RequireAuth level={''}> */}
+                                    <CargaFuncXepi />
+                                    {/* </RequireAuth> */}
+                                </Route>
+                                <Route path="/resultadoRelatorio">
+                                    {/* <RequireAuth level={''}> */}
+                                    <ResultadoRelatorio />
                                     {/* </RequireAuth> */}
                                 </Route>
                                 <Route path="/detalhe/funcXepis/:id">

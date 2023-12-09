@@ -119,17 +119,18 @@ export const deleteById = async (id: number): Promise<any> => {
     }
 };
 
-export const cargaEpi = async (id: number, path: string): Promise<any> => {
+export const cargaEpi = async ( path: string): Promise<any> => {
     try {
-        const { data } = await api.get(`/funcionarios/carga?idCliente=${id}&path=${path}`);
+        const { data } = await api.get(`/carga/epi?idCli=${cli.idCliente}&path=${path}`);
         if(data){
-            console.log("######## cargaFuncionario:", data)
+            console.log("######## cargaEPI:", data)
             return{
                 data
             }
         }
     } catch(error){
-        console.log(error);
-        return new Error((error as {message: string }).message || 'Erro ao deletar registro.')
+        console.log("######## cargaEPI ERRO",error);
+        throw new Error('Falha na leitura ou no processamento do arquivo!');
+       // return new Error((error as {message: string }).message || 'Erro ao efetuar carga EPI.')
     }
 };

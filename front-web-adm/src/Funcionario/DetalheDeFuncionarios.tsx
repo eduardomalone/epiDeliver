@@ -51,7 +51,7 @@ export const DetalheDeFuncionarios: React.FC = () => {
     const [perf, setPerf] = useState('');
     const navigate = useHistory();
     const formRef = useRef<FormHandles>(null);
-    const {  userLogin,  isAuthenticated, logout } = useAuThContext();
+    const { userLogin, isAuthenticated, logout } = useAuThContext();
 
     const perfilADM = Number(process.env.REACT_APP_IDPerfilAdm);
     const perfilADMSIST = Number(process.env.REACT_APP_IDPerfilAdmSist);
@@ -172,6 +172,11 @@ export const DetalheDeFuncionarios: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+
+    function aoClicarEmCarga() {
+        navigate.push('/cargaFuncionarios')
+    }
+
     function validaAutenticado() {
         // import { useAuThContext } from "../contexts_/AuthContext";
         //const { user, userLogin, updateLogin, isAuthenticated,logout } = useAuThContext();
@@ -190,7 +195,7 @@ export const DetalheDeFuncionarios: React.FC = () => {
     return (
 
         <>
-            {(validaAutenticado() && (perfilADM  === perfTeste || perfilADMSIST  === perfTeste) &&
+            {(validaAutenticado() && (perfilADM === perfTeste || perfilADMSIST === perfTeste) &&
                 <Box height='100%' display='flex' flexDirection='column' gap={1}>
                     <Box padding={1} display='flex' alignItems='center' height={theme.spacing(smDown ? 6 : mdDown ? 8 : 12)} gap={1}>
                         {smDown && (
@@ -209,7 +214,7 @@ export const DetalheDeFuncionarios: React.FC = () => {
                             {id === 'novo' ? 'Novo Funcionário' : ('Editar: ' + nome)}
                         </Typography>
                     </Box>
-                    <Box height={theme.spacing(5)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center">
+                    <Box height={theme.spacing(10)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center">
                         <Button
                             onClick={() => formRef.current?.submitForm()}
                             disableElevation
@@ -221,17 +226,17 @@ export const DetalheDeFuncionarios: React.FC = () => {
                                 Salvar
                             </Typography>
                         </Button>
-                        {/* <Button
-                        onClick={aoClicarEmCarga}
-                        disableElevation
-                        variant="contained"
-                        color="warning"
-                        startIcon={<Icon><Save /></Icon>}
+                        <Button
+                            onClick={aoClicarEmCarga}
+                            disableElevation
+                            variant="contained"
+                            color="warning"
+                            startIcon={<Icon><Save /></Icon>}
                         >
-                        <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
-                        Carga
-                        </Typography>
-                    </Button> */}
+                            <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+                                Carga
+                            </Typography>
+                        </Button>
                         {id !== 'novo' && (
                             <Button
                                 onClick={() => handleDelete(Number(id))}

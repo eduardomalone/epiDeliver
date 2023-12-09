@@ -136,7 +136,7 @@ function Funcionarios() {
 
                     {barraDeFerramentas && (
                         <Box>
-                            <Box height={theme.spacing(5)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center" marginTop={1}>
+                            <Box height={theme.spacing(10)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center" marginTop={1}>
                                 <TextField
                                     autoFocus
                                     fullWidth
@@ -157,9 +157,7 @@ function Funcionarios() {
                                     >Novo</Button>
                                 </Box>
                             </Box>
-                            {/* <BarraDeFerramentasListagem /> */}
-                            {/* <BarraDeFerramentasDetalhe /> */}
-                            {/* {barraDeFerramentas} */}
+                            
                         </Box>
                     )}
                     <Box flex={1} overflow='auto'>
@@ -167,7 +165,7 @@ function Funcionarios() {
                             <Table>
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Acoes</TableCell>
+                                        <TableCell>Ações</TableCell>
                                         <TableCell>Nome</TableCell>
                                         <TableCell>Registro</TableCell>
                                     </TableRow>
