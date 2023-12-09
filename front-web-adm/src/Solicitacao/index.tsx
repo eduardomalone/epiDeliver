@@ -111,24 +111,25 @@ function Solicitacoes() {
           console.log('### recebeScanner:',status)
           console.log('### recebeScanner data:',data)
           //aoMudarTextoDeBusca?.(data)
-          setTextoDaBusca(data)
           return data;
-      }
-      catch(ex){
-        console.error(ex);
-        return '';
-      }
+        }
+        catch(ex){
+            console.error(ex);
+            return '';
+        }
+        
+    }
     
-      }
-    
-      async function lerScanner() {
+    async function lerScanner() {
         await ligarScanner();
         await new Promise (r=>setTimeout(r,1000));
         for (let i=0;i<5;i++){
-          const valRet = await recebeScanner();
-          console.log(valRet);
-          await new Promise (r=>setTimeout(r,3000));
-          if (valRet!=='') i=5;
+            const valRet = await recebeScanner();
+            alert(valRet)
+            console.log(valRet);
+            await new Promise (r=>setTimeout(r,3000));
+            if (valRet!=='') i=5;
+                setTextoDaBusca(valRet)
         }
     
       }
