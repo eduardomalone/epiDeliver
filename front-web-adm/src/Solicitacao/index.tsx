@@ -110,6 +110,8 @@ function Solicitacoes() {
           const {data,status}= await axios.request(options);
           console.log('### recebeScanner:',status)
           console.log('### recebeScanner data:',data)
+          alert('status: '+ status)
+          alert('data ' + data)
           //aoMudarTextoDeBusca?.(data)
           return data;
         }
@@ -226,7 +228,7 @@ function Solicitacoes() {
                     }}>
 
                         <Button
-                            //onClick={aoClicarFinalizar}
+                            onClick={lerScanner}
                             disableElevation
                             variant="contained"
                             color="warning"
@@ -234,7 +236,7 @@ function Solicitacoes() {
                             disabled={false}
                         >
                             <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
-                                finalizar
+                                scanner
                             </Typography>
                         </Button>
                     </div>
