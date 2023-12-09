@@ -110,7 +110,7 @@ function Solicitacoes() {
           const {data,status}= await axios.request(options);
           console.log('### recebeScanner:',status)
           console.log('### recebeScanner data:',data)
-          aoMudarTextoDeBusca?.(data)
+          //aoMudarTextoDeBusca?.(data)
           setTextoDaBusca(data)
           return data;
       }
