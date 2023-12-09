@@ -1,7 +1,7 @@
 import './styles.css';
 import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Box, Button, Icon, IconButton, Paper, Typography, useMediaQuery, useTheme, Divider, LinearProgress, Grid } from '@mui/material';
+import { Box, Button, Icon, IconButton, Paper, Typography, useMediaQuery, useTheme, LinearProgress, Grid } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useDrawerContext } from '../MenuLateral/DrawerContext';
 import { cargaFuncXepi } from '../services/EpiXFuncioService';

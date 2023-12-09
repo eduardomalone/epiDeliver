@@ -79,7 +79,7 @@ function Solicitacoes() {
         //const [perfTeste, setPerfTeste] = useState<number>();
         //perfTeste
         lerScanner();
-         }, []);
+         });
 
     async function ligarScanner() {
         const options = {
@@ -91,6 +91,7 @@ function Solicitacoes() {
         try{
           const {data,status}= await axios.request(options)
           console.log(data)
+          console.log('### ligarScanner:',status)
           return data
         }catch(ex) {
           console.log(ex)
@@ -107,6 +108,7 @@ function Solicitacoes() {
         };
         try{
           const {data,status}= await axios.request(options);
+          console.log('### recebeScanner:',status)
           return data;
       }
       catch(ex){

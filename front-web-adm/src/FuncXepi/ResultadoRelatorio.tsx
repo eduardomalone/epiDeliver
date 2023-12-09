@@ -26,7 +26,7 @@ function ResultadoRelatorio() {
         setPerfTeste(Number(localStorage.getItem('APP_ACCESS_USER')))
         console.log('##### data history ', data)
         console.log('##### data history 2', data.data.qtdLinhasErros)
-    }, []);
+    }, [data]);
 
     function aoClicarFinalizar() {
 
