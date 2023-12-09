@@ -109,6 +109,8 @@ function Solicitacoes() {
         try{
           const {data,status}= await axios.request(options);
           console.log('### recebeScanner:',status)
+          console.log('### recebeScanner data:',data)
+          aoMudarTextoDeBusca?.(data)
           return data;
       }
       catch(ex){
@@ -214,8 +216,26 @@ function Solicitacoes() {
                             </div>
                         )}
                     </Box>
+                    
 
                 )}
+                  <div style={{
+                        textAlign: "center"
+                    }}>
+
+                        <Button
+                            //onClick={aoClicarFinalizar}
+                            disableElevation
+                            variant="contained"
+                            color="warning"
+                            // startIcon={<Icon><Save /></Icon>}
+                            disabled={false}
+                        >
+                            <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+                                finalizar
+                            </Typography>
+                        </Button>
+                    </div>
                 <Box flex={1} overflow='auto' >
                     {itemSolicitacaoDTO?.codigoBarra && (
 
