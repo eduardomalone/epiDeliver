@@ -111,6 +111,7 @@ function Solicitacoes() {
           console.log('### recebeScanner:',status)
           console.log('### recebeScanner data:',data)
           aoMudarTextoDeBusca?.(data)
+          setTextoDaBusca(data)
           return data;
       }
       catch(ex){
