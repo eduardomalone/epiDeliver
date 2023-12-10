@@ -125,7 +125,7 @@ public class UploadFileService {
 			List<String> list = new ArrayList<>();
 
 			System.out.println("###### output: ");
-			Thread.sleep(2000);
+			Thread.sleep(10000);
 
 			//while (process.isAlive())
 				//System.out.println("#### chegou no wile: ");
