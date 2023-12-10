@@ -61,7 +61,7 @@ function Solicitacoes() {
                 .catch(() => {
                     setIsLoading(false);
                     setItemSolicitacaoDTO(undefined)
-                    setTextoDaBusca(''); 
+                    setTextoDaBusca('');
                     setItemSolicitacaoDTO(undefined);
                     console.log('### erro no filtro por codBarras ###',)
                     toast.warning('Código de Barras não encontrado !', {
@@ -78,65 +78,66 @@ function Solicitacoes() {
         //setPerfTeste(Number(localStorage.getItem('APP_ACCESS_USER')))
         //const [perfTeste, setPerfTeste] = useState<number>();
         //perfTeste
-        lerScanner();
-         });
+        //lerScanner();
+    });
 
     async function ligarScanner() {
         const options = {
-          method: 'POST',
-          url: 'http://127.0.0.1:5000/scanner',
-          headers: {'Content-Type': 'application/json'},
-          data: {CMD: 'ligarScanner', PARAM: ''}
+            method: 'POST',
+            url: 'http://127.0.0.1:5000/scanner',
+            headers: { 'Content-Type': 'application/json' },
+            data: { CMD: 'ligarScanner', PARAM: '' }
         };
-        try{
-          const {data,status}= await axios.request(options)
-          console.log(data)
-          console.log('### ligarScanner:',status)
-          return data
-        }catch(ex) {
-          console.log(ex)
-          return ''
+        try {
+            const { data, status } = await axios.request(options)
+            //console.log(data)
+            console.log('### ligarScanner:')
+            alert('ligou scanner')
+            return data
+        } catch (ex) {
+            console.log(ex)
+            return ''
         }
-        
-      }
-      async function recebeScanner() {
+
+    }
+    async function recebeScanner() {
         const options = {
-          method: 'GET',
-          url: 'http://127.0.0.1:5000/scanner',
-          headers: {'Content-Type': 'application/json'},
-          data: {}
+            method: 'GET',
+            url: 'http://127.0.0.1:5000/scanner',
+            headers: { 'Content-Type': 'application/json' },
+            data: {}
         };
-        try{
-          const {data,status}= await axios.request(options);
-          console.log('### recebeScanner:',status)
-          console.log('### recebeScanner data:',data)
-          alert('status: '+ status)
-          alert('data ' + JSON.stringify(data))
-          //aoMudarTextoDeBusca?.(data)
-          return data;
+        try {
+            const { data, status } = await axios.request(options);
+            console.log('### recebeScanner:', status)
+            console.log('### recebeScanner data:', data)
+            //alert('status: ' + status)
+            alert('recebe scanner')
+            //aoMudarTextoDeBusca?.(data)
+            return data;
         }
-        catch(ex){
+        catch (ex) {
             console.error(ex);
             return '';
         }
-        
+
     }
-    
+
     async function lerScanner() {
         await ligarScanner();
-        await new Promise (r=>setTimeout(r,1000));
-        for (let i=0;i<5;i++){
+        await new Promise(r => setTimeout(r, 1000));
+        for (let i = 0; i < 5; i++) {
             const valRet = await recebeScanner();
             //alert(valRet)
             console.log(valRet);
-            await new Promise (r=>setTimeout(r,3000));
-            if (valRet!=='') i=5;
-                //setTextoDaBusca(valRet)
+            await new Promise(r => setTimeout(r, 3000));
+            if (valRet !== '') i = 5;
+            //setTextoDaBusca(valRet)
         }
-    
-      }
-    
-    
+
+    }
+
+
     function baixaSolicitacoes() {
         const payload = {
             idFuncBaixa: user.id,
@@ -153,18 +154,18 @@ function Solicitacoes() {
                     });
                     //setIdSolicitacao(response.data.solicitacaoDTO.id)
                     console.log('### baixa da solicitacao ok###',)
-                    setTextoDaBusca(''); 
+                    setTextoDaBusca('');
                     setItemSolicitacaoDTO(undefined);
                 })
                 .catch(() => {
                     setIsLoading(false);
-                    setTextoDaBusca(''); 
+                    setTextoDaBusca('');
                     setItemSolicitacaoDTO(undefined);
                     console.log('### erro no filtro por nome ###',)
                     toast.warning('Erro ao dar baixa na solicitação!', {
                         position: toast.POSITION.TOP_CENTER
                     });
-                    setTextoDaBusca(''); 
+                    setTextoDaBusca('');
                 })
         });
     }
@@ -220,26 +221,29 @@ function Solicitacoes() {
                             </div>
                         )}
                     </Box>
-                    
+
 
                 )}
-                  <div style={{
-                        textAlign: "center"
-                    }}>
+                <div style={{
+                    textAlign: "center"
+                }}>
 
-                        <Button
-                            onClick={lerScanner}
-                            disableElevation
-                            variant="contained"
-                            color="warning"
-                            // startIcon={<Icon><Save /></Icon>}
-                            disabled={false}
-                        >
-                            <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
-                                scanner
-                            </Typography>
-                        </Button>
-                    </div>
+                    <Button
+                        onClick={lerScanner}
+                        disableElevation
+                        variant="contained"
+                        color="warning"
+                        // startIcon={<Icon><Save /></Icon>}
+                        disabled={false}
+                    >
+                        <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+                            teste
+                        </Typography>
+                    </Button>
+                    <Button variant="contained" color="primary" onClick={lerScanner}>
+                        Ler Scanner
+                    </Button>
+                </div>
                 <Box flex={1} overflow='auto' >
                     {itemSolicitacaoDTO?.codigoBarra && (
 
