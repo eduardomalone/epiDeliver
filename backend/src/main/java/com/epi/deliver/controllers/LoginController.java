@@ -66,8 +66,6 @@ public class LoginController {
 	
 		MontaTelaLoginDTO telaLogin = serviceTelaLogin.validaTelaLogin(senha.getLogin(), senha.getSenha(), senha.getIdCliente());
 		
-		System.out.println("### var telaLogin - func ### " + telaLogin.getFuncionario().getRegistro());
-		System.out.println("### var telaLogin - login.perfil ### " + telaLogin.getLogin().getIdPerfil());
 		
 		boolean valid = false;
 		if(telaLogin.getFuncionario() == null || telaLogin.getFuncionario().getId() == null) {

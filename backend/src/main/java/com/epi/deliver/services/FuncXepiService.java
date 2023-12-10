@@ -41,27 +41,27 @@ public class FuncXepiService {
 	
 	@Transactional(readOnly = true)
 	public List<FuncXepiEntityDTO>epiXfunc(Long idCli){
-		List<FuncXepiEntityDTO> list = repository.epiXfunc(idCli, status);
+		List<FuncXepiEntityDTO> list = repository.epiXfunc(idCli, "1");
 		return list;
 	}
 	
 	
 	@Transactional(readOnly = true)
 	public List<FuncXepiEntityDTO>findRegistroEpiXfunc(Long idCli, String registro){
-		List<FuncXepiEntityDTO> list = repository.findRegistroEpiXfunc(idCli, registro, status);
+		List<FuncXepiEntityDTO> list = repository.findRegistroEpiXfunc(idCli, registro, "1");
 		return list;
 	}
 	
 	@Transactional(readOnly = true)
 	public List<FuncXepiEntityDTO>findByIdEpiXfuncDetalhe(Long idCli, String registro){
-		List<FuncXepiEntityDTO> list = repository.findByIdEpiXfuncDetalhe(idCli, registro, status);
+		List<FuncXepiEntityDTO> list = repository.findByIdEpiXfuncDetalhe(idCli, registro, "1");
 		return list;
 	}
 	
 
 	@Transactional(readOnly = true)
 	public FuncXepiEntityDTO findByIdEpiXfunc(Long idCli, Long id){
-		FuncXepiEntityDTO list = repository.findByIdEpiXfunc(idCli, id, status);
+		FuncXepiEntityDTO list = repository.findByIdEpiXfunc(idCli, id, "1");
 		return list;
 	}
 	
