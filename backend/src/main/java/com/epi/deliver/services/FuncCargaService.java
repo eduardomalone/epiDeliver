@@ -35,7 +35,7 @@ import com.epi.deliver.repositories.FuncionarioRepository;
 @Service
 public class FuncCargaService {
 	
-	@Value("${diretorio.mac.carga}")
+	@Value("${diretorio.carga}")
 	private String diretorioCarga;
 	
 	@Value("${comando.curl.upload}")

@@ -31,7 +31,7 @@ import com.epi.deliver.repositories.EpiRepository;
 @Service
 public class UploadFileService {
 
-	@Value("${diretorio.mac.carga}")
+	@Value("${diretorio.carga}")
 	private String diretorioCarga;
 
 	@Value("${comando.curl.upload}")
