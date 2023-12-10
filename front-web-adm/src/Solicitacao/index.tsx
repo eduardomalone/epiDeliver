@@ -111,7 +111,7 @@ function Solicitacoes() {
           console.log('### recebeScanner:',status)
           console.log('### recebeScanner data:',data)
           alert('status: '+ status)
-          alert('data ' + data.data)
+          alert('data ' + JSON.stringify(data))
           //aoMudarTextoDeBusca?.(data)
           return data;
         }
