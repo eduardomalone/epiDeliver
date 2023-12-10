@@ -54,16 +54,18 @@ public class UploadFileService {
 		try {
 
 			Process process = Runtime.getRuntime().exec(command);
+			
+			System.out.println("##### process ###" + process.getInputStream());
 
 			InputStream inputStream = process.getInputStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 			List<String> list = new ArrayList<>();
 
 			System.out.println("output: ");
-			Thread.sleep(2000);
-
-			while (process.isAlive())
-				Thread.sleep(2000);
+//			Thread.sleep(2000);
+//
+//			while (process.isAlive())
+//				Thread.sleep(2000);
 			// process.waitFor();
 			System.out.println("return value: " + process.exitValue());
 			list = reader.lines().collect(Collectors.toList());
