@@ -90,7 +90,7 @@ function Solicitacoes() {
         };
         try {
             const { data, status } = await axios.request(options)
-            //console.log(data)
+            console.log(data,status)
             console.log('### ligarScanner:')
             alert('ligou scanner')
             return data
