@@ -111,7 +111,7 @@ function Solicitacoes() {
           console.log('### recebeScanner:',status)
           console.log('### recebeScanner data:',data)
           alert('status: '+ status)
-          alert('data ' + data)
+          alert('data ' + data.data)
           //aoMudarTextoDeBusca?.(data)
           return data;
         }
@@ -127,11 +127,11 @@ function Solicitacoes() {
         await new Promise (r=>setTimeout(r,1000));
         for (let i=0;i<5;i++){
             const valRet = await recebeScanner();
-            alert(valRet)
+            //alert(valRet)
             console.log(valRet);
             await new Promise (r=>setTimeout(r,3000));
             if (valRet!=='') i=5;
-                setTextoDaBusca(valRet)
+                //setTextoDaBusca(valRet)
         }
     
       }
