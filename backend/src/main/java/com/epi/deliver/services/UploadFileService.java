@@ -61,12 +61,14 @@ public class UploadFileService {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 			List<String> list = new ArrayList<>();
 
-			System.out.println("output: ");
-			//Thread.sleep(2000);
+			System.out.println("###### output: ");
+			Thread.sleep(2000);
+			System.out.println("##### pos o output: ");
 
 			while (process.isAlive())
+				System.out.println("#### chegou no wile: ");
 				//Thread.sleep(2000);
-			// process.waitFor();
+				process.waitFor();
 			System.out.println("return value: " + process.exitValue());
 			list = reader.lines().collect(Collectors.toList());
 
