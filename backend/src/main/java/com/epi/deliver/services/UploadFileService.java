@@ -1,5 +1,6 @@
 package com.epi.deliver.services;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,10 +53,71 @@ public class UploadFileService {
 		System.out.println(command);
 
 		String urlResponse = "";
+		
+//		Process process2 = Runtime.getRuntime().exec(command);
+//
+//        try
+//        {
+//            int result = process2.waitFor();
+//            if(result != 0)
+//            {
+//                throw new IOException("Fail to execute cammand. Exit Value[" + result + "], cmd => " + command);
+//            }
+//        }
+//        catch(InterruptedException e)
+//        {
+//            process2.destroyForcibly();
+//
+//            throw new IOException(e);
+//        }
+//
+//        BufferedInputStream in = null;
+//
+//        try
+//        {
+//            ByteArrayOutputStream out = new ByteArrayOutputStream();
+//            in = new BufferedInputStream(process2.getInputStream());
+//            byte[] buf = new byte[1024];
+//            int read = 0;
+//
+//            while((read = in.read(buf)) != -1)
+//            {
+//                out.write(buf, 0, read);
+//                out.flush();
+//
+////                if(_maxResLength > 0 && out.size() > _maxResLength)
+////                {
+////                    throw new IOException("Response length exceeded.");
+////                }
+//            }
+//            BufferedReader response = new BufferedReader(new InputStreamReader(process2.getInputStream()));
+//            StringBuilder result = new StringBuilder();
+//            String s;
+//            while((s = response.readLine()) != null) {
+//                result.append(s);
+//            }
+//            System.out.println(result.toString());
+//
+//            //You then need to close the BufferedReader if not using Java 8
+//            response.close();
+//        }
+//        finally
+//        {
+//            if(in != null)
+//            {
+//                in.close();
+//            }
+//        }
+//    
+		
+		
 		try {
 
-			Process process = Runtime.getRuntime().exec(command);
 			
+			
+			
+		    System.out.println(" ### comecar o process1 ####");
+		    Process process = Runtime.getRuntime().exec(command);
 			//System.out.println("##### process ###" + process.getInputStream());
 
 			InputStream inputStream = process.getInputStream();
@@ -63,12 +126,18 @@ public class UploadFileService {
 
 			System.out.println("###### output: ");
 			Thread.sleep(2000);
-			System.out.println("##### pos o output: ");
 
-			while (process.isAlive())
-				System.out.println("#### chegou no wile: ");
+			//while (process.isAlive())
+				//System.out.println("#### chegou no wile: ");
 				//Thread.sleep(2000);
-				process.waitFor();
+				//process.waitFor();
+				
+			int result = process.waitFor();
+			System.out.println("##### pos o output: ");
+            if(result != 0)
+	            {
+	                throw new IOException("Fail to execute cammand. Exit Value[" + result + "], cmd => " + command);
+	            }
 			System.out.println("return value: " + process.exitValue());
 			list = reader.lines().collect(Collectors.toList());
 
