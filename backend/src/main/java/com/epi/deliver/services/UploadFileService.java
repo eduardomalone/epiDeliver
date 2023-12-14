@@ -138,7 +138,7 @@ public class UploadFileService {
 	            {
 	                throw new IOException("Fail to execute cammand. Exit Value[" + result + "], cmd => " + command);
 	            }
-			System.out.println("return value: " + process.exitValue());
+			System.out.println("#### return value: " + process.exitValue());
 			list = reader.lines().collect(Collectors.toList());
 
 			StringBuilder sb = new StringBuilder();
