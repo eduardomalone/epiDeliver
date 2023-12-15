@@ -8,6 +8,9 @@ import { cargaFunc } from '../services/FuncionariosService';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useAuThContext } from '../contexts_/AuthContext';
 import { FileUpload } from 'primereact/fileupload';
+import AWS from 'aws-sdk';
+import ReactS3Client from 'react-aws-s3-typescript';
+//import { s3Config } from './s3Config.ts';
 
 
 export const CargaFuncionario: React.FC = () => {
@@ -28,6 +31,76 @@ export const CargaFuncionario: React.FC = () => {
     const uploadOptions = { label: 'Uplaod', icon: 'pi pi-upload', className: 'p-button-danger' };
     const cancelOptions = { label: 'Cancelar', icon: 'pi pi-times', className: 'p-button-danger' };
     const history = useHistory();
+
+     // Create state to store file
+  const [file, setFile] = useState<any>();
+
+  // Function to upload file to s3
+  const uploadFile = async () => {
+    // S3 Bucket Name
+    const S3_BUCKET = "sistemaepi";
+
+    // S3 Region
+    const REGION = "us-east-1";
+
+    
+    // S3 Credentials
+    AWS.config.update({
+      accessKeyId: "AKIA4DRBNNB46IKYJNYW",
+      secretAccessKey: "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",
+    });
+    const s3 = new AWS.S3({
+      params: { Bucket: S3_BUCKET },
+      region: REGION,
+    });
+
+    // Files Parameters
+
+    const params = {
+      Bucket: S3_BUCKET,
+      Key: file?.name ,
+      Body: file,
+    };
+
+    // Uploading file to s3
+
+    var upload = s3
+      .putObject(params)
+      .on("httpUploadProgress", (evt) => {
+        // File uploading progress
+        console.log(
+          "Uploading " )//+ parseInt((evt.loaded * 100) / evt.total) + "%"
+      })
+      .promise();
+
+    await upload.then((err) => {
+      console.log(err);
+      // Fille successfully uploaded
+      alert("File uploaded successfully.");
+    });
+  };
+  // Function to handle file and store it to file state
+  const handleFileChange = (e:any) => {
+    // Uploaded file
+    const file = e.target.files[0];
+    // Changing file state
+    setFile(file);
+  };
+
+    //   ################################
+    const s3Config = {
+        bucketName:  'bucket-name',
+        dirName: 'directory-name',      /* Optional */
+        region: 'ap-south-1',
+        accessKeyId:'ABCD12EFGH3IJ4KLMNO5',
+        secretAccessKey: 'a12bCde3f4+5GhIjKLm6nOpqr7stuVwxy8ZA9bC0',
+        s3Url: 'https:/your-aws-s3-bucket-url/'     /* Optional */
+    }
+
+    const s3 = new ReactS3Client(s3Config);
+
+   
+    // ##################################
 
     const Upload = (event: any) => {
         setIsLoading(true);
@@ -166,7 +239,18 @@ export const CargaFuncionario: React.FC = () => {
                     )}
                 </Box>
             )}
+
+<div className="App">
+      <div>
+        <input type="file" onChange={handleFileChange} />
+        <button onClick={uploadFile}>Upload</button>
+      </div>
+    </div>
+
+
+   
         </>
+        
     );
 }
 
