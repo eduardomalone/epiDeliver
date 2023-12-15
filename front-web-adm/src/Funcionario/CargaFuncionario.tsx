@@ -99,7 +99,7 @@ export const CargaFuncionario: React.FC = () => {
 
     const s3 = new ReactS3Client(s3Config);
 
-   
+   console.log(s3)
     // ##################################
 
     const Upload = (event: any) => {
