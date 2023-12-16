@@ -32,7 +32,7 @@ export const CargaFuncionario: React.FC = () => {
     const chooseOptions = { label: 'Arquivo', icon: 'pi pi-fw pi-plus', className: 'p-button-danger' };
     const uploadOptions = { label: 'Uplaod', icon: 'pi pi-upload', className: 'p-button-danger' };
     const cancelOptions = { label: 'Cancelar', icon: 'pi pi-times', className: 'p-button-danger' };
-    const history = useHistory();
+    //const history = useHistory();
 
      // Create state to store file
   const [file, setFile] = useState<any>();
