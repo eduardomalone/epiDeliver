@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Box, Button, Icon, IconButton, Paper, Typography, useMediaQuery, useTheme, LinearProgress, Grid } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useDrawerContext } from '../MenuLateral/DrawerContext';
-import { cargaFunc } from '../services/FuncionariosService';
+//import { cargaFunc } from '../services/FuncionariosService';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useAuThContext } from '../contexts_/AuthContext';
 import { FileUpload } from 'primereact/fileupload';
@@ -110,32 +110,32 @@ export const CargaFuncionario: React.FC = () => {
         event.options.clear();
     }
 
-    function executarCarga(path: string) {
+    // function executarCarga(path: string) {
 
-        setIsLoading(true);
+    //     setIsLoading(true);
 
-        if (window.confirm('Deseja realizar a carga?')) {
-            cargaFunc(path)
-                .then((response) => {
-                    //console.log('##### Carga realizada com Sucesso! ####')
-                    console.log('##### carga status ####', response)
-                    alert('carga realizada com sucesso!')
-                    history.push("/resultadoRelatorio", {data: response});
-                    //navigate.push(`/funcionarios`)
-                    //console.log('##### Efetuado carga com Sucesso! ####', response.data)
-                }).catch((error) => {
-                    console.log('### problema ao realizar carga ###',)
-                    alert('Problema ao executar a carga !' + error)
-                    navigate.push(`/funcionarios`)
-                })
+    //     if (window.confirm('Deseja realizar a carga?')) {
+    //         cargaFunc(path)
+    //             .then((response) => {
+    //                 //console.log('##### Carga realizada com Sucesso! ####')
+    //                 console.log('##### carga status ####', response)
+    //                 alert('carga realizada com sucesso!')
+    //                 history.push("/resultadoRelatorio", {data: response});
+    //                 //navigate.push(`/funcionarios`)
+    //                 //console.log('##### Efetuado carga com Sucesso! ####', response.data)
+    //             }).catch((error) => {
+    //                 console.log('### problema ao realizar carga ###',)
+    //                 alert('Problema ao executar a carga !' + error)
+    //                 navigate.push(`/funcionarios`)
+    //             })
 
-                .catch(error => {
-                    console.log('###-error-####', error.response)
-                    navigate.push(`/funcionarios`)
-                })
-            //setIsLoading(false);
-        }
-    }
+    //             .catch(error => {
+    //                 console.log('###-error-####', error.response)
+    //                 navigate.push(`/funcionarios`)
+    //             })
+    //         //setIsLoading(false);
+    //     }
+    // }
 
 
     function aoClicarEmVoltar() {
@@ -158,8 +158,8 @@ export const CargaFuncionario: React.FC = () => {
 
     useEffect(() => {
         setPerfTeste(Number(localStorage.getItem('APP_ACCESS_USER')))
-        console.log("### var process.env.REACT_APP_API" + process.env.REACT_APP_ACCESS_KEY_ID)
-        console.log("### var accessKeyId" + accessKeyId)
+        //console.log("### var process.env.REACT_APP_API" + process.env.REACT_APP_ACCESS_KEY_ID)
+        //console.log("### var accessKeyId" + accessKeyId)
         
         //const [perfTeste, setPerfTeste] = useState<number>();
         //perfTeste
