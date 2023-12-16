@@ -9,11 +9,13 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useAuThContext } from '../contexts_/AuthContext';
 import { FileUpload } from 'primereact/fileupload';
 import AWS from 'aws-sdk';
-import ReactS3Client from 'react-aws-s3-typescript';
 //import { s3Config } from './s3Config.ts';
 
 
 export const CargaFuncionario: React.FC = () => {
+
+    const accessKeyId = process.env.REACT_APP_ACCESS_KEY_ID
+    const secretAccessKey = process.env.REACT_APP_SECRET_KEY
 
     const theme = useTheme();
     const smDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -46,8 +48,8 @@ export const CargaFuncionario: React.FC = () => {
     
     // S3 Credentials
     AWS.config.update({
-      accessKeyId: "AKIA4DRBNNB46IKYJNYW",
-      secretAccessKey: "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",
+      accessKeyId: accessKeyId,
+      secretAccessKey: secretAccessKey,
     });
     const s3 = new AWS.S3({
       params: { Bucket: S3_BUCKET },
@@ -87,19 +89,6 @@ export const CargaFuncionario: React.FC = () => {
     setFile(file);
   };
 
-    //   ################################
-    const s3Config = {
-        bucketName:  'bucket-name',
-        dirName: 'directory-name',      /* Optional */
-        region: 'ap-south-1',
-        accessKeyId:'ABCD12EFGH3IJ4KLMNO5',
-        secretAccessKey: 'a12bCde3f4+5GhIjKLm6nOpqr7stuVwxy8ZA9bC0',
-        s3Url: 'https:/your-aws-s3-bucket-url/'     /* Optional */
-    }
-
-    const s3 = new ReactS3Client(s3Config);
-
-   console.log(s3)
     // ##################################
 
     const Upload = (event: any) => {
@@ -116,7 +105,8 @@ export const CargaFuncionario: React.FC = () => {
             formData.append("files", file);
             console.log('### files', file)
         });
-        executarCarga(event.files[0].name)
+        //executarCarga(event.files[0].name)
+        uploadFile()
         event.options.clear();
     }
 
@@ -168,6 +158,9 @@ export const CargaFuncionario: React.FC = () => {
 
     useEffect(() => {
         setPerfTeste(Number(localStorage.getItem('APP_ACCESS_USER')))
+        console.log("### var process.env.REACT_APP_API" + process.env.REACT_APP_ACCESS_KEY_ID)
+        console.log("### var accessKeyId" + accessKeyId)
+        
         //const [perfTeste, setPerfTeste] = useState<number>();
         //perfTeste
     }, []);
@@ -224,6 +217,7 @@ export const CargaFuncionario: React.FC = () => {
                                     // action="post"
                                     customUpload
                                     uploadHandler={Upload}
+                                    //uploadHandler={uploadFile}
                                     //multiple 
                                     accept="file"
                                     maxFileSize={100000000}
