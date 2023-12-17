@@ -46,7 +46,7 @@ public class AwsService {
 		try {
 			boolean teste = amazonS3.doesObjectExist(bucketName, fileName);
 
-			System.out.println("#### teste se tem: " + String.valueOf(teste));
+			System.out.println("#### Arquivo encontrado n o S3: " + String.valueOf(teste));
 
 			S3Object object = amazonS3.getObject(new GetObjectRequest(bucketName, fileName));
 			BufferedReader reader = new BufferedReader(new InputStreamReader(object.getObjectContent()));
@@ -54,7 +54,7 @@ public class AwsService {
 			// Process the objectData stream.
 			String s = null;
 			while ((s = reader.readLine()) != null) {
-				System.out.println(s);
+				System.out.println("linha lida do S3: "+s);
 				// your business logic here
 				listaLida.add(s);
 			}

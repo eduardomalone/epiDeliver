@@ -43,7 +43,7 @@ public class FuncCargaService {
 		    int i = 1;
 		    for (String line : listaLida) {
 		    	
-		    	System.out.println(line);
+		    	System.out.println("#### linhas para serem validadas: " + line);
 		    	String[] separados =  line.split(";");
 		    	
 		    	int qtdSeparados = separados.length;
@@ -54,6 +54,7 @@ public class FuncCargaService {
 		    	
 		    	if((objFunc != null && objFunc.size() != 0) && (qtdSeparados == 4)) {
 		    		listaEntity.add(mapper.convert(separados, idCli));
+		    		System.out.println("#### Fez o mapper #### ");
 		    	}else {
 		    		//listError.add(separados[0]+"-"+separados[1]);
 		    		listaLinhasComErro.add(Integer.toString(i)+";");
@@ -61,7 +62,7 @@ public class FuncCargaService {
 		    	i++;
 		    }
 		    
-			System.out.println("leu o aerquivo");
+			System.out.println("### Preparou para salvar ###");
 
 			// manda salvar a lista
 		
