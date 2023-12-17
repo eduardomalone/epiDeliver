@@ -6,12 +6,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useDrawerContext } from '../MenuLateral/DrawerContext';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useAuThContext } from '../contexts_/AuthContext';
-import { FileUpload } from 'primereact/fileupload';
 import React from 'react';
 import { cargaEpi } from '../services/EpiService';
+import AWS from 'aws-sdk';
 
 
 export const CargaEpi: React.FC = () => {
+
+    const accessKeyId = process.env.REACT_APP_ACCESS_KEY_ID
+    const secretAccessKey = process.env.REACT_APP_SECRET_KEY
 
     const theme = useTheme();
     const smDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -26,23 +29,70 @@ export const CargaEpi: React.FC = () => {
     const [perfTeste, setPerfTeste] = useState<number>(Number(localStorage.getItem('APP_ACCESS_USER')));
     const history = useHistory();
 
-    const Upload = (event: any) => {
-        setIsLoading(true);
-        const lst2 = event.files[0].name.slice(-4);
-        if(lst2 !== '.txt'){
-            alert('Arquivo com extensão diferente de .txt')
-            navigate.push(`/epis`)
-            return
-        }
-        console.log('### event', event)
-        let formData = new FormData();
-        event.files.forEach((file: any) => {
-            formData.append("files", file);
-            console.log('### files', file)
-        });
-        executarCarga(event.files[0].name)
-        event.options.clear();
-    }
+      // Create state to store file
+      const [file, setFile] = useState<any>();
+
+      // Function to upload file to s3
+      const uploadFile = async () => {
+  
+          let lst2 = file?.name.slice(-4);
+          if (lst2 !== '.txt') {
+              alert('Arquivo com extensão diferente de .txt')
+              navigate.push(`/funcionarios`)
+              return
+          }
+  
+          // S3 Bucket Name
+          const S3_BUCKET = "sistemaepi";
+  
+          // S3 Region
+          const REGION = "us-east-1";
+  
+  
+          // S3 Credentials
+          AWS.config.update({
+              accessKeyId: accessKeyId,
+              secretAccessKey: secretAccessKey,
+          });
+          const s3 = new AWS.S3({
+              params: { Bucket: S3_BUCKET },
+              region: REGION,
+          });
+  
+          // Files Parameters
+  
+          const params = {
+              Bucket: S3_BUCKET,
+              Key: file?.name,
+              Body: file,
+          };
+  
+          // Uploading file to s3
+  
+          var upload = s3
+              .putObject(params)
+              .on("httpUploadProgress", (evt) => {
+                  // File uploading progress
+                  console.log(
+                      "Uploading ")//+ parseInt((evt.loaded * 100) / evt.total) + "%"
+              })
+              .promise();
+  
+          await upload.then((err) => {
+              console.log(err);
+              // Fille successfully uploaded
+              alert("File uploaded successfully.");
+              executarCarga(file?.name);
+          });
+      };
+      // Function to handle file and store it to file state
+      const handleFileChange = (e: any) => {
+          // Uploaded file
+          console.log('###### handleFileChange: ', e)
+          const file = e.target.files[0];
+          // Changing file state
+          setFile(file);
+      };
     
 
     function executarCarga(path: string) {
@@ -95,15 +145,10 @@ export const CargaEpi: React.FC = () => {
         //perfTeste
     }, []);
 
-    const chooseOptions = { label: 'Arquivo', icon: 'pi pi-fw pi-plus', className: 'p-button-danger' };
-    const uploadOptions = { label: 'Uplaod', icon: 'pi pi-upload', className: 'p-button-danger' };
-    const cancelOptions = { label: 'Cancelar', icon: 'pi pi-times', className: 'p-button-danger' };
-
 
     return (
 
         <>
-
             {(validaAutenticado() && (perfilADM === perfTeste || perfilADMSIST === perfTeste) &&
                 <Box height='100%' display='flex' flexDirection='column' gap={1}>
                     <Box padding={1} display='flex' alignItems='center' height={theme.spacing(smDown ? 6 : mdDown ? 8 : 12)} gap={1}>
@@ -138,27 +183,25 @@ export const CargaEpi: React.FC = () => {
                     </Box>
                     <Box margin={1} display="flex" flexDirection="column" component={Paper} variant='outlined'>
                         <Grid container direction="column" padding={2} spacing={2}>
-                            {/* <Grid item>
-                                <Typography variant='h6'>Carga EPI</Typography>
-                            </Grid> */}
-                            <Grid container item direction="row" spacing={2}>
+                            <Grid container item direction="column" spacing={2}>
                                 <Grid item xs={12} sm={12} md={6} lg={4} xl={2}>
+                                    <input type="file" onChange={handleFileChange} />
                                 </Grid>
-                            </Grid>
-                            <Grid container item direction="row" spacing={2}>
-                                
-                                <FileUpload name="files"
-                                    url=''
-                                    // action="post"
-                                    customUpload
-                                    uploadHandler={Upload}
-                                    //multiple 
-                                    accept="file"
-                                    maxFileSize={100000000}
-                                    chooseOptions={chooseOptions}
-                                    uploadOptions={uploadOptions}
-                                    cancelOptions={cancelOptions}
-                                />
+                                <Grid item xs={12} sm={12} md={6} lg={4} xl={2}>
+                                    <Button
+                                        onClick={uploadFile}
+                                        disableElevation
+                                        variant="contained"
+                                        color="warning"
+                                        //startIcon={<Icon><Save /></Icon>}
+                                        disabled={false}
+                                    >
+                                        <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+                                            Upload
+                                        </Typography>
+                                    </Button>
+
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Box>
