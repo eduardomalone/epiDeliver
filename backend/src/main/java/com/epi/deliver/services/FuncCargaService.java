@@ -50,13 +50,14 @@ public class FuncCargaService {
 		    	
 		    	if(qtdSeparados == 4) {
 		    		objFunc = repository.findByRegistroAndIdClienteAndStatus(separados[0], idCli, "1");
+		    		System.out.println("#### validou o funcionario #### "+objFunc);
 		    	}
 		    	
-		    	if((objFunc != null && objFunc.size() != 0) && (qtdSeparados == 4)) {
+		    	if((objFunc != null) && (qtdSeparados == 4)) {
 		    		listaEntity.add(mapper.convert(separados, idCli));
 		    		System.out.println("#### Fez o mapper #### ");
 		    	}else {
-		    		//listError.add(separados[0]+"-"+separados[1]);
+		    		listError.add(separados[0]+"-"+separados[1]);
 		    		listaLinhasComErro.add(Integer.toString(i)+";");
 		    	}
 		    	i++;
