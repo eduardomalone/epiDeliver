@@ -58,7 +58,6 @@ export const CargaFuncXepi: React.FC = () => {
        });
 
        // Files Parameters
-
        const params = {
            Bucket: S3_BUCKET,
            Key: file?.name,
