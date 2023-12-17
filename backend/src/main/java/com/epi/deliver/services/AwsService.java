@@ -1,6 +1,9 @@
 package com.epi.deliver.services;
 
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,20 +14,11 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.Bucket;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
+import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
-
-import com.amazonaws.AmazonServiceException;
-import com.amazonaws.services.s3.transfer.MultipleFileUpload;
-import com.amazonaws.services.s3.transfer.TransferManager;
-import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
-import com.amazonaws.services.s3.transfer.Upload;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 @Service
 public class AwsService {
@@ -32,8 +26,9 @@ public class AwsService {
 	@Autowired
 	private AmazonS3 amazonS3;
 
-	@Value("${diretorio.carga}")
-	private String diretorio;
+
+	@Value("${bucket.cliente}")
+	private String bucketName;
 
 	public List<Bucket> listBuckets() {
 		return amazonS3.listBuckets();
@@ -44,76 +39,65 @@ public class AwsService {
 		return objectListing.getObjectSummaries();
 	}
 
-	public String uploadFile( String nomeArq) {
+	public ArrayList<String> readFile(String fileName) throws Exception {
 
-		String bucketName = "sistemaepi"; //*** Bucket name ***";
-		String stringObjKeyName = ""; // *** String object key name ***";
-		String fileObjKeyName = nomeArq; //"*** File object key name ***";
-		String fileName = diretorio;  //"*** Path to file to upload ***";
-		
-		String retorno = "";
+		ArrayList<String> listaLida = new ArrayList();
 
 		try {
-			System.out.println("###### comecou o upload ##### ");
-			
-			System.out.println("###### diretorio: " + fileName);
-			System.out.println("###### fileObjKeyName: " + fileObjKeyName);
+			boolean teste = amazonS3.doesObjectExist(bucketName, fileName);
 
-			// s3://sistemaepi/arquivos/
+			System.out.println("#### teste se tem: " + String.valueOf(teste));
 
-			//amazonS3.putObject("sistemaepi", "colab.txt", "Uploaded String Object");
+			S3Object object = amazonS3.getObject(new GetObjectRequest(bucketName, fileName));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(object.getObjectContent()));
 
-			// Upload a file as a new object with ContentType and title specified.
-			PutObjectRequest request = new PutObjectRequest(bucketName, fileObjKeyName, new File(fileName+fileObjKeyName));
-			ObjectMetadata metadata = new ObjectMetadata();
-			metadata.setContentType("plain/text");
-			metadata.addUserMetadata("title", "arquivoTeste");
-			request.setMetadata(metadata);
-			amazonS3.putObject(request);
-			System.out.println("###### upload feito ######");
-			retorno = "###### upload feito ######";
-			
-			
+			// Process the objectData stream.
+			String s = null;
+			while ((s = reader.readLine()) != null) {
+				System.out.println(s);
+				// your business logic here
+				listaLida.add(s);
+			}
+
+			reader.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new Exception("### Exception - Problema ao ler o arquivo (readFile): " + e.getCause());
 		} catch (AmazonServiceException e) {
 			// The call was transmitted successfully, but Amazon S3 couldn't process
 			// it, so it returned an error response.
-			
-			System.out.println("### deu erro AmazonServiceException: " + e.getMessage());
-			retorno = "### deu erro AmazonServiceException: " + e.getMessage();
 			e.printStackTrace();
+			throw new Exception(
+					"### AmazonServiceException - Problema ao ler o arquivo (readFile): " + e.getCause());
 		} catch (SdkClientException e) {
 			// Amazon S3 couldn't be contacted for a response, or the client
 			// couldn't parse the response from Amazon S3.
-			System.out.println("### deu erro SdkClientException: " + e.getMessage());
-			retorno = "### deu erro SdkClientException: " + e.getMessage();
 			e.printStackTrace();
+			throw new Exception("### SdkClientException - Problema ao ler o arquivo (readFile): " + e.getCause());
 		}
 
-		System.out.println("###### finalizou metodo upload #####");
-		
-		return retorno;
+		return listaLida;
 	}
 	
 	
-	public String uploadFile2() {
-		
-		File f = new File(diretorio);
-		TransferManager xfer_mgr = TransferManagerBuilder.standard().build();
+	
+
+	public void delefeFile(String fileName) throws Exception{
 		try {
-		    Upload xfer = xfer_mgr.upload("sistemaepi", "colab.txt", f);
-		    // loop with Transfer.isDone()
-		   // XferMgrProgress.showTransferProgress(xfer);
-		    //  or block with Transfer.waitForCompletion()
-		   // XferMgrProgress.waitForCompletion(xfer);
+
+			amazonS3.deleteObject(new DeleteObjectRequest(bucketName, fileName));
 		} catch (AmazonServiceException e) {
-		    System.err.println(e.getErrorMessage());
-		    System.exit(1);
+			// The call was transmitted successfully, but Amazon S3 couldn't process
+			// it, so it returned an error response.
+			e.printStackTrace();
+			throw new Exception("### AmazonServiceException - Problema ao deletar o arquivo: " + e.getCause());
+		} catch (SdkClientException e) {
+			// Amazon S3 couldn't be contacted for a response, or the client
+			// couldn't parse the response from Amazon S3.
+			e.printStackTrace();
+			throw new Exception("### SdkClientException - Problema ao deletar o arquivo: " + e.getCause());
 		}
-		xfer_mgr.shutdownNow();
-		
-		
-		return "";
 	}
-	
-	
+
 }
