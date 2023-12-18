@@ -81,7 +81,7 @@ export const CargaEpi: React.FC = () => {
           await upload.then((err) => {
               console.log(err);
               // Fille successfully uploaded
-              alert("File uploaded successfully.");
+              alert("Upload realizado com sucesso.");
               executarCarga(file?.name);
           });
       };
@@ -104,7 +104,7 @@ export const CargaEpi: React.FC = () => {
                 .then((response) => {
                     //console.log('##### Carga realizada com Sucesso! ####')
                     console.log('##### carga status ####', response)
-                    alert('carga realizada com sucesso!')
+                    alert('Processamento realizado com sucesso')
                     history.push("/resultadoRelatorio", {data: response});
                     //console.log('##### Efetuado carga com Sucesso! ####', response.data)
                 }).catch((error) => {

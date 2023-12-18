@@ -78,7 +78,7 @@ export const CargaFuncXepi: React.FC = () => {
        await upload.then((err) => {
            console.log(err);
            // Fille successfully uploaded
-           alert("File uploaded successfully.");
+           alert("Upload realizado com sucesso");
            executarCarga(file?.name);
        });
    };
@@ -100,7 +100,7 @@ export const CargaFuncXepi: React.FC = () => {
                 .then((response) => {
                     //console.log('##### Carga realizada com Sucesso! ####')
                     console.log('##### carga status ####', response)
-                    alert('carga realizada com sucesso!',)
+                    alert('Processamento realizado com sucesso!',)
                     //navigate.push(`/funcXepi`)
                     history.push("/resultadoRelatorio", {data: response});  
                     //console.log('##### Efetuado carga com Sucesso! ####', response.data)
