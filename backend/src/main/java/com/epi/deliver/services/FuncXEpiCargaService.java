@@ -74,13 +74,14 @@ public class FuncXEpiCargaService {
 	
 		    	}
 		    	
-		    	if((objFunc != null && objFunc.size() != 0) && (objEpi != null && objEpi.get() != null) && qtdSeparados == 2) {
+		    	if((objFunc != null )&& (objFunc.size() < 1) && (objEpi != null && objEpi.get() != null) && qtdSeparados == 2) {
 		    		Long idFunc = objFunc.get(0).getId();
 		    		Long idEpi = repositoryEpi.findByCodigoAndStatus(separados[1], "1").get().getId();
 		    		listaEntity.add(mapper.convert(idFunc, idEpi, idCli));		 
 		    		
 		    	}else {
 		    		//listError.add(separados[0]+"-"+separados[1]);
+		    		System.out.println("#### problema na linha #### " + Integer.toString(i));
 		    		listaLinhasComErro.add(Integer.toString(i)+";");
 		    	}
 		    	i++;
@@ -102,7 +103,7 @@ public class FuncXEpiCargaService {
 		}
 		
 		returnCarga.setLinhasErro(listError);
-		returnCarga.setQtdLinhasProcessadas(listError.size() + listaEntity.size());
+		returnCarga.setQtdLinhasProcessadas(listaLinhasComErro.size() + listaEntity.size());
 		returnCarga.setQtdLinhasErros(listError.size());
 		returnCarga.setLinhasComErro(listaLinhasComErro);
 		returnCarga.setStatus("funcXepi");

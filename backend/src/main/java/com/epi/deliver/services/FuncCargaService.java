@@ -48,16 +48,17 @@ public class FuncCargaService {
 		    	
 		    	int qtdSeparados = separados.length;
 		    	
-		    	if(qtdSeparados == 4) {
+		    	if(qtdSeparados == 4 && !separados[0].equals("")) {
 		    		objFunc = repository.findByRegistroAndIdClienteAndStatus(separados[0], idCli, "1");
-		    		System.out.println("#### validou o funcionario #### "+objFunc);
+		
 		    	}
 		    	
-		    	if((objFunc != null) && (qtdSeparados == 4)) {
+		    	if((objFunc != null) && (objFunc.size() < 1) && (qtdSeparados == 4)) {
 		    		listaEntity.add(mapper.convert(separados, idCli));
 		    		System.out.println("#### Fez o mapper #### ");
 		    	}else {
-		    		listError.add(separados[0]+"-"+separados[1]);
+		    		//listError.add(separados[0]+"-"+separados[1]);
+		    		System.out.println("#### problema na linha #### " + Integer.toString(i));
 		    		listaLinhasComErro.add(Integer.toString(i)+";");
 		    	}
 		    	i++;
@@ -82,7 +83,7 @@ public class FuncCargaService {
 		}
 		
 		returnCarga.setLinhasErro(listError);
-		returnCarga.setQtdLinhasProcessadas(listError.size() + listaEntity.size());
+		returnCarga.setQtdLinhasProcessadas(listaLinhasComErro.size() + listaEntity.size());
 		returnCarga.setQtdLinhasErros(listaLinhasComErro.size());
 		returnCarga.setLinhasComErro(listaLinhasComErro);
 		returnCarga.setStatus("func");

@@ -49,10 +49,11 @@ public class EpiCargaService {
 				if (qtdSeparados == 3) {
 					objFunc = repository.findByIdClienteAndCodigoAndStatus(idCli, separados[0], "1");
 				}
-				if ((objFunc != null && objFunc.size() != 0) && qtdSeparados == 3) {
+				if ((objFunc != null) && (objFunc.size() < 1) && qtdSeparados == 3) {
 					listaEntity.add(mapper.convertEpi(separados, idCli));
 				} else {
-					listError.add(separados[0] + "-" + separados[1]);
+					System.out.println("#### problema na linha #### " + Integer.toString(i));
+					//listError.add(separados[0] + "-" + separados[1]);
 					listaLinhasComErro.add(Integer.toString(i) + ";");
 				}
 
@@ -76,7 +77,7 @@ public class EpiCargaService {
 		}
 
 		returnCarga.setLinhasErro(listError);
-		returnCarga.setQtdLinhasProcessadas(listError.size() + listaEntity.size());
+		returnCarga.setQtdLinhasProcessadas(listaLinhasComErro.size() + listaEntity.size());
 		returnCarga.setQtdLinhasErros(listError.size());
 		returnCarga.setLinhasComErro(listaLinhasComErro);
 		returnCarga.setStatus("epi");
