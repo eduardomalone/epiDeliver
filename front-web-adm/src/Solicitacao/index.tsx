@@ -228,7 +228,7 @@ function Solicitacoes() {
                     textAlign: "center"
                 }}>
 
-                    <Button
+                    {/* <Button
                         onClick={lerScanner}
                         disableElevation
                         variant="contained"
@@ -239,7 +239,7 @@ function Solicitacoes() {
                         <Typography variant="button" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
                             teste
                         </Typography>
-                    </Button>
+                    </Button> */}
                     <Button variant="contained" color="primary" onClick={lerScanner}>
                         Ler Scanner
                     </Button>

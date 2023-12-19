@@ -36,7 +36,7 @@ export const CargaFuncXepi: React.FC = () => {
        let lst2 = file?.name.slice(-4);
        if (lst2 !== '.txt') {
            alert('Arquivo com extensão diferente de .txt')
-           navigate.push(`/funcionarios`)
+           navigate.push(`/funcXepi`)
            return
        }
 
