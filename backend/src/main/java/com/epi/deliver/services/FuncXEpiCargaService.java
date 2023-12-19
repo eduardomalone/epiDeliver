@@ -74,10 +74,19 @@ public class FuncXEpiCargaService {
 	
 		    	}
 		    	
-		    	if((objFunc != null )&& (objFunc.size() < 1) && (objEpi != null && objEpi.get() != null) && qtdSeparados == 2) {
+		    	if(((objFunc != null )&& (objFunc.size() > 0)) && ((objEpi != null)) && qtdSeparados == 2) {
 		    		Long idFunc = objFunc.get(0).getId();
-		    		Long idEpi = repositoryEpi.findByCodigoAndStatus(separados[1], "1").get().getId();
-		    		listaEntity.add(mapper.convert(idFunc, idEpi, idCli));		 
+		    		//Long idEpi = repositoryEpi.findByCodigoAndStatus(separados[1], "1").get().getId();
+		    		Long idEpi = objEpi.get().getId();
+		    		
+		    		if(repository.findByIdEpiAndIdFuncioAndStatus(idEpi, idFunc, "1").isEmpty()) {
+		    			listaEntity.add(mapper.convert(idFunc, idEpi, idCli));
+		    			System.out.println("#### Fez o mapper #### ");		    			
+		    		}else {
+			    		//listError.add(separados[0]+"-"+separados[1]);
+			    		System.out.println("#### problema na linha, relacao ja existe #### " + Integer.toString(i));
+			    		listaLinhasComErro.add(Integer.toString(i)+";");
+			    	}
 		    		
 		    	}else {
 		    		//listError.add(separados[0]+"-"+separados[1]);
@@ -90,6 +99,7 @@ public class FuncXEpiCargaService {
 		    System.out.println("leu o aerquivo");
 		    // manda salvar a lista
 		    repository.saveAll(listaEntity);
+		    System.out.println("#### salvou a lista lida ####");
 		    
 		    //awsService.delefeFile(path);
 			//System.out.println("#### deletou arquivo do S3 ####");
@@ -104,7 +114,7 @@ public class FuncXEpiCargaService {
 		
 		returnCarga.setLinhasErro(listError);
 		returnCarga.setQtdLinhasProcessadas(listaLinhasComErro.size() + listaEntity.size());
-		returnCarga.setQtdLinhasErros(listError.size());
+		returnCarga.setQtdLinhasErros(listaLinhasComErro.size());
 		returnCarga.setLinhasComErro(listaLinhasComErro);
 		returnCarga.setStatus("funcXepi");
 		return returnCarga;

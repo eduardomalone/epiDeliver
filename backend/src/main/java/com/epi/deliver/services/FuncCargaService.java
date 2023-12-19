@@ -86,7 +86,7 @@ public class FuncCargaService {
 		returnCarga.setQtdLinhasProcessadas(listaLinhasComErro.size() + listaEntity.size());
 		returnCarga.setQtdLinhasErros(listaLinhasComErro.size());
 		returnCarga.setLinhasComErro(listaLinhasComErro);
-		returnCarga.setStatus("func");
+		returnCarga.setStatus("funcXepi");
 		return returnCarga;
 						
 				

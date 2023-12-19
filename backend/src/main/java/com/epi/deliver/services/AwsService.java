@@ -46,7 +46,7 @@ public class AwsService {
 		try {
 			boolean teste = amazonS3.doesObjectExist(bucketName, fileName);
 
-			System.out.println("#### Arquivo encontrado n o S3: " + String.valueOf(teste));
+			System.out.println("#### Arquivo encontrado no S3: " + String.valueOf(teste));
 
 			S3Object object = amazonS3.getObject(new GetObjectRequest(bucketName, fileName));
 			BufferedReader reader = new BufferedReader(new InputStreamReader(object.getObjectContent()));

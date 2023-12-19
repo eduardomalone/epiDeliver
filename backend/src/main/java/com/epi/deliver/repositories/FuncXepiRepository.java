@@ -23,6 +23,8 @@ public interface FuncXepiRepository  extends JpaRepository<TabFuncXepi, Long>{
 	
 	List<TabFuncXepi> findByIdEpi(Long id);
 	
+	List<TabFuncXepi> findByIdEpiAndIdFuncioAndStatus(Long idEpi, Long idFunc, String status);
+	
 	TabFuncXepi save(TabFuncXepi tabFuncXepi);
 	
 	
