@@ -47,7 +47,7 @@ public interface FuncXepiRepository  extends JpaRepository<TabFuncXepi, Long>{
 	String query3 = "select x.id as id, f.registro as registro, epi.codigo as codigo from tab_funcxepi x "
 			+ "join tab_funcionario f "
 			+ "on x.id_funcio = f.id "
-			+ "join dbepi.tab_epi epi "
+			+ "join tab_epi epi "
 			+ "on x.id_epi = epi.id "
 			+ "where f.id_cliente = ?1 and (f.registro) like %?2% and x.status = ?3 and f.status = ?3";
 	@Query(value = query3, nativeQuery = true) 
@@ -56,7 +56,7 @@ public interface FuncXepiRepository  extends JpaRepository<TabFuncXepi, Long>{
 	String query5 = "select x.id as id, f.registro as registro, epi.codigo as codigo from tab_funcxepi x "
 			+ "join tab_funcionario f "
 			+ "on x.id_funcio = f.id "
-			+ "join dbepi.tab_epi epi "
+			+ "join tab_epi epi "
 			+ "on x.id_epi = epi.id "
 			+ "where f.id_cliente = ?1 and (f.registro) = ?2 and x.status = ?3 and f.status = ?3";
 	@Query(value = query5, nativeQuery = true) 
@@ -66,7 +66,7 @@ public interface FuncXepiRepository  extends JpaRepository<TabFuncXepi, Long>{
 	String query4 = "select x.id as id, f.registro as registro, epi.codigo as codigo from tab_funcxepi x "
 			+ "join tab_funcionario f "
 			+ "on x.id_funcio = f.id "
-			+ "join dbepi.tab_epi epi "
+			+ "join tab_epi epi "
 			+ "on x.id_epi = epi.id "
 			+ "where f.id_cliente = ?1 and x.id = ?2 and x.status = ?3 and f.status = ?3";
 	@Query(value = query4, nativeQuery = true) 
