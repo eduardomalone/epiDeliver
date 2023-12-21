@@ -50,6 +50,7 @@ function FuncXepi() {
     }, []);
 
     function aoMudarTextoDeBusca(novoTexto: string) {
+        console.log('###### chegou aqui ', novoTexto)
         setTextoDaBusca(novoTexto);
         console.log('######', novoTexto)
         debounce(() => {
