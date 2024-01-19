@@ -36,7 +36,7 @@ function Solicitacoes() {
     const accessKeyId = process.env.REACT_APP_ACCESS_KEY_ID
     const secretAccessKey = process.env.REACT_APP_SECRET_KEY
 
-    var repoGitImgS3 = 'https://sistemaepifotos.s3.amazonaws.com/WA0008.jpg'
+    //var repoGitImgS3 = 'https://sistemaepifotos.s3.amazonaws.com/WA0008.jpg'
     var repoGitImg = 'https://eduardomalone.github.io/img/epi_imgs/'
     //const auth = useContext(AuthContext);
     const { user } = useAuThContext();
@@ -201,13 +201,16 @@ function Solicitacoes() {
       }
     
       async function lerScanner() {
+        console.log(valCodBar)
         await ligarScanner();
         await new Promise (r=>setTimeout(r,1000));
         for (let i=0;i<10;i++){
           const valCodBar = await recebeScanner();
-          console.log(valCodBar);
+          //console.log(valCodBar);
           setValCodBar(valCodBar);
           setTextoDaBusca(valCodBar);
+          aoMudarTextoDeBusca(valCodBar);
+          console.log('### texto scanner: ', valCodBar)
 
           await new Promise (r=>setTimeout(r,3000));
           if (valCodBar!=='') i=10;
