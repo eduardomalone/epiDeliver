@@ -60,8 +60,6 @@ function Solicitacoes() {
      const REGION = "us-east-1";
 
 
-    
-
     function aoMudarTextoDeBusca(novoTexto: string) {
         debounce(() => {
             setIsLoading(true);
@@ -209,7 +207,8 @@ function Solicitacoes() {
           const valCodBar = await recebeScanner();
           console.log(valCodBar);
           setValCodBar(valCodBar);
-          
+          setTextoDaBusca(valCodBar);
+
           await new Promise (r=>setTimeout(r,3000));
           if (valCodBar!=='') i=10;
         }
@@ -324,13 +323,13 @@ function Solicitacoes() {
                         Ler Scanner
                     </Button>
                 </div>
-                <Grid item style={{ marginTop: 20 }}>
+                {/* <Grid item style={{ marginTop: 20 }}>
             <Button variant="contained" color="primary" onClick={lerScanner}>
               Ler Scanner 2
             </Button>
             {valCodBar}
-        </Grid>
-                <div>
+        </Grid> */}
+                {/* <div>
                                             <img
                                                 //src= {'/epi_imgs/'+product.codigo+'.jpg'}
                                                 src={repoGitImgS3 + "" + itemSolicitEpi?.epiDTO.codigo + '.jpg'}
@@ -338,7 +337,7 @@ function Solicitacoes() {
                                                 alt={itemSolicitEpi?.epiDTO.codigo}
                                                 onError={(e) => onError(e)}
                                             />
-                                        </div>
+                                        </div> */}
                 <Box flex={1} overflow='auto' >
                     {itemSolicitacaoDTO?.codigoBarra && (
 
