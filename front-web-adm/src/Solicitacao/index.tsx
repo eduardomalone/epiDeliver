@@ -11,6 +11,8 @@ import { EpiDTO, ItemSolicitacao, ItemSolicitacaoEpiDTO } from '../Types/User';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { config } from 'aws-sdk'
+
 
 
 
@@ -30,6 +32,11 @@ function refreshPage() {
 
 
 function Solicitacoes() {
+    
+    const accessKeyId = process.env.REACT_APP_ACCESS_KEY_ID
+    const secretAccessKey = process.env.REACT_APP_SECRET_KEY
+
+    var repoGitImgS3 = 'https://sistemaepifotos.s3.amazonaws.com/WA0008.jpg'
     var repoGitImg = 'https://eduardomalone.github.io/img/epi_imgs/'
     //const auth = useContext(AuthContext);
     const { user } = useAuThContext();
@@ -44,6 +51,16 @@ function Solicitacoes() {
     const [itemSolicitEpi, setItemSolicitEpi] = useState<ItemSolicitacaoEpiDTO>();
     const [epiDTO, setEpiDTO] = useState<EpiDTO>();
     const [itemSolicitacaoDTO, setItemSolicitacaoDTO] = useState<ItemSolicitacao>();
+    const [valCodBar, setValCodBar] = useState("");
+
+     // S3 Bucket Name
+     const S3_BUCKET = "sistemaepi";
+
+     // S3 Region
+     const REGION = "us-east-1";
+
+
+    
 
     function aoMudarTextoDeBusca(novoTexto: string) {
         debounce(() => {
@@ -75,67 +92,130 @@ function Solicitacoes() {
     }
 
     useEffect(() => {
+        //config.update(AWSConfig)
+        const AWSConfig = {
+            accessKeyId: accessKeyId,
+            secretAccessKey: secretAccessKey,
+            region: REGION,
+        }
+        config.update(AWSConfig)
+    
+
+       
         //setPerfTeste(Number(localStorage.getItem('APP_ACCESS_USER')))
         //const [perfTeste, setPerfTeste] = useState<number>();
         //perfTeste
         //lerScanner();
     });
 
+    // async function ligarScanner() {
+    //     const options = {
+    //         method: 'POST',
+    //         url: 'http://127.0.0.1:5000/scanner',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         data: { CMD: 'ligarScanner', PARAM: '' }
+    //     };
+    //     try {
+    //         const { data, status } = await axios.request(options)
+    //         console.log(data,status)
+    //         console.log('### ligarScanner:')
+    //         alert('ligou scanner')
+    //         return data
+    //     } catch (ex) {
+    //         console.log(ex)
+    //         return ''
+    //     }
+
+    // }
+    // async function recebeScanner() {
+    //     const options = {
+    //         method: 'GET',
+    //         url: 'http://127.0.0.1:5000/scanner',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         data: {}
+    //     };
+    //     try {
+    //         const { data, status } = await axios.request(options);
+    //         console.log('### recebeScanner:', status)
+    //         console.log('### recebeScanner data:', data)
+    //         //alert('status: ' + status)
+    //         alert('recebe scanner')
+    //         //aoMudarTextoDeBusca?.(data)
+    //         return data;
+    //     }
+    //     catch (ex) {
+    //         console.error(ex);
+    //         return '';
+    //     }
+
+    // }
+
+    // async function lerScanner() {
+    //     await ligarScanner();
+    //     await new Promise(r => setTimeout(r, 1000));
+    //     for (let i = 0; i < 5; i++) {
+    //         const valRet = await recebeScanner();
+    //         //alert(valRet)
+    //         console.log(valRet);
+    //         await new Promise(r => setTimeout(r, 3000));
+    //         if (valRet !== '') i = 5;
+    //         //setTextoDaBusca(valRet)
+    //     }
+
+    // }
+
+
     async function ligarScanner() {
         const options = {
-            method: 'POST',
-            url: 'http://127.0.0.1:5000/scanner',
-            headers: { 'Content-Type': 'application/json' },
-            data: { CMD: 'ligarScanner', PARAM: '' }
+          method: 'POST',
+          url: 'http://127.0.0.1:5000/scanner',
+          headers: {'Content-Type': 'application/json'},
+          data: {CMD: 'ligarScanner', PARAM: ''}
         };
-        try {
-            const { data, status } = await axios.request(options)
-            console.log(data,status)
-            console.log('### ligarScanner:')
-            alert('ligou scanner')
-            return data
-        } catch (ex) {
-            console.log(ex)
-            return ''
-        }
-
-    }
-    async function recebeScanner() {
+        try{
+          const {data,status}= await axios.request(options)
+          console.log('### dataLigaScanner: ',data)
+          console.log('### statusLigaScanner: ',status)
+          console.log('### testevarS3: ', S3_BUCKET)
+          return data
+        }catch(ex) {
+          console.log(ex)
+          return ''
+        } 
+      }
+    
+      async function recebeScanner() {
         const options = {
-            method: 'GET',
-            url: 'http://127.0.0.1:5000/scanner',
-            headers: { 'Content-Type': 'application/json' },
-            data: {}
+          method: 'GET',
+          url: 'http://127.0.0.1:5000/scanner',
+          headers: {'Content-Type': 'application/json'},
+          data: {}
         };
-        try {
-            const { data, status } = await axios.request(options);
-            console.log('### recebeScanner:', status)
-            console.log('### recebeScanner data:', data)
-            //alert('status: ' + status)
-            alert('recebe scanner')
-            //aoMudarTextoDeBusca?.(data)
-            return data;
-        }
-        catch (ex) {
-            console.error(ex);
-            return '';
-        }
-
-    }
-
-    async function lerScanner() {
+        try{
+          const {data,status}= await axios.request(options);
+          console.log('###### statusReceScanner', status)
+          return data;
+      }
+      catch(ex){
+        console.error(ex);
+        return '';
+      }
+      }
+    
+      async function lerScanner() {
         await ligarScanner();
-        await new Promise(r => setTimeout(r, 1000));
-        for (let i = 0; i < 5; i++) {
-            const valRet = await recebeScanner();
-            //alert(valRet)
-            console.log(valRet);
-            await new Promise(r => setTimeout(r, 3000));
-            if (valRet !== '') i = 5;
-            //setTextoDaBusca(valRet)
+        await new Promise (r=>setTimeout(r,1000));
+        for (let i=0;i<10;i++){
+          const valCodBar = await recebeScanner();
+          console.log(valCodBar);
+          setValCodBar(valCodBar);
+          
+          await new Promise (r=>setTimeout(r,3000));
+          if (valCodBar!=='') i=10;
         }
-
-    }
+      }
+    
+      
 
 
     function baixaSolicitacoes() {
@@ -161,7 +241,7 @@ function Solicitacoes() {
                     setIsLoading(false);
                     setTextoDaBusca('');
                     setItemSolicitacaoDTO(undefined);
-                    console.log('### erro no filtro por nome ###',)
+                    console.log('### erro no filtro por nome ###', )
                     toast.warning('Erro ao dar baixa na solicitação!', {
                         position: toast.POSITION.TOP_CENTER
                     });
@@ -244,6 +324,21 @@ function Solicitacoes() {
                         Ler Scanner
                     </Button>
                 </div>
+                <Grid item style={{ marginTop: 20 }}>
+            <Button variant="contained" color="primary" onClick={lerScanner}>
+              Ler Scanner 2
+            </Button>
+            {valCodBar}
+        </Grid>
+                <div>
+                                            <img
+                                                //src= {'/epi_imgs/'+product.codigo+'.jpg'}
+                                                src={repoGitImgS3 + "" + itemSolicitEpi?.epiDTO.codigo + '.jpg'}
+                                                className="order-card-image"
+                                                alt={itemSolicitEpi?.epiDTO.codigo}
+                                                onError={(e) => onError(e)}
+                                            />
+                                        </div>
                 <Box flex={1} overflow='auto' >
                     {itemSolicitacaoDTO?.codigoBarra && (
 
