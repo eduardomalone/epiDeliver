@@ -53,8 +53,8 @@ function Resumo(this: any) {
         return;
     }
 
-    //const date = new Date();
-    //let dataHMS = date.getFullYear() + "" + (date.getMonth() + 1) + "" + date.getHours() + "" + date.getMinutes() + "" + date.getSeconds();
+    const date = new Date();
+    let dataHMS = date.getFullYear() + "" + (date.getMonth() + 1) + "" + date.getHours() + "" + date.getMinutes() + "" + date.getSeconds();
     var listaCodBarras: any[] = []
     var func = funcionario
 
@@ -62,7 +62,7 @@ function Resumo(this: any) {
     function montaCodBarras() {
         arrayEpi.map((x) => (
             //listaCodBarras.push(x.codigo + (func.registro) + dataHMS)
-            listaCodBarras.push(x.codigo + (func.registro))
+            listaCodBarras.push(dataHMS)
         ))
         console.log('##### codBarras ####', listaCodBarras)
         setBarcode(listaCodBarras)
