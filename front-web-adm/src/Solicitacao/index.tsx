@@ -326,9 +326,9 @@ function Solicitacoes() {
                     <Button variant="contained" color="primary" onClick={lerScanner}>
                         Ler Scanner
                     </Button>
-                    {valCodBar}
+                    {/* {valCodBar}
                     {valCodBar.split('VALUE=')[1]}
-                    {textoDaBusca}
+                    {textoDaBusca} */}
                 </div>
                 {/* <Grid item style={{ marginTop: 20 }}>
             <Button variant="contained" color="primary" onClick={lerScanner}>
