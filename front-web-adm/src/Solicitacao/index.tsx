@@ -214,6 +214,7 @@ function Solicitacoes() {
           await new Promise (r=>setTimeout(r,3000));
           if (valCodBar!=='') i=10;
         }
+        valCodBar.split('VALUE=')
         aoMudarTextoDeBusca(valCodBar);
         
       }
@@ -327,6 +328,7 @@ function Solicitacoes() {
                         Ler Scanner
                     </Button>
                     {valCodBar}
+                    {valCodBar.split('VALUE=')}
                 </div>
                 {/* <Grid item style={{ marginTop: 20 }}>
             <Button variant="contained" color="primary" onClick={lerScanner}>
