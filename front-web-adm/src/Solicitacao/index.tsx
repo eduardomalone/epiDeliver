@@ -215,7 +215,7 @@ function Solicitacoes() {
         }
         var myArray = valCodBar.split('VALUE=')
         setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
-        alert(myArray[1].toString())
+       // alert(myArray[1].toString())
         aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
         
       }
@@ -327,7 +327,8 @@ function Solicitacoes() {
                         Ler Scanner
                     </Button>
                     {valCodBar}
-                    {valCodBar.split('VALUE=')[1].substring(0, valCodBar.split('VALUE=')[1].length - 1)}
+                    {valCodBar.split('VALUE=')[1]}
+                    {textoDaBusca}
                 </div>
                 {/* <Grid item style={{ marginTop: 20 }}>
             <Button variant="contained" color="primary" onClick={lerScanner}>
