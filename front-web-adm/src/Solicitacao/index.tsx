@@ -208,14 +208,13 @@ function Solicitacoes() {
           const valCodBar = await recebeScanner();
           //console.log(valCodBar);
           setValCodBar(valCodBar);
-          setTextoDaBusca(valCodBar);
           console.log('### texto scanner: ', valCodBar)
           
           await new Promise (r=>setTimeout(r,3000));
           if (valCodBar!=='') i=10;
         }
         var myArray = valCodBar.split('VALUE=')
-
+        setTextoDaBusca(myArray[1]);
         aoMudarTextoDeBusca(myArray[1]);
         
       }
