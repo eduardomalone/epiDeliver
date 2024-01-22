@@ -33,7 +33,7 @@ function ImpressaoCard({ product, registro, codBarras }: Props) {
 
                 <Barcode value={codBarras}
                   //format={"CODE128"}
-                  format={"CODE12"}
+                  //format={"CODE12"}
                   height={50}
                   width={1}
                   textAlign= {"center"}
