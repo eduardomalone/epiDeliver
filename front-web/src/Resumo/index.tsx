@@ -62,7 +62,7 @@ function Resumo(this: any) {
     function montaCodBarras() {
         arrayEpi.map((x) => (
             //listaCodBarras.push(x.codigo + (func.registro) + dataHMS)
-            listaCodBarras.push(dataHMS)
+            listaCodBarras.push(x.codigo + dataHMS)
         ))
         console.log('##### codBarras ####', listaCodBarras)
         setBarcode(listaCodBarras)
