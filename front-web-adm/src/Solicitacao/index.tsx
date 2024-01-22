@@ -209,12 +209,13 @@ function Solicitacoes() {
           //console.log(valCodBar);
           setValCodBar(valCodBar);
           setTextoDaBusca(valCodBar);
-          aoMudarTextoDeBusca(valCodBar);
           console.log('### texto scanner: ', valCodBar)
-
+          
           await new Promise (r=>setTimeout(r,3000));
           if (valCodBar!=='') i=10;
         }
+        aoMudarTextoDeBusca(valCodBar);
+        
       }
     
       
@@ -325,6 +326,7 @@ function Solicitacoes() {
                     <Button variant="contained" color="primary" onClick={lerScanner}>
                         Ler Scanner
                     </Button>
+                    {valCodBar}
                 </div>
                 {/* <Grid item style={{ marginTop: 20 }}>
             <Button variant="contained" color="primary" onClick={lerScanner}>
