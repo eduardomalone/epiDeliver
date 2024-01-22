@@ -214,15 +214,13 @@ function Solicitacoes() {
           if (valCodBar!=='') i=10;
         }
         var myArray = valCodBar.split('VALUE=')
-        alert(myArray[1])
-        setTextoDaBusca(myArray[1]);
-        aoMudarTextoDeBusca(myArray[1]);
+        setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
+        alert(myArray[1].toString())
+        aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
         
       }
     
       
-
-
     function baixaSolicitacoes() {
         const payload = {
             idFuncBaixa: user.id,
@@ -329,7 +327,7 @@ function Solicitacoes() {
                         Ler Scanner
                     </Button>
                     {valCodBar}
-                    {valCodBar.split('VALUE=')[1]}
+                    {valCodBar.split('VALUE=')[1].substring(0, valCodBar.split('VALUE=')[1].length - 1)}
                 </div>
                 {/* <Grid item style={{ marginTop: 20 }}>
             <Button variant="contained" color="primary" onClick={lerScanner}>
