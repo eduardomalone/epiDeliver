@@ -214,6 +214,7 @@ function Solicitacoes() {
           if (valCodBar!=='') i=10;
         }
         var myArray = valCodBar.split('VALUE=')
+        alert(myArray[1])
         setTextoDaBusca(myArray[1]);
         aoMudarTextoDeBusca(myArray[1]);
         
