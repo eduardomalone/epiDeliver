@@ -149,7 +149,7 @@ function Resumo(this: any) {
                                             trigger={() => (
                                                 <button
                                                     className="order-summary-make-order"
-                                                    onClick={handleClickHome} >
+                                                    onClick={ativaLogoImp} >
                                                     Imprimir Solicitação
                                                 </button>
                                             )}
