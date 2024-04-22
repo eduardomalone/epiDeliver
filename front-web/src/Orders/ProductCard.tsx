@@ -25,7 +25,7 @@ function ProductCard({ product, onSelectProduct, isSelected }: Props) {
       <img
         //src= {'/epi_imgs/'+product.codigo+'.jpg'}
         src={repoGitImg + "" + product.codigo + '.jpg'}
-        className="order-card-image"
+        className="order-card-image-teste"
         alt={product.codigo}
         onError={(e) => onError(e)}
       />

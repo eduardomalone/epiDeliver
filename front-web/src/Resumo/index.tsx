@@ -39,6 +39,7 @@ function Resumo(this: any) {
     }
 
     function callImpSendOrder() {
+        console.log('##### chamou imprimir 2 ####')
         montaCodBarras();
         setStatusImp(true);
         handleSubmit();
@@ -46,6 +47,7 @@ function Resumo(this: any) {
 
     // var statusPrint para mostrar a img de impressao
     function ativaLogoImp() {
+        console.log('##### chamou imprimir ####')
         setStatusPrint(true)
         setTimeout(() => {
             history.push(`/home`);
@@ -147,7 +149,7 @@ function Resumo(this: any) {
                                             trigger={() => (
                                                 <button
                                                     className="order-summary-make-order"
-                                                    onClick={ativaLogoImp} >
+                                                    onClick={handleClickHome} >
                                                     Imprimir Solicitação
                                                 </button>
                                             )}

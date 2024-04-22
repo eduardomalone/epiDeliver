@@ -6,9 +6,9 @@ type Props = {
 }
 
 function FuncionarioCard(this: any, { funcionario }: Props) {
-    function onError(e: any) {
-        e.target.src = '/func_imgs/func_default.svg';
-    }
+    // function onError(e: any) {
+    //     e.target.src = '/func_imgs/func_default.svg';
+    // }
     return (
         <div className="">
             {/* <img className=""

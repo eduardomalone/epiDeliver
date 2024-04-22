@@ -8,8 +8,9 @@ type Props = {
 function StepsHeader({ funcionarios }: Props) {
     console.log(' ##### StepsHeader ####')
     return (
-        <div className="orders-steps-container">
-            <div className="orders-steps-content">
+        <div className="">
+            <div className="">
+                
                     <div className="steps-title">
                         {funcionarios.map(funcionario => (
                             <FuncionarioCard key={funcionario.nome} funcionario={funcionarios} />

@@ -5,7 +5,7 @@ import './styles.css';
 import ProductsList from './ProductsList';
 import { EpiDTO, FuncionarioDTO } from './types';
 import { fetchMontaTelaEpi, fetchSalvarSolicitacao } from '../api';
-import { ReactComponent as MainImage } from './epiLogo.svg';
+// import { ReactComponent as MainImage } from './epiLogo.svg';
 import OrderSummary from './OrderSummary';
 import { checkIsSelected } from './helpers';
 import { toast } from 'react-toastify';
@@ -13,6 +13,8 @@ import { useLocation } from "react-router";
 import { Link, useHistory } from "react-router-dom";
 import Home from '../Home';
 import { Box, Card, CardContent } from '@mui/material';
+import { CSSProperties } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 var registro: string;
 var idCliente: string;
@@ -21,6 +23,12 @@ const search = window.location.search;
 const params = new URLSearchParams(search);
 const foox = params.get('registro');
 const foo3x = params.get('idCli');
+
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 
 
 console.log('###', foox)
@@ -51,6 +59,10 @@ function getIdCliente(texto: string) {
 
 
 function Orders() {
+
+  let [loading, setLoading] = useState(true);
+  let [color, setColor] = useState("#ffffff");
+  
 
   let history = useHistory();
 
@@ -88,6 +100,9 @@ function Orders() {
 
   // }
   useEffect(() => {
+    setLoading(true);
+  setColor("#ffffff");
+  
     if (location)
       fetchMontaTelaEpi(getRegistro(location.state as string), getIdCliente(location.state as string))
         .then((response) => {
@@ -169,15 +184,41 @@ function Orders() {
 
   return (
     <>
+    <div className='container_teste'>
+      <div>
+      <StepsHeader funcionarios={funcionarios} />
+      </div>
+      {/* <div>
+        {products[0] && (
+            <div>
+              <OrderSummary
+                amount={selectedProducts.length}
+                //totalPrice={totalPrice}
+                listaItens={listaItens}
+                selectedProducts={selectedProducts}
+                onSubmit={handleSubmit}
+                funcionario={funcionarios[0]}
+
+              />
+            </div>)}
+
+      </div> */}
+
+    </div>
       <Box height='100%' width='100%' display='flex' alignItems='center' justifyContent='center' marginTop={10}>
         <Card style={{ border: "none", boxShadow: "none" }}>
           <CardContent>
+
+            
             <Box display='flex' flexDirection='column' gap={2} width={650} >
               {!funcionarios[0] &&
                 (
-                
+                  
+  //TODO - fazer o if de loading e ou apresentar a msg d q n tem
+  
+  
                 <div className="home-container">
-                  <div className="home-content">
+                  {/* <div className="home-content">
                     <div className="home-actions">
                       <h1 className="home-title">
                         Funcional não encontrada!
@@ -201,7 +242,15 @@ function Orders() {
                     <div className="home-image">
                       <MainImage />
                     </div>
-                  </div>
+                  </div> */}
+       <ClipLoader
+        color={color}
+        loading={loading}
+        cssOverride={override}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
                 </div>
                 )
               }
@@ -210,8 +259,12 @@ function Orders() {
         </Card>
       </Box>
       {funcionarios[0] && products[0] &&(
+        <div>
+          {/* <StepsHeader funcionarios={funcionarios} /> */}
+
+        
         <div className="orders-container">
-          <StepsHeader funcionarios={funcionarios} />
+          {/* <StepsHeader funcionarios={funcionarios} /> */}
           <ProductsList
             products={products}
             onSelectProduct={handleSelectProduct}
@@ -219,6 +272,7 @@ function Orders() {
           //status2={status}
           //AnimationPage={AnimationPage}
           />
+        </div>
         </div>
       )}
 

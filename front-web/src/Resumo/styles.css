@@ -215,11 +215,38 @@
   justify-content: center;
 }
 
+
+.desc-txt {
+font-size: 24px;
+font-style: normal;
+float:left;
+font: 160% sans-serif;
+width: 40%;
+margin:2%;
+padding:10px 20px;
+border: 1px solid #ccc;
+position: relative;
+}
+
+p {
+  text-align:center; 
+  vertical-align: middle;
+  display: table-cell;   
+}
+
 .orders-list-items {
   width: 70%;
   display: grid;
   grid-template-columns: repeat(auto-fill, 235px);
   grid-gap: 20px 15px;
+  justify-content: space-between;
+}
+
+.orders-list-items-teste {
+  width: 50%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 135px);
+  grid-gap: 10px 5px;
   justify-content: space-between;
 }
 
@@ -229,6 +256,15 @@
   grid-template-columns: repeat(auto-fill, 235px);
   grid-gap: 20px 15px;
   justify-content: space-between;
+}
+
+.orders-list-items-teste3 {
+  /* width: 70%; */
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill, 150px); */
+  /* grid-gap: 20px 15px; */
+  justify-content: space-between;
+  grid-template-rows: auto;
 }
 
 .order-card-container {
@@ -254,6 +290,15 @@
   font-weight: bold;
   font-size: 18px;
   line-height: 25px;
+  letter-spacing: -0.015em;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.order-card-title-teste {
+  font-weight: bold;
+  font-size: 3px;
+  line-height: 8px;
   letter-spacing: -0.015em;
   color: var(--primary-color);
   text-align: center;

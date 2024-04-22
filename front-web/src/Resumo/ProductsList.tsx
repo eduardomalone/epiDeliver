@@ -16,7 +16,7 @@ function ProductsList({ selectedProducts, registro }: Props) {
     <>
       {(
         <div className="orders-list-container">
-          <div className="orders-list-items">
+          <div className="orders-list-items-teste">
             {selectedProducts.map((product, index) => (
 
               <ResumoCard

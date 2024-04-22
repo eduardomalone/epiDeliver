@@ -23,7 +23,7 @@ function ProductsList( {products, selectedProducts, onSelectProduct}: Props ) {
       <>
       {(
         <div className="orders-list-container">
-        <div className="orders-list-items">
+        <div className="orders-list-items-teste">
             {products.map(product => (
                 <ProductCard 
                   key={product.id} 

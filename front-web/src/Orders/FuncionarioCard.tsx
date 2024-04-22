@@ -15,14 +15,13 @@ function FuncionarioCard(this: any, { funcionario }: Props) {
     }
     console.log(' ##### FuncionarioCard ####')
     return (
-        <div className="">
+        <div className="container_teste">
             <img className=""
                 src={ srcImgGit+""+funcionario[0].registro + '.jpg'}
                 onError={(e) => onError(e)} alt="testImg"
             />
-            <div className="order-card-description">
-                <h3>{funcionario[0].nome}</h3>
-                <h3>{funcionario[0].setor}</h3>
+            <div className="" >
+                <h3>{funcionario[0].nome}-{funcionario[0].setor}</h3>
             </div>
         </div>
     )

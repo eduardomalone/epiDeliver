@@ -1,5 +1,6 @@
 
 //import { Box, Card, CardContent, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
 import { EpiDTO } from "../Orders/types";
 
 type Props = {
@@ -23,12 +24,15 @@ function ImpressaoCard({ product, registro, codBarras }: Props) {
 
       {/* <Card>
         <CardContent> */}
-          {/* <Box padding={0} display='flex' alignItems='center' justifyItems='center' > */}
-            {/* <div className=""> */}
-              <div className="orders-list-items">
-                <p>
+          <Box padding={0} display='flex' alignItems='center' justifyItems='center' >
+            <div className="">
+              <div className="">
+              <h6 className="order-card-title-teste">
+                {product.descricao}
+              </h6>
+                {/* <p>
                   {product.descricao}
-                </p>
+                </p> */}
                 <h1 >
 
                 <Barcode value={codBarras}
@@ -45,9 +49,9 @@ function ImpressaoCard({ product, registro, codBarras }: Props) {
                   />
                   </h1>
               </div>
-            {/* </div> */}
+            </div>
 
-          {/* </Box> */}
+          </Box>
         {/* </CardContent>
       </Card> */}
 
