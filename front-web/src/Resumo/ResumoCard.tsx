@@ -8,6 +8,8 @@ type Props = {
 
 function ProductCard({ product, registro }: Props) {
 
+  var repoGitImg = 'https://eduardomalone.github.io/img/epi_imgs/'
+
   function onError(e: any) {
     e.target.src = '/epi_imgs/epi_padrao.jpg';
   }
@@ -19,7 +21,8 @@ function ProductCard({ product, registro }: Props) {
         <div>
           <img
             //src= {'/codigo_barras.jpeg'}
-            src={'/epi_imgs/' + product.codigo + '.jpg'}
+            src={repoGitImg + "" + product.codigo + '.jpg'}
+            //src={'/epi_imgs/' + product.codigo + '.jpg'}
             className="order-card-image"
             alt={product.codigo}
             onError={(e) => onError(e)}
