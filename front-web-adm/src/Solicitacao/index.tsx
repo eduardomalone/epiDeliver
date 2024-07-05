@@ -10,7 +10,7 @@ import { useAuThContext } from "../contexts_/AuthContext";
 import { EpiDTO, ItemSolicitacao, ItemSolicitacaoEpiDTO } from '../Types/User';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-//import axios from 'axios';
+import axios from 'axios';
 import { config } from 'aws-sdk'
 
 
@@ -20,16 +20,6 @@ function onError(e: any) {
     e.target.src = '/epi_imgs/epi_padrao.jpg';
 }
 
-function refreshPage() {
-    //window.location.reload();
-    // setTimeout(()=>{
-    //     window.location.reload();
-    // }, 5000);
-
-    //window.location.href="/solicitacoes"
-    //inputRef.current.value = "";
-    console.log('page to reload')
-}
 
 
 function Solicitacoes() {
@@ -55,10 +45,24 @@ function Solicitacoes() {
     const [valCodBar, setValCodBar] = useState("");
 
      // S3 Bucket Name
-     //const S3_BUCKET = "sistemaepi";
+     const S3_BUCKET = "sistemaepi";
 
      // S3 Region
      const REGION = "us-east-1";
+
+     function refreshPage() {
+        setTextoDaBusca('');
+        setValCodBar('');
+        //window.location.reload();
+        // setTimeout(()=>{
+        //     window.location.reload();
+        // }, 5000);
+    
+        //window.location.href="/solicitacoes"
+        //inputRef.current.value = "";
+        console.log('page to reload')
+    }
+    
 
 
     function aoMudarTextoDeBusca(novoTexto: string) {
@@ -83,7 +87,7 @@ function Solicitacoes() {
                     toast.warning('Código de Barras não encontrado !', {
                         position: toast.POSITION.TOP_CENTER
                     });
-                    //refreshPage()
+                    refreshPage()
                     //window.location.reload();
                     //navigate.push(`/solicitacoes`)
                 })
@@ -166,39 +170,35 @@ function Solicitacoes() {
 
 
     async function ligarScanner() {
-        // const options = {
-        //   method: 'POST',
-        //   url: 'http://127.0.0.1:5000/scanner',
-        //   headers: {'Content-Type': 'application/json'},
-        //   data: {CMD: 'ligarScanner', PARAM: ''}
-        // };
-        // try{
-        //   const {data,status}= await axios.request(options)
-        //   console.log('### dataLigaScanner: ',data)
-        //   console.log('### statusLigaScanner: ',status)
-        //   console.log('### testevarS3: ', S3_BUCKET)
-        //   return data
-        // }catch(ex) {
-        //   console.log(ex)
-        //   return ''
-        // } 
+        const options = {
+          method: 'POST',
+          url: 'http://127.0.0.1:5000/scanner',
+          headers: {'Content-Type': 'application/json'},
+          data: {CMD: 'ligarScanner', PARAM: ''}
+        };
+        try{
+          const {data,status}= await axios.request(options)
+          console.log('### dataLigaScanner: ',data)
+          console.log('### statusLigaScanner: ',status)
+          console.log('### testevarS3: ', S3_BUCKET)
+          return data
+        }catch(ex) {
+          console.log(ex)
+          return ''
+        } 
       }
     
       async function recebeScanner() {
-        //const options = {
-        //   method: 'GET',
-        //   url: 'http://127.0.0.1:5000/scanner',
-        //   headers: {'Content-Type': 'application/json'},
-        //   data: {}
-        //};
+        const options = {
+          method: 'GET',
+          url: 'http://127.0.0.1:5000/scanner',
+          headers: {'Content-Type': 'application/json'},
+          data: {}
+        };
         try{
-        //   const {data,status}= await axios.request(options);
-        //   console.log('###### statusReceScanner', status)
-        //   return data;
-        var rndInt = randomIntFromInterval(1, 10);
-        console.log(rndInt);
-        
-        return 'VALUE='+String(rndInt)
+          const {data,status}= await axios.request(options);
+          console.log('###### statusReceScanner', status)
+          return data;
       }
       catch(ex){
         console.error(ex);
@@ -223,7 +223,7 @@ function Solicitacoes() {
           await new Promise (r=>setTimeout(r,3000));
           if (valCodBar!=='') i=10;
         }
-        
+        refreshPage()
       }
     
       
@@ -418,7 +418,3 @@ function Solicitacoes() {
 }
 
 export default Solicitacoes;
-function randomIntFromInterval(arg0: number, arg1: number) {
-    throw new Error('Function not implemented.');
-}
-
