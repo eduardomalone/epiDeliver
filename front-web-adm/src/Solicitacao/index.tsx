@@ -185,18 +185,19 @@ function Solicitacoes() {
       }
     
       async function recebeScanner() {
-        const options = {
+        //const options = {
         //   method: 'GET',
         //   url: 'http://127.0.0.1:5000/scanner',
         //   headers: {'Content-Type': 'application/json'},
         //   data: {}
-        };
+        //};
         try{
         //   const {data,status}= await axios.request(options);
         //   console.log('###### statusReceScanner', status)
         //   return data;
         var rndInt = randomIntFromInterval(1, 10);
         console.log(rndInt);
+        
         return 'VALUE='+String(rndInt)
       }
       catch(ex){
