@@ -53,6 +53,7 @@ function Solicitacoes() {
      function refreshPage() {
         setTextoDaBusca('');
         setValCodBar('');
+        setItemSolicitacaoDTO(undefined);
         //window.location.reload();
         // setTimeout(()=>{
         //     window.location.reload();
