@@ -57,6 +57,7 @@ function RelatorioSolicitacoes() {
 
     function ajustaDataPt(data: any){
         var date = new Date(data);
+        date.setHours(date.getHours()-3); //ajuste da hora
         //var formattedDate = format(date, "MMMM do, yyyy H:mma");
         var formattedDate = format(date, 'dd/MM/yyyy HH:mm:ss');  
         return formattedDate

@@ -59,6 +59,7 @@ function RelatorioSolicitacoesBaixa() {
         var formattedDate
         if(data !== null && data !== undefined && data !== ''){
             var date = new Date(data);
+            date.setHours(date.getHours()-3); //ajuste da hora
             formattedDate = format(date, 'dd/MM/yyyy HH:mm:ss');  
             return formattedDate
         }else{

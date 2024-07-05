@@ -58,6 +58,7 @@ function RelatorioSolicitacoesBaixaFunc() {
         var formattedDate
         if (data !== null && data !== undefined && data !== '') {
             var date = new Date(data);
+            date.setHours(date.getHours()-3); //ajuste da hora
             //var formattedDate = format(date, "MMMM do, yyyy H:mma");
             formattedDate = format(date, 'dd/MM/yyyy HH:mm:ss');
             return formattedDate
