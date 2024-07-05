@@ -21,7 +21,7 @@ function onError(e: any) {
 }
 
 function refreshPage() {
-    window.location.reload();
+    //window.location.reload();
     // setTimeout(()=>{
     //     window.location.reload();
     // }, 5000);
