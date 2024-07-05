@@ -10,7 +10,7 @@ import { useAuThContext } from "../contexts_/AuthContext";
 import { EpiDTO, ItemSolicitacao, ItemSolicitacaoEpiDTO } from '../Types/User';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
+//import axios from 'axios';
 import { config } from 'aws-sdk'
 
 
@@ -55,7 +55,7 @@ function Solicitacoes() {
     const [valCodBar, setValCodBar] = useState("");
 
      // S3 Bucket Name
-     const S3_BUCKET = "sistemaepi";
+     //const S3_BUCKET = "sistemaepi";
 
      // S3 Region
      const REGION = "us-east-1";
@@ -166,35 +166,38 @@ function Solicitacoes() {
 
 
     async function ligarScanner() {
-        const options = {
-          method: 'POST',
-          url: 'http://127.0.0.1:5000/scanner',
-          headers: {'Content-Type': 'application/json'},
-          data: {CMD: 'ligarScanner', PARAM: ''}
-        };
-        try{
-          const {data,status}= await axios.request(options)
-          console.log('### dataLigaScanner: ',data)
-          console.log('### statusLigaScanner: ',status)
-          console.log('### testevarS3: ', S3_BUCKET)
-          return data
-        }catch(ex) {
-          console.log(ex)
-          return ''
-        } 
+        // const options = {
+        //   method: 'POST',
+        //   url: 'http://127.0.0.1:5000/scanner',
+        //   headers: {'Content-Type': 'application/json'},
+        //   data: {CMD: 'ligarScanner', PARAM: ''}
+        // };
+        // try{
+        //   const {data,status}= await axios.request(options)
+        //   console.log('### dataLigaScanner: ',data)
+        //   console.log('### statusLigaScanner: ',status)
+        //   console.log('### testevarS3: ', S3_BUCKET)
+        //   return data
+        // }catch(ex) {
+        //   console.log(ex)
+        //   return ''
+        // } 
       }
     
       async function recebeScanner() {
         const options = {
-          method: 'GET',
-          url: 'http://127.0.0.1:5000/scanner',
-          headers: {'Content-Type': 'application/json'},
-          data: {}
+        //   method: 'GET',
+        //   url: 'http://127.0.0.1:5000/scanner',
+        //   headers: {'Content-Type': 'application/json'},
+        //   data: {}
         };
         try{
-          const {data,status}= await axios.request(options);
-          console.log('###### statusReceScanner', status)
-          return data;
+        //   const {data,status}= await axios.request(options);
+        //   console.log('###### statusReceScanner', status)
+        //   return data;
+        var rndInt = randomIntFromInterval(1, 10);
+        console.log(rndInt);
+        return 'VALUE='+String(rndInt)
       }
       catch(ex){
         console.error(ex);
@@ -414,3 +417,7 @@ function Solicitacoes() {
 }
 
 export default Solicitacoes;
+function randomIntFromInterval(arg0: number, arg1: number) {
+    throw new Error('Function not implemented.');
+}
+
