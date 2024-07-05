@@ -21,6 +21,7 @@ function onError(e: any) {
 }
 
 function refreshPage() {
+    window.location.reload();
     // setTimeout(()=>{
     //     window.location.reload();
     // }, 5000);
@@ -82,11 +83,12 @@ function Solicitacoes() {
                     toast.warning('Código de Barras não encontrado !', {
                         position: toast.POSITION.TOP_CENTER
                     });
-                    refreshPage()
+                    //refreshPage()
                     //window.location.reload();
                     //navigate.push(`/solicitacoes`)
                 })
         });
+        refreshPage();
     }
 
     useEffect(() => {
