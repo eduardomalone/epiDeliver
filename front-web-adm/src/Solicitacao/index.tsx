@@ -215,7 +215,7 @@ function Solicitacoes() {
         for (let i=0;i<10;i++){
           const valCodBar = await recebeScanner();
           //console.log(valCodBar);
-          //setValCodBar(valCodBar); //todo: ver o pq disso q eu coloquei
+          setValCodBar(valCodBar); //todo: ver o pq disso q eu coloquei
           var myArray = valCodBar.split('VALUE=')
           setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
          // alert(myArray[1].toString())
