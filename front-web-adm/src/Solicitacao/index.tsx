@@ -53,7 +53,7 @@ function Solicitacoes() {
      function refreshPage() {
         setTextoDaBusca('');
         setValCodBar('');
-        setItemSolicitacaoDTO(undefined);
+        //setItemSolicitacaoDTO(undefined); //todo: comentar essa linha pois foi a q eu subi
         //window.location.reload();
         // setTimeout(()=>{
         //     window.location.reload();
@@ -77,6 +77,7 @@ function Solicitacoes() {
                     setEpiDTO(response.data.epiDTO);
                     setItemSolicitacaoDTO(response.data.itemSolicitacaoDTO);
                     console.log('###### response', response.data);
+                    //todo: talvez aqui zerar o texto
 
                 })
                 .catch(() => {
@@ -214,16 +215,17 @@ function Solicitacoes() {
         for (let i=0;i<10;i++){
           const valCodBar = await recebeScanner();
           //console.log(valCodBar);
-          setValCodBar(valCodBar);
+          setValCodBar(valCodBar); //todo: ver o pq disso q eu coloquei
           var myArray = valCodBar.split('VALUE=')
           setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
          // alert(myArray[1].toString())
           aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
           console.log('### texto scanner: ', valCodBar)
-          
+          setValCodBar("");//todo: coloquei aqui
           await new Promise (r=>setTimeout(r,3000));
           if (valCodBar!=='') i=10;
         }
+        //todo: sera q n eh so setar aqui?
         refreshPage()
       }
     
