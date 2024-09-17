@@ -51,8 +51,8 @@ function Solicitacoes() {
      const REGION = "us-east-1";
 
      function refreshPage() {
-        setTextoDaBusca('');
-        setValCodBar('');
+        //setTextoDaBusca('');
+        //setValCodBar('');
         //setItemSolicitacaoDTO(undefined); //todo: comentar essa linha pois foi a q eu subi
         //window.location.reload();
         // setTimeout(()=>{
