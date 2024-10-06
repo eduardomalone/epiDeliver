@@ -215,19 +215,18 @@ function Solicitacoes() {
         setTextoDaBusca(''); 
         setItemSolicitacaoDTO(undefined);
         setValCodBar('');
-        //console.log(valCodBar)
+        console.log(valCodBar)
         await ligarScanner();
         await new Promise (r=>setTimeout(r,1000));
-        let valCodBar = null
         for (let i=0;i<10;i++){
           setValCodBar('')
-          valCodBar = await recebeScanner();  
+          alert('foi')  
           //const valCodBar = await recebeScanner();
           //console.log(valCodBar);
-          setValCodBar(valCodBar); //todo: ver o pq disso q eu coloquei
+          //setValCodBar(valCodBar); //todo: ver o pq disso q eu coloquei
           var myArray = valCodBar.split('VALUE=')
           //setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1)); aqui
-          alert(myArray[1].toString())
+          //alert(myArray[1].toString())
           aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
           console.log('### texto scanner: ', valCodBar)
           setValCodBar('');//todo: coloquei aqui
