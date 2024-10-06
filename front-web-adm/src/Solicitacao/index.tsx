@@ -42,7 +42,7 @@ function Solicitacoes() {
     const [itemSolicitEpi, setItemSolicitEpi] = useState<ItemSolicitacaoEpiDTO>();
     const [epiDTO, setEpiDTO] = useState<EpiDTO>();
     const [itemSolicitacaoDTO, setItemSolicitacaoDTO] = useState<ItemSolicitacao>();
-    const [valCodBar, setValCodBar] = useState("");
+    const [valCodBar, setValCodBar] = useState('');
 
      // S3 Bucket Name
      const S3_BUCKET = "sistemaepi";
@@ -67,6 +67,7 @@ function Solicitacoes() {
 
 
     function aoMudarTextoDeBusca(novoTexto: string) {
+        
         debounce(() => {
             setIsLoading(true);
             getByCodBarras(novoTexto)
@@ -172,6 +173,7 @@ function Solicitacoes() {
 
 
     async function ligarScanner() {
+        setTextoDaBusca(''); 
         const options = {
           method: 'POST',
           url: 'http://127.0.0.1:5000/scanner',
@@ -191,6 +193,7 @@ function Solicitacoes() {
       }
     
       async function recebeScanner() {
+        setTextoDaBusca(''); 
         const options = {
           method: 'GET',
           url: 'http://127.0.0.1:5000/scanner',
@@ -221,8 +224,8 @@ function Solicitacoes() {
           //console.log(valCodBar);
           setValCodBar(valCodBar); //todo: ver o pq disso q eu coloquei
           var myArray = valCodBar.split('VALUE=')
-          setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
-         // alert(myArray[1].toString())
+          //setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1)); aqui
+         alert(myArray[1].toString())
           aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
           console.log('### texto scanner: ', valCodBar)
           setValCodBar('');//todo: coloquei aqui
