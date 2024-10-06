@@ -209,6 +209,8 @@ function Solicitacoes() {
       }
     
       async function lerScanner() {
+        setTextoDaBusca(''); 
+        setItemSolicitacaoDTO(undefined);
         console.log(valCodBar)
         await ligarScanner();
         await new Promise (r=>setTimeout(r,1000));
