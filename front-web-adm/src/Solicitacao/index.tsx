@@ -221,7 +221,7 @@ function Solicitacoes() {
         for (let i=0;i<10;i++){
           setValCodBar('')
           alert('foi')  
-          //const valCodBar = await recebeScanner();
+          const valCodBar = await recebeScanner();
           //console.log(valCodBar);
           //setValCodBar(valCodBar); //todo: ver o pq disso q eu coloquei
           var myArray = valCodBar.split('VALUE=')
