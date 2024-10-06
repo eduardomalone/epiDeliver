@@ -220,7 +220,7 @@ function Solicitacoes() {
         await new Promise (r=>setTimeout(r,1000));
         for (let i=0;i<10;i++){
           setValCodBar('')
-          alert('foi')  
+          
           const valCodBar = await recebeScanner();
           //console.log(valCodBar);
           //setValCodBar(valCodBar); //todo: ver o pq disso q eu coloquei
@@ -230,6 +230,7 @@ function Solicitacoes() {
           aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
           console.log('### texto scanner: ', valCodBar)
           setValCodBar('');//todo: coloquei aqui
+          alert('foi')  
           await new Promise (r=>setTimeout(r,3000));
           if (valCodBar!=='') i=10;
         }
