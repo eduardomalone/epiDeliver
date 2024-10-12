@@ -174,7 +174,8 @@ function Solicitacoes() {
         //   alert(valCodBar2)
         // }
 
-
+        setTextoDaBusca(valCodBar99[1].substring(0, valCodBar99[1].length - 1));
+        aoMudarTextoDeBusca(valCodBar99[1].substring(0, valCodBar99[1].length - 1));
 
         return
       }
@@ -190,8 +191,6 @@ function Solicitacoes() {
           const {data,status}= await axios.request(options);
           console.log(status)
           //alert(`recebeScanner2:` + data)
-          setTextoDaBusca(data[1].substring(0, data[1].length - 1));
-          aoMudarTextoDeBusca(data[1].substring(0, data[1].length - 1));
           return data;
       }
       catch(ex){
