@@ -137,15 +137,15 @@ function Solicitacoes() {
         var myArray
         setTextoDaBusca('');
         setItemSolicitacaoDTO(undefined);
-        for (let i = 0; i < 10; i++) {
+        //for (let i = 0; i < 10; i++) {
             valCodBar = await recebeScanner();
             myArray = valCodBar.split('VALUE=')
             await new Promise(r => setTimeout(r, 3000));
             if (valCodBar !== '') i = 10;
-        }
+        //}
         aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
         setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
-        refreshPage()
+        return
     }
 
     async function lerScanner2() {
