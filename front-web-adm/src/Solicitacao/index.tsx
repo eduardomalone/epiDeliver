@@ -154,8 +154,9 @@ function Solicitacoes() {
             setValCodBar(valCodBar);
             await new Promise(r => setTimeout(r, 3000));
             if (valCodBar !== '') i = 10;
+            alert(`valCodBar for `+valCodBar)
         }
-        alert(`valCodBar `+valCodBar)
+        
 
     }
 
