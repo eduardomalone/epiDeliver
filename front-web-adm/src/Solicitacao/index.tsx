@@ -160,18 +160,18 @@ function Solicitacoes() {
     async function lerScanner2() {
         await ligarScanner2();
         await new Promise (r=>setTimeout(r,1000));
-        for (let i=0;i<10;i++){
-          const valCodBar2 = await recebeScanner2();
-          console.log(valCodBar2);
-          setValCodBar(valCodBar2);
-          //var readBar = valCodBar.split('VALUE=')
-        //   aoMudarTextoDeBusca(readBar[1].substring(0, readBar[1].length - 1));
-        //   setTextoDaBusca(readBar[1].substring(0, readBar[1].length - 1));
-          //alert(readBar[1].substring(0, readBar[1].length - 1))
-          await new Promise (r=>setTimeout(r,3000));
-          if (valCodBar!=='') i=10;
-          alert(valCodBar2)
-        }
+        const valCodBar2 = await recebeScanner2();
+        console.log(valCodBar2);
+        setValCodBar(valCodBar2);
+        alert(valCodBar2)
+        // for (let i=0;i<10;i++){
+        //   const valCodBar2 = await recebeScanner2();
+        //   console.log(valCodBar2);
+        //   setValCodBar(valCodBar2);
+        //   await new Promise (r=>setTimeout(r,3000));
+        //   if (valCodBar!=='') i=10;
+        //   alert(valCodBar2)
+        // }
       }
       
       async function recebeScanner2() {
