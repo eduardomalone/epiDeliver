@@ -159,7 +159,7 @@ function Solicitacoes() {
         //   alert(valCodBar2)
         // }
 
-       // alert(valCodBar99)
+        alert(valCodBar99)
         // setTextoDaBusca(valCodBar99[1].substring(0, valCodBar99[1].length - 1));
         // aoMudarTextoDeBusca(valCodBar99[1].substring(0, valCodBar99[1].length - 1));
         setTextoDaBusca(valCodBar99);
