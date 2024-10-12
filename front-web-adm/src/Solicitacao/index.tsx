@@ -94,22 +94,21 @@ function Solicitacoes() {
 
 
     async function ligarScanner() {
-        setTextoDaBusca('');
-        const options = {
+        var options = {
             method: 'POST',
             url: 'http://127.0.0.1:5000/scanner',
-            headers: { 'Content-Type': 'application/json' },
-            data: { CMD: 'ligarScanner', PARAM: '' }
-        };
-        try {
-            const { data, status } = await axios.request(options)
-            console.log('### dataLigaScanner: ', data)
-            console.log('### statusLigaScanner: ', status)
+            headers: {'Content-Type': 'application/json'},
+            data: {CMD: 'ligarScanner', PARAM: ''}
+          };
+          try{
+            const {data,status}= await axios.request(options)
+            console.log(data)
+            console.log(status)
             return data
-        } catch (ex) {
+          }catch(ex) {
             console.log(ex)
             return ''
-        }
+          } 
     }
 
     async function recebeScanner() {
@@ -132,27 +131,21 @@ function Solicitacoes() {
     }
 
     async function lerScanner() {
+        await ligarScanner();
+        await new Promise(r => setTimeout(r, 1000));
         var valCodBar: any = null;
         var myArray
         setTextoDaBusca('');
-        
         setItemSolicitacaoDTO(undefined);
-        //setValCodBarX('');
-        console.log(valCodBar)
-        await ligarScanner();
-        await new Promise(r => setTimeout(r, 1000));
         for (let i = 0; i < 10; i++) {
-
             valCodBar = await recebeScanner();
             myArray = valCodBar.split('VALUE=')
-            aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
-            setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
-            console.log('### texto scanner: ', valCodBar)
-            myArray = null;
-            valCodBar = null;
+            
             //etValCodBar('');//todo: coloquei aqui
             await new Promise(r => setTimeout(r, 3000));
             if (valCodBar !== '') i = 10;
+            aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
+            setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
         }
         refreshPage()
     }
