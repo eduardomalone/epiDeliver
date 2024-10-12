@@ -141,7 +141,7 @@ function Solicitacoes() {
             valCodBar = await recebeScanner();
             myArray = valCodBar.split('VALUE=')
             await new Promise(r => setTimeout(r, 3000));
-            if (valCodBar !== '') i = 10;
+            //if (valCodBar !== '') i = 10;
         //}
         aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
         setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
