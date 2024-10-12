@@ -164,7 +164,7 @@ function Solicitacoes() {
         console.log(valCodBar99);
         setValCodBar(valCodBar99);
         //alert(valCodBar99)
-        alert(`xuxu: ` + valCodBar)
+        alert(`valCodBar99: ` + valCodBar99)
         // for (let i=0;i<10;i++){
         //   const valCodBar2 = await recebeScanner2();
         //   console.log(valCodBar2);
