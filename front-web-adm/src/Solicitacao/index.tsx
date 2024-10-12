@@ -50,7 +50,7 @@ function Solicitacoes() {
     }
 
     function aoMudarTextoDeBusca(novoTexto: string) {
-
+        alert(`aoMudarTextoDeBusca: ` + novoTexto)
         debounce(() => {
             setIsLoading(true);
             getByCodBarras(novoTexto)
