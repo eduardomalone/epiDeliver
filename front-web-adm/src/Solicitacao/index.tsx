@@ -131,7 +131,7 @@ function Solicitacoes() {
     }
 
     async function lerScanner() {
-        await ligarScanner();
+        //await ligarScanner();
         await new Promise(r => setTimeout(r, 1000));
         var valCodBar = await recebeScanner();
         var myArray
@@ -141,9 +141,11 @@ function Solicitacoes() {
         setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
         return
     }
+    
+  
 
     async function lerScanner2() {
-        await ligarScanner2();
+        //await ligarScanner2();
         //await new Promise (r=>setTimeout(r,1000));
         var valCodBar99 = await recebeScanner2();
         console.log(valCodBar99);
