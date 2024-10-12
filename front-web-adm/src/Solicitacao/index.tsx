@@ -112,8 +112,7 @@ function Solicitacoes() {
     }
 
     async function recebeScanner() {
-        setTextoDaBusca('');
-        const options = {
+        var options = {
             method: 'GET',
             url: 'http://127.0.0.1:5000/scanner',
             headers: { 'Content-Type': 'application/json' },
@@ -121,7 +120,7 @@ function Solicitacoes() {
         };
         try {
             const { data, status } = await axios.request(options);
-            console.log('###### statusReceScanner', status)
+            console.log(status)
             return data;
         }
         catch (ex) {
