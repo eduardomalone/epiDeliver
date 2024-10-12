@@ -164,7 +164,7 @@ function Solicitacoes() {
         // aoMudarTextoDeBusca(valCodBar99[1].substring(0, valCodBar99[1].length - 1));
         // setTextoDaBusca(valCodBar99);
         // aoMudarTextoDeBusca(valCodBar99);
-        return
+        
       }
       
       async function recebeScanner2() {
