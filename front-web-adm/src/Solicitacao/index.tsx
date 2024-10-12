@@ -12,11 +12,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { config } from 'aws-sdk'
-import { useLocation } from 'react-router-dom';
-//import useNavigate from 'react-use-navigate';
-
-
-
 
 function onError(e: any) {
     e.target.src = '/epi_imgs/epi_padrao.jpg';
@@ -66,12 +61,7 @@ function Solicitacoes() {
         console.log('page to reload')
     }
     
-    const location = useLocation();
-    // const navigate = useNavigate();
-    
-    useEffect(() => {
-        // SUAS AÇÕES APÓS O "SILENT REFRESH"
-    }, [location.key])
+
     
     // const someFunction = () => {
     //     navigate(location.pathname);
@@ -117,70 +107,11 @@ function Solicitacoes() {
             region: REGION,
         }
         config.update(AWSConfig)
-    
-
-       
-        //setPerfTeste(Number(localStorage.getItem('APP_ACCESS_USER')))
-        //const [perfTeste, setPerfTeste] = useState<number>();
-        //perfTeste
-        //lerScanner();
+        lerScanner()
     });
 
-    // async function ligarScanner() {
-    //     const options = {
-    //         method: 'POST',
-    //         url: 'http://127.0.0.1:5000/scanner',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         data: { CMD: 'ligarScanner', PARAM: '' }
-    //     };
-    //     try {
-    //         const { data, status } = await axios.request(options)
-    //         console.log(data,status)
-    //         console.log('### ligarScanner:')
-    //         alert('ligou scanner')
-    //         return data
-    //     } catch (ex) {
-    //         console.log(ex)
-    //         return ''
-    //     }
 
-    // }
-    // async function recebeScanner() {
-    //     const options = {
-    //         method: 'GET',
-    //         url: 'http://127.0.0.1:5000/scanner',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         data: {}
-    //     };
-    //     try {
-    //         const { data, status } = await axios.request(options);
-    //         console.log('### recebeScanner:', status)
-    //         console.log('### recebeScanner data:', data)
-    //         //alert('status: ' + status)
-    //         alert('recebe scanner')
-    //         //aoMudarTextoDeBusca?.(data)
-    //         return data;
-    //     }
-    //     catch (ex) {
-    //         console.error(ex);
-    //         return '';
-    //     }
 
-    // }
-
-    // async function lerScanner() {
-    //     await ligarScanner();
-    //     await new Promise(r => setTimeout(r, 1000));
-    //     for (let i = 0; i < 5; i++) {
-    //         const valRet = await recebeScanner();
-    //         //alert(valRet)
-    //         console.log(valRet);
-    //         await new Promise(r => setTimeout(r, 3000));
-    //         if (valRet !== '') i = 5;
-    //         //setTextoDaBusca(valRet)
-    //     }
-
-    // }
 
 
     async function ligarScanner() {
