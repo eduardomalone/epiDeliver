@@ -40,6 +40,7 @@ function Solicitacoes() {
     const [epiDTO, setEpiDTO] = useState<EpiDTO>();
     const [itemSolicitacaoDTO, setItemSolicitacaoDTO] = useState<ItemSolicitacao>();
     //const [valCodBarX, setValCodBarX] = useState('');
+    const [valCodBar, setValCodBar] = useState("");
 
     // S3 Region
     const REGION = "us-east-1";
@@ -156,6 +157,59 @@ function Solicitacoes() {
         refreshPage()
     }
 
+    async function lerScanner2() {
+        await ligarScanner2();
+        await new Promise (r=>setTimeout(r,1000));
+        for (let i=0;i<10;i++){
+          const valCodBar2 = await recebeScanner2();
+          console.log(valCodBar2);
+          setValCodBar(valCodBar2);
+          var readBar = valCodBar.split('VALUE=')
+        //   aoMudarTextoDeBusca(readBar[1].substring(0, readBar[1].length - 1));
+        //   setTextoDaBusca(readBar[1].substring(0, readBar[1].length - 1));
+          alert(readBar[1].substring(0, readBar[1].length - 1))
+          await new Promise (r=>setTimeout(r,3000));
+          if (valCodBar!=='') i=10;
+          alert(valCodBar2)
+        }
+      }
+      
+      async function recebeScanner2() {
+        const options = {
+          method: 'GET',
+          url: 'http://127.0.0.1:5000/scanner',
+          headers: {'Content-Type': 'application/json'},
+          data: {}
+        };
+        try{
+          const {data,status}= await axios.request(options);
+          console.log(status)
+          return data;
+      }
+      catch(ex){
+        console.error(ex);
+        return '';
+      }
+      }
+
+      async function ligarScanner2() {
+        const options = {
+          method: 'POST',
+          url: 'http://127.0.0.1:5000/scanner',
+          headers: {'Content-Type': 'application/json'},
+          data: {CMD: 'ligarScanner', PARAM: ''}
+        };
+        try{
+          const {data,status}= await axios.request(options)
+          console.log(data)
+          console.log(status)
+          return data
+        }catch(ex) {
+          console.log(ex)
+          return ''
+        } 
+      }
+
 
     function baixaSolicitacoes() {
         const payload = {
@@ -261,6 +315,9 @@ function Solicitacoes() {
                     </Button> */}
                     <Button variant="contained" color="primary" onClick={lerScanner}>
                         Ler Scanner
+                    </Button>
+                    <Button variant="contained" color="primary" onClick={lerScanner2}>
+                        Ler Scanner 2
                     </Button>
                     {/* {valCodBar}
                     {valCodBar.split('VALUE=')[1]}
