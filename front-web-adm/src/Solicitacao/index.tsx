@@ -146,7 +146,7 @@ function Solicitacoes() {
             valCodBar = await recebeScanner();
             myArray = valCodBar.split('VALUE=')
             aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
-            setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
+            //setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
             console.log('### texto scanner: ', valCodBar)
             myArray = null;
             valCodBar = null;
@@ -191,6 +191,7 @@ function Solicitacoes() {
           console.log(status)
           //alert(`recebeScanner2:` + data)
           setTextoDaBusca(data[1].substring(0, data[1].length - 1));
+          aoMudarTextoDeBusca(data[1].substring(0, data[1].length - 1));
           return data;
       }
       catch(ex){
