@@ -183,13 +183,13 @@ function Solicitacoes() {
             method: 'POST',
             url: 'http://127.0.0.1:5000/scanner',
             headers: { 'Content-Type': 'application/json' },
-            data: { CMD: 'ligarScanner2', PARAM: '' }
+            data: { CMD: 'ligarScanner', PARAM: '' }
         };
         try {
             const { data, status } = await axios.request(options)
             console.log(data)
             console.log(status)
-            alert(`ligarScanner2: `+data)
+            //alert(`ligarScanner2: `+data)
             return data
         } catch (ex) {
             console.log(ex)
