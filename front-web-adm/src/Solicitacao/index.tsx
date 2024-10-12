@@ -40,7 +40,7 @@ function Solicitacoes() {
     const [epiDTO, setEpiDTO] = useState<EpiDTO>();
     const [itemSolicitacaoDTO, setItemSolicitacaoDTO] = useState<ItemSolicitacao>();
     //const [valCodBarX, setValCodBarX] = useState('');
-    const [valCodBar, setValCodBar] = useState("");
+    //const [valCodBar, setValCodBar] = useState("");
 
     // S3 Region
     const REGION = "us-east-1";
@@ -162,7 +162,7 @@ function Solicitacoes() {
         await new Promise (r=>setTimeout(r,1000));
         const valCodBar99 = await recebeScanner2();
         console.log(valCodBar99);
-        setValCodBar(valCodBar99);
+        //setValCodBar(valCodBar99);
         //alert(valCodBar99)
         alert(`valCodBar99: ` + valCodBar99)
         // for (let i=0;i<10;i++){
