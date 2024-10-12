@@ -144,7 +144,7 @@ function Solicitacoes() {
 
     async function lerScanner2() {
         await ligarScanner2();
-        await new Promise (r=>setTimeout(r,1000));
+        //await new Promise (r=>setTimeout(r,1000));
         var valCodBar99 = await recebeScanner2();
         console.log(valCodBar99);
         //setValCodBar(valCodBar99);
@@ -198,7 +198,7 @@ function Solicitacoes() {
           const {data,status}= await axios.request(options)
           console.log(data)
           console.log(status)
-          //alert(`ligarScanner2:` + data)
+          alert(`ligarScanner2:` + data)
           return data
         }catch(ex) {
           console.log(ex)
