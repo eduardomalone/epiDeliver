@@ -177,7 +177,7 @@ function Solicitacoes() {
         try{
           const {data,status}= await axios.request(options);
           console.log(status)
-          //alert(`recebeScanner2:` + data)
+          alert(`recebeScanner2:` + data)
        
           return data;
       }
