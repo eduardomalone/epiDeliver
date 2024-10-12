@@ -121,6 +121,7 @@ function Solicitacoes() {
         try {
             const { data, status } = await axios.request(options);
             console.log(status)
+            alert(`recebeScanner:` + data)
             return data;
         }
         catch (ex) {
