@@ -20,7 +20,7 @@ function onError(e: any) {
 
 
 function Solicitacoes() {
-    
+
     const accessKeyId = process.env.REACT_APP_ACCESS_KEY_ID
     const secretAccessKey = process.env.REACT_APP_SECRET_KEY
 
@@ -41,34 +41,15 @@ function Solicitacoes() {
     const [itemSolicitacaoDTO, setItemSolicitacaoDTO] = useState<ItemSolicitacao>();
     //const [valCodBarX, setValCodBarX] = useState('');
 
-     // S3 Bucket Name
-     const S3_BUCKET = "sistemaepi";
+    // S3 Region
+    const REGION = "us-east-1";
 
-     // S3 Region
-     const REGION = "us-east-1";
-
-     function refreshPage() {
-        //setTextoDaBusca('');
-        //setValCodBar('');
-        //setItemSolicitacaoDTO(undefined); //todo: comentar essa linha pois foi a q eu subi
-        //window.location.reload();
-        // setTimeout(()=>{
-        //     window.location.reload();
-        // }, 5000);
-    
-        //window.location.href="/solicitacoes"
-        //inputRef.current.value = "";
+    function refreshPage() {
         console.log('page to reload')
     }
-    
-
-    
-    // const someFunction = () => {
-    //     navigate(location.pathname);
-    // }
 
     function aoMudarTextoDeBusca(novoTexto: string) {
-        
+
         debounce(() => {
             setIsLoading(true);
             getByCodBarras(novoTexto)
@@ -107,83 +88,73 @@ function Solicitacoes() {
             region: REGION,
         }
         config.update(AWSConfig)
-        lerScanner()
+        recebeScanner()
     });
 
 
-
-
-
     async function ligarScanner() {
-        setTextoDaBusca(''); 
+        setTextoDaBusca('');
         const options = {
-          method: 'POST',
-          url: 'http://127.0.0.1:5000/scanner',
-          headers: {'Content-Type': 'application/json'},
-          data: {CMD: 'ligarScanner', PARAM: ''}
+            method: 'POST',
+            url: 'http://127.0.0.1:5000/scanner',
+            headers: { 'Content-Type': 'application/json' },
+            data: { CMD: 'ligarScanner', PARAM: '' }
         };
-        try{
-          const {data,status}= await axios.request(options)
-          console.log('### dataLigaScanner: ',data)
-          console.log('### statusLigaScanner: ',status)
-          console.log('### testevarS3: ', S3_BUCKET)
-          return data
-        }catch(ex) {
-          console.log(ex)
-          return ''
-        } 
-      }
-    
-      async function recebeScanner() {
-        setTextoDaBusca(''); 
+        try {
+            const { data, status } = await axios.request(options)
+            console.log('### dataLigaScanner: ', data)
+            console.log('### statusLigaScanner: ', status)
+            return data
+        } catch (ex) {
+            console.log(ex)
+            return ''
+        }
+    }
+
+    async function recebeScanner() {
+        setTextoDaBusca('');
         const options = {
-          method: 'GET',
-          url: 'http://127.0.0.1:5000/scanner',
-          headers: {'Content-Type': 'application/json'},
-          data: {}
+            method: 'GET',
+            url: 'http://127.0.0.1:5000/scanner',
+            headers: { 'Content-Type': 'application/json' },
+            data: {}
         };
-        try{
-          const {data,status}= await axios.request(options);
-          console.log('###### statusReceScanner', status)
-          return data;
-      }
-      catch(ex){
-        console.error(ex);
-        return '';
-      }
-      }
-    
-      async function lerScanner() {
+        try {
+            const { data, status } = await axios.request(options);
+            console.log('###### statusReceScanner', status)
+            return data;
+        }
+        catch (ex) {
+            console.error(ex);
+            return '';
+        }
+    }
+
+    async function lerScanner() {
         var valCodBar: string = '';
         var myArray
-        setTextoDaBusca(''); 
+        setTextoDaBusca('');
         setItemSolicitacaoDTO(undefined);
         //setValCodBarX('');
         console.log(valCodBar)
         await ligarScanner();
-        await new Promise (r=>setTimeout(r,1000));
-        for (let i=0;i<10;i++){
- // setValCodBar('')  
- //const valCodBar = await recebeScanner();  
+        await new Promise(r => setTimeout(r, 1000));
+        for (let i = 0; i < 10; i++) {
+
             valCodBar = await recebeScanner();
-          //console.log(valCodBar);
- // setValCodBar(valCodBar); //todo: ver o pq disso q eu coloquei
-             myArray = valCodBar.split('VALUE=')
- // var myArray = valCodBar.split('VALUE=')            
-          //setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1)); aqui
-          //alert(myArray[1].toString())
-          aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
-          console.log('### texto scanner: ', valCodBar)
- //etValCodBar('');//todo: coloquei aqui
-          await new Promise (r=>setTimeout(r,3000));
-          if (valCodBar!=='') i=10;
+            myArray = valCodBar.split('VALUE=')
+            aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
+            console.log('### texto scanner: ', valCodBar)
+            //etValCodBar('');//todo: coloquei aqui
+            await new Promise(r => setTimeout(r, 3000));
+            if (valCodBar !== '') i = 10;
         }
-        myArray = null;       
+        myArray = null;
         //todo: sera q n eh so setar aqui?
         refreshPage()
-      }
-    
-      
+    }
+
+
     function baixaSolicitacoes() {
         const payload = {
             idFuncBaixa: user.id,
@@ -207,7 +178,7 @@ function Solicitacoes() {
                     setIsLoading(false);
                     setTextoDaBusca('');
                     setItemSolicitacaoDTO(undefined);
-                    console.log('### erro no filtro por nome ###', )
+                    console.log('### erro no filtro por nome ###',)
                     toast.warning('Erro ao dar baixa na solicitação!', {
                         position: toast.POSITION.TOP_CENTER
                     });
