@@ -164,7 +164,7 @@ function Solicitacoes() {
         console.log(valCodBar99);
         //setValCodBar(valCodBar99);
         //alert(valCodBar99)
-        alert(`valCodBar99: ` + valCodBar99)
+        alert(`lerScanner2: ` + valCodBar99)
         // for (let i=0;i<10;i++){
         //   const valCodBar2 = await recebeScanner2();
         //   console.log(valCodBar2);
@@ -186,6 +186,7 @@ function Solicitacoes() {
         try{
           const {data,status}= await axios.request(options);
           console.log(status)
+          alert(`recebeScanner2:` + data)
           return data;
       }
       catch(ex){
@@ -195,7 +196,7 @@ function Solicitacoes() {
       }
 
       async function ligarScanner2() {
-        const options = {
+        var options = {
           method: 'POST',
           url: 'http://127.0.0.1:5000/scanner',
           headers: {'Content-Type': 'application/json'},
@@ -205,6 +206,7 @@ function Solicitacoes() {
           const {data,status}= await axios.request(options)
           console.log(data)
           console.log(status)
+          alert(`ligarScanner2:` + data)
           return data
         }catch(ex) {
           console.log(ex)
