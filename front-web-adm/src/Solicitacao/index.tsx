@@ -164,10 +164,10 @@ function Solicitacoes() {
           const valCodBar2 = await recebeScanner2();
           console.log(valCodBar2);
           setValCodBar(valCodBar2);
-          var readBar = valCodBar.split('VALUE=')
+          //var readBar = valCodBar.split('VALUE=')
         //   aoMudarTextoDeBusca(readBar[1].substring(0, readBar[1].length - 1));
         //   setTextoDaBusca(readBar[1].substring(0, readBar[1].length - 1));
-          alert(readBar[1].substring(0, readBar[1].length - 1))
+          //alert(readBar[1].substring(0, readBar[1].length - 1))
           await new Promise (r=>setTimeout(r,3000));
           if (valCodBar!=='') i=10;
           alert(valCodBar2)
