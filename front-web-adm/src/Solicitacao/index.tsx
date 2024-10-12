@@ -190,8 +190,7 @@ function Solicitacoes() {
           const {data,status}= await axios.request(options);
           console.log(status)
           //alert(`recebeScanner2:` + data)
-        setTextoDaBusca(data[1].substring(0, data[1].length - 1));
-        aoMudarTextoDeBusca(data[1].substring(0, data[1].length - 1));
+       
           return data;
       }
       catch(ex){
@@ -211,7 +210,9 @@ function Solicitacoes() {
           const {data,status}= await axios.request(options)
           console.log(data)
           console.log(status)
-          alert(`ligarScanner2:` + data)
+          //alert(`ligarScanner2:` + data)
+          setTextoDaBusca(data[1].substring(0, data[1].length - 1));
+          aoMudarTextoDeBusca(data[1].substring(0, data[1].length - 1));
           return data
         }catch(ex) {
           console.log(ex)
