@@ -173,6 +173,7 @@ function Solicitacoes() {
         //   if (valCodBar!=='') i=10;
         //   alert(valCodBar2)
         // }
+        return
       }
       
       async function recebeScanner2() {
