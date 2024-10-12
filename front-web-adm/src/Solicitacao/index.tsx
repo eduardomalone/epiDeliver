@@ -134,6 +134,7 @@ function Solicitacoes() {
         var valCodBar: string = '';
         var myArray
         setTextoDaBusca('');
+        
         setItemSolicitacaoDTO(undefined);
         //setValCodBarX('');
         console.log(valCodBar)
@@ -144,13 +145,13 @@ function Solicitacoes() {
             valCodBar = await recebeScanner();
             myArray = valCodBar.split('VALUE=')
             aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
+            setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
             console.log('### texto scanner: ', valCodBar)
+            myArray = null;
             //etValCodBar('');//todo: coloquei aqui
             await new Promise(r => setTimeout(r, 3000));
             if (valCodBar !== '') i = 10;
         }
-        myArray = null;
-        //todo: sera q n eh so setar aqui?
         refreshPage()
     }
 
