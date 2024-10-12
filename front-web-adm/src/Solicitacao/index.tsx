@@ -160,7 +160,7 @@ function Solicitacoes() {
     async function lerScanner2() {
         await ligarScanner2();
         await new Promise (r=>setTimeout(r,1000));
-        const valCodBar99 = await recebeScanner2();
+        var valCodBar99 = await recebeScanner2();
         console.log(valCodBar99);
         //setValCodBar(valCodBar99);
         //alert(valCodBar99)
@@ -177,7 +177,7 @@ function Solicitacoes() {
       }
       
       async function recebeScanner2() {
-        const options = {
+        var options = {
           method: 'GET',
           url: 'http://127.0.0.1:5000/scanner',
           headers: {'Content-Type': 'application/json'},
