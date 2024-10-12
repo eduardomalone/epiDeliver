@@ -131,7 +131,7 @@ function Solicitacoes() {
     }
 
     async function lerScanner() {
-        var valCodBar: string = '';
+        var valCodBar: any = null;
         var myArray
         setTextoDaBusca('');
         
@@ -148,6 +148,7 @@ function Solicitacoes() {
             setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
             console.log('### texto scanner: ', valCodBar)
             myArray = null;
+            valCodBar = null;
             //etValCodBar('');//todo: coloquei aqui
             await new Promise(r => setTimeout(r, 3000));
             if (valCodBar !== '') i = 10;
