@@ -160,10 +160,11 @@ function Solicitacoes() {
     async function lerScanner2() {
         await ligarScanner2();
         await new Promise (r=>setTimeout(r,1000));
-        const valCodBar2 = await recebeScanner2();
-        console.log(valCodBar2);
-        setValCodBar(valCodBar2);
-        alert(valCodBar2)
+        const valCodBar99 = await recebeScanner2();
+        console.log(valCodBar99);
+        setValCodBar(valCodBar99);
+        alert(valCodBar99)
+        alert(valCodBar)
         // for (let i=0;i<10;i++){
         //   const valCodBar2 = await recebeScanner2();
         //   console.log(valCodBar2);
