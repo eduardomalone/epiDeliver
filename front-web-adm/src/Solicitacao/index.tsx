@@ -42,7 +42,7 @@ function Solicitacoes() {
     const [itemSolicitEpi, setItemSolicitEpi] = useState<ItemSolicitacaoEpiDTO>();
     const [epiDTO, setEpiDTO] = useState<EpiDTO>();
     const [itemSolicitacaoDTO, setItemSolicitacaoDTO] = useState<ItemSolicitacao>();
-    const [valCodBar, setValCodBar] = useState('');
+//const [valCodBar, setValCodBar] = useState('');
 
      // S3 Bucket Name
      const S3_BUCKET = "sistemaepi";
@@ -216,7 +216,7 @@ function Solicitacoes() {
         var myArray
         setTextoDaBusca(''); 
         setItemSolicitacaoDTO(undefined);
-        setValCodBar('');
+    //    setValCodBar('');
         console.log(valCodBar)
         await ligarScanner();
         await new Promise (r=>setTimeout(r,1000));
@@ -232,7 +232,7 @@ function Solicitacoes() {
           //alert(myArray[1].toString())
           aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
           console.log('### texto scanner: ', valCodBar)
-          setValCodBar('');//todo: coloquei aqui
+ //etValCodBar('');//todo: coloquei aqui
           await new Promise (r=>setTimeout(r,3000));
           if (valCodBar!=='') i=10;
         }
