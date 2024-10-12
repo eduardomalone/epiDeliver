@@ -147,14 +147,14 @@ function Solicitacoes() {
     async function lerScanner2() {
         console.log(valCodBar)
         await ligarScanner2();
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 500));
         for (let i = 0; i < 10; i++) {
             const valCodBar = await recebeScanner2();
             console.log(valCodBar);
             setValCodBar(valCodBar);
-            await new Promise(r => setTimeout(r, 3000));
+            await new Promise(r => setTimeout(r, 500));
             if (valCodBar !== '') i = 10;
-            alert(`valCodBar for `+valCodBar)
+            alert(`valCodBar `+valCodBar)
         }
         
 
