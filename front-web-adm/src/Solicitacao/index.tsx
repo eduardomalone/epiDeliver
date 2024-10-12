@@ -212,6 +212,8 @@ function Solicitacoes() {
       }
     
       async function lerScanner() {
+        var valCodBar: string = '';
+        var myArray
         setTextoDaBusca(''); 
         setItemSolicitacaoDTO(undefined);
         setValCodBar('');
@@ -219,11 +221,13 @@ function Solicitacoes() {
         await ligarScanner();
         await new Promise (r=>setTimeout(r,1000));
         for (let i=0;i<10;i++){
-          setValCodBar('')  
-          const valCodBar = await recebeScanner();
+ // setValCodBar('')  
+ //const valCodBar = await recebeScanner();  
+            valCodBar = await recebeScanner();
           //console.log(valCodBar);
-          setValCodBar(valCodBar); //todo: ver o pq disso q eu coloquei
-          var myArray = valCodBar.split('VALUE=')
+ // setValCodBar(valCodBar); //todo: ver o pq disso q eu coloquei
+             myArray = valCodBar.split('VALUE=')
+ // var myArray = valCodBar.split('VALUE=')            
           //setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1)); aqui
           //alert(myArray[1].toString())
           aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
@@ -232,6 +236,7 @@ function Solicitacoes() {
           await new Promise (r=>setTimeout(r,3000));
           if (valCodBar!=='') i=10;
         }
+        myArray = null;       
         //todo: sera q n eh so setar aqui?
         refreshPage()
       }
