@@ -12,6 +12,8 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { config } from 'aws-sdk'
+import { useLocation } from 'react-router-dom';
+//import useNavigate from 'react-use-navigate';
 
 
 
@@ -42,7 +44,7 @@ function Solicitacoes() {
     const [itemSolicitEpi, setItemSolicitEpi] = useState<ItemSolicitacaoEpiDTO>();
     const [epiDTO, setEpiDTO] = useState<EpiDTO>();
     const [itemSolicitacaoDTO, setItemSolicitacaoDTO] = useState<ItemSolicitacao>();
-//const [valCodBar, setValCodBar] = useState('');
+    //const [valCodBarX, setValCodBarX] = useState('');
 
      // S3 Bucket Name
      const S3_BUCKET = "sistemaepi";
@@ -64,7 +66,16 @@ function Solicitacoes() {
         console.log('page to reload')
     }
     
-
+    const location = useLocation();
+    // const navigate = useNavigate();
+    
+    useEffect(() => {
+        // SUAS AÇÕES APÓS O "SILENT REFRESH"
+    }, [location.key])
+    
+    // const someFunction = () => {
+    //     navigate(location.pathname);
+    // }
 
     function aoMudarTextoDeBusca(novoTexto: string) {
         
@@ -216,7 +227,7 @@ function Solicitacoes() {
         var myArray
         setTextoDaBusca(''); 
         setItemSolicitacaoDTO(undefined);
-    //    setValCodBar('');
+        //setValCodBarX('');
         console.log(valCodBar)
         await ligarScanner();
         await new Promise (r=>setTimeout(r,1000));
