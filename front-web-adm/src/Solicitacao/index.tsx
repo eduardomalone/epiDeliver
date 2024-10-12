@@ -40,7 +40,7 @@ function Solicitacoes() {
     const [epiDTO, setEpiDTO] = useState<EpiDTO>();
     const [itemSolicitacaoDTO, setItemSolicitacaoDTO] = useState<ItemSolicitacao>();
     //const [valCodBarX, setValCodBarX] = useState('');
-    //const [valCodBar, setValCodBar] = useState("");
+    const [valCodBar, setValCodBar] = useState("");
 
     // S3 Region
     const REGION = "us-east-1";
@@ -97,18 +97,18 @@ function Solicitacoes() {
         var options = {
             method: 'POST',
             url: 'http://127.0.0.1:5000/scanner',
-            headers: {'Content-Type': 'application/json'},
-            data: {CMD: 'ligarScanner', PARAM: ''}
-          };
-          try{
-            const {data,status}= await axios.request(options)
+            headers: { 'Content-Type': 'application/json' },
+            data: { CMD: 'ligarScanner', PARAM: '' }
+        };
+        try {
+            const { data, status } = await axios.request(options)
             console.log(data)
             console.log(status)
             return data
-          }catch(ex) {
+        } catch (ex) {
             console.log(ex)
             return ''
-          } 
+        }
     }
 
     async function recebeScanner() {
@@ -141,72 +141,61 @@ function Solicitacoes() {
         setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
         return
     }
-    
-  
+
+
 
     async function lerScanner2() {
+        console.log(valCodBar)
         await ligarScanner2();
-        //await new Promise (r=>setTimeout(r,1000));
-        var valCodBar99 = await recebeScanner2();
-        console.log(valCodBar99);
-        //setValCodBar(valCodBar99);
-        //alert(valCodBar99)
-        //alert(`lerScanner2: ` + valCodBar99)
-        // for (let i=0;i<10;i++){
-        //   const valCodBar2 = await recebeScanner2();
-        //   console.log(valCodBar2);
-        //   setValCodBar(valCodBar2);
-        //   await new Promise (r=>setTimeout(r,3000));
-        //   if (valCodBar!=='') i=10;
-        //   alert(valCodBar2)
-        // }
+        await new Promise(r => setTimeout(r, 1000));
+        for (let i = 0; i < 10; i++) {
+            const valCodBar = await recebeScanner2();
+            console.log(valCodBar);
+            setValCodBar(valCodBar);
+            await new Promise(r => setTimeout(r, 3000));
+            if (valCodBar !== '') i = 10;
+        }
+        alert(`valCodBar `+valCodBar)
 
-        alert(`xuxu: `+valCodBar99)
-        // setTextoDaBusca(valCodBar99[1].substring(0, valCodBar99[1].length - 1));
-        // aoMudarTextoDeBusca(valCodBar99[1].substring(0, valCodBar99[1].length - 1));
-        // setTextoDaBusca(valCodBar99);
-        // aoMudarTextoDeBusca(valCodBar99);
-        
-      }
-      
-      async function recebeScanner2() {
-        var options = {
-          method: 'GET',
-          url: 'http://127.0.0.1:5000/scanner',
-          headers: {'Content-Type': 'application/json'},
-          data: {}
-        };
-        try{
-          const {data,status}= await axios.request(options);
-          console.log(status)
-          alert(`recebeScanner2:` + data)
-       
-          return data;
-      }
-      catch(ex){
-        console.error(ex);
-        return '';
-      }
-      }
+    }
 
-      async function ligarScanner2() {
-        var options = {
-          method: 'POST',
-          url: 'http://127.0.0.1:5000/scanner',
-          headers: {'Content-Type': 'application/json'},
-          data: {CMD: 'ligarScanner', PARAM: ''}
+    async function recebeScanner2() {
+        const options = {
+            method: 'GET',
+            url: 'http://127.0.0.1:5000/scanner',
+            headers: { 'Content-Type': 'application/json' },
+            data: {}
         };
-        try{
-          const {data,status}= await axios.request(options)
-          console.log(data)
-          console.log(status)
-          alert(`ligarScanner2:` + data)
-          return data
-        }catch(ex) {
-          console.log(ex)
-          return ''
-        } 
-      }
+        try {
+            const { data, status } = await axios.request(options);
+            console.log(status)
+            alert(`recebeScanner2: `+data)
+            return data;
+        }
+        catch (ex) {
+            console.error(ex);
+            return '';
+        }
+    }
+
+    async function ligarScanner2() {
+        const options = {
+            method: 'POST',
+            url: 'http://127.0.0.1:5000/scanner',
+            headers: { 'Content-Type': 'application/json' },
+            data: { CMD: 'ligarScanner2', PARAM: '' }
+        };
+        try {
+            const { data, status } = await axios.request(options)
+            console.log(data)
+            console.log(status)
+            alert(`ligarScanner2: `+data)
+            return data
+        } catch (ex) {
+            console.log(ex)
+            return ''
+        }
+    }
 
 
     function baixaSolicitacoes() {
