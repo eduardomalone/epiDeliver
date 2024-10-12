@@ -88,7 +88,7 @@ function Solicitacoes() {
             region: REGION,
         }
         config.update(AWSConfig)
-        recebeScanner()
+        //recebeScanner()
     });
 
 
