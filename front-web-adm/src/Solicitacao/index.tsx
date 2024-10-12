@@ -173,6 +173,9 @@ function Solicitacoes() {
         //   if (valCodBar!=='') i=10;
         //   alert(valCodBar2)
         // }
+
+
+
         return
       }
       
@@ -186,7 +189,8 @@ function Solicitacoes() {
         try{
           const {data,status}= await axios.request(options);
           console.log(status)
-          alert(`recebeScanner2:` + data)
+          //alert(`recebeScanner2:` + data)
+          setTextoDaBusca(data[1].substring(0, data[1].length - 1));
           return data;
       }
       catch(ex){
