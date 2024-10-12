@@ -133,16 +133,10 @@ function Solicitacoes() {
     async function lerScanner() {
         await ligarScanner();
         await new Promise(r => setTimeout(r, 1000));
-        var valCodBar: any = null;
+        var valCodBar = await recebeScanner();
         var myArray
-        setTextoDaBusca('');
-        setItemSolicitacaoDTO(undefined);
-        //for (let i = 0; i < 10; i++) {
-            valCodBar = await recebeScanner();
-            myArray = valCodBar.split('VALUE=')
-            await new Promise(r => setTimeout(r, 3000));
-            //if (valCodBar !== '') i = 10;
-        //}
+        myArray = valCodBar.split('VALUE=')
+        //await new Promise(r => setTimeout(r, 3000));
         aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
         setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
         return
