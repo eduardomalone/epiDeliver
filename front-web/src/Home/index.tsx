@@ -109,6 +109,7 @@ function Home() {
                                     <Box>
                                         <Box height={theme.spacing(30)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center" marginTop={1}>
                                             <TextField
+                                                id='input'
                                                 autoFocus
                                                 fullWidth
                                                 size="small"
