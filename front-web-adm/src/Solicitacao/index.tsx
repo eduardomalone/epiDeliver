@@ -374,7 +374,6 @@ function Solicitacoes() {
                     {itemSolicitacaoDTO?.codigoBarra && (
                         <Box height={theme.spacing(5)} component={Paper} marginX={1} padding={1} paddingX={2} display="flex" gap={1} alignItems="center" marginTop={1}>
                             {!itemSolicitacaoDTO?.idUsuarioBaixa && (
-                                <Box flex={1} display="flex" justifyContent="end">
                                 <Button
                                     //onClick={() => navigate.push('/detalhe/funcionarios/novo')}
                                     onClick={baixaSolicitacoes}
@@ -383,10 +382,9 @@ function Solicitacoes() {
                                     disableElevation
                                 //endIcon={<Icon><AddIcon /></Icon>}
                                 >Entregar</Button>
-                                </Box>
                             )}
                             {itemSolicitacaoDTO?.idUsuarioBaixa && (
-                                <><Box flex={1} display="flex" justifyContent="end">
+                                <>
                                     <Button
                                         //onClick={() => navigate.push('/detalhe/funcionarios/novo')}
                                         onClick={() => { setTextoDaBusca(''); setItemSolicitacaoDTO(undefined) }}
@@ -398,7 +396,6 @@ function Solicitacoes() {
                                     <h3 className="home-subtitle">
                                         Item ja foi entregue!
                                     </h3>
-                                    </Box>
                                 </>
                             )}
                         </Box>
