@@ -20,10 +20,13 @@ function ImpressaoCard({ product, registro, codBarras }: Props) {
       <Box padding={10} display='flex' alignItems='center' justifyItems='center' >
         <div className="">
           <div className="">
+            {/* <h6 className="order-card-title-teste">
+              {product.descricao}
+            </h6> */}
+            <h1 >
             <h6 className="order-card-title-teste">
               {product.descricao}
             </h6>
-            <h1 >
 
               <Barcode value={codBarras}
               //format={"CODE128"}
