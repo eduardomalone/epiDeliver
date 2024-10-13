@@ -50,7 +50,7 @@ function Solicitacoes() {
     }
 
     function aoMudarTextoDeBusca(novoTexto: string) {
-        alert(`aoMudarTextoDeBusca: ` + novoTexto)
+        //alert(`aoMudarTextoDeBusca: ` + novoTexto)
         debounce(() => {
             setIsLoading(true);
             getByCodBarras(novoTexto)
@@ -121,7 +121,7 @@ function Solicitacoes() {
         try {
             const { data, status } = await axios.request(options);
             console.log(status)
-            alert(`recebeScanner:` + data)
+            //alert(`recebeScanner:` + data)
             return data;
         }
         catch (ex) {
@@ -158,14 +158,14 @@ function Solicitacoes() {
             // myArray = valCodBar.split('VALUE=')
             // aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
             // setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
-            alert(`valCodBar antes do if: `+valCodBar)
+            //alert(`valCodBar antes do if: `+valCodBar)
             if (valCodBar !== '') i = 10;
                 //aoMudarTextoDeBusca(valCodBar[1].substring(0, valCodBar[1].length - 1));
                 //setTextoDaBusca(valCodBar[1].substring(0, valCodBar[1].length - 1));
-                alert(`valCodBar in if: `+valCodBar)
-            alert(`valCodBar out if: `+valCodBar)
+                //alert(`valCodBar in if: `+valCodBar)
+            //alert(`valCodBar out if: `+valCodBar)
         }
-        alert(`valCodBar 99: `+valCodBar)
+        //alert(`valCodBar 99: `+valCodBar)
         
     }
 
@@ -179,12 +179,12 @@ function Solicitacoes() {
         try {
             const { data, status } = await axios.request(options);
             console.log(status)
-            alert(`recebeScanner2: `+data)
+            //alert(`recebeScanner2: `+data)
             var myArray
             myArray = data.split('VALUE=')
             aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
             setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
-            alert(`recebeScanner44: `+myArray[1].substring(0, myArray[1].length - 1))
+            //alert(`recebeScanner44: `+myArray[1].substring(0, myArray[1].length - 1))
             return data;
         }
         catch (ex) {
