@@ -154,7 +154,7 @@ function Solicitacoes() {
             setValCodBar(valCodBar);
             await new Promise(r => setTimeout(r, 500));
             if (valCodBar !== '') i = 10;
-                aoMudarTextoDeBusca(valCodBar[1].substring(0, valCodBar[1].length - 1));
+                //aoMudarTextoDeBusca(valCodBar[1].substring(0, valCodBar[1].length - 1));
                 //setTextoDaBusca(valCodBar[1].substring(0, valCodBar[1].length - 1));
                 alert(`valCodBar in if: `+valCodBar)
             alert(`valCodBar out if: `+valCodBar)
