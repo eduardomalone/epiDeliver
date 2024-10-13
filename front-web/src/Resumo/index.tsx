@@ -40,7 +40,7 @@ function Resumo(this: any) {
         return;
     }
 
-    function printPwd() {
+    function printPwd(barCode:any|undefined) {
         const options = {
           method: 'POST',
           url: 'http://127.0.0.1:5000/printer',
@@ -55,7 +55,7 @@ function Resumo(this: any) {
           url: 'http://127.0.0.1:5000/printer',
           headers: {'Content-Type': 'application/json'},
           // data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>BEM VINDO<l><l></dl></da><inv><eg>S123<l></eg></inv></b><da>Sua posicao na fila: 10<l><l></da>Conheca nossos produtos!<l>http://tectoy.com.br/<l><l>06/10/2023<l></ce><l><l><l><l><l>`}
-          data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>BEM VINDO<l><l></dl></da><inv><eg>S123<l></eg></inv></b><da>Sua posicao na fila: 10<l><l></da>Conheca nossos produtos!<l>http://tectoy.com.br/<l><l>06/10/2023<l></ce><l><l><l><l><l>`}
+          data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>`+barCode+`<l><l></dl></da><inv><eg>S123<l></eg></inv></b><da>Sua posicao na fila: 10<l><l></da>Conheca nossos produtos!<l>http://tectoy.com.br/<l><l>06/10/2023<l></ce><l><l><l><l><l>`}
         };
         
         axios.request(options).then(function (response) {
@@ -200,9 +200,9 @@ function Resumo(this: any) {
                                             onClick={handleClickHome} >
                                             Finalizar
                                         </button>
-                                        <Button variant="contained" color="primary" onClick={printPwd}>
+                                        <button className="order-summary-make-order" color="primary" onClick={() => printPwd(barCode)}>
                                             Imprimir cupom exemplo
-                                        </Button>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
