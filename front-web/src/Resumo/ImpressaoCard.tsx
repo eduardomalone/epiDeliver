@@ -24,39 +24,29 @@ function ImpressaoCard({ product, registro, codBarras }: Props) {
 
       {/* <Card>
         <CardContent> */}
-          <Box padding={5} display='flex' alignItems='center' justifyItems='center' >
-            <div className="">
-              <div className="">
-              <h6 className="order-card-title-teste">
-                {product.descricao}
-              </h6>
-                {/* <p>
-                  {product.descricao}
-                </p> */}
-                <h1 >
+      <Box padding={8} display='flex' alignItems='center' justifyItems='center' >
 
-                <Barcode value={codBarras}
-                  //format={"CODE128"}
-                  //format={"CODE12"}
-                  // height={50}
-                  // width={1}
-                  // textAlign= {"center"}
-                  // textPosition= {"bottom"}
-                  //textMargin= {2}
-                  // fontSize={5}
-                  //marginRight= {20}
-                  // marginLeft={0}
-                  />
-                  </h1>
-              </div>
-            </div>
+        <h6 className="order-card-title-teste">
+          {product.descricao}
+        </h6>
+        <h1 >
 
-          </Box>
-        {/* </CardContent>
-      </Card> */}
+          <Barcode value={codBarras}
+          //format={"CODE128"}
+          //format={"CODE12"}
+          // height={50}
+          // width={1}
+          // textAlign= {"center"}
+          // textPosition= {"bottom"}
+          //textMargin= {2}
+          // fontSize={5}
+          //marginRight= {20}
+          // marginLeft={0}
+          />
+        </h1>
 
 
-
+      </Box>
     </>
   )
 }
