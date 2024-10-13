@@ -30,6 +30,8 @@ function Resumo(this: any) {
     const [barCode, setBarcode] = useState<any>();
     const ref = useRef<HTMLDivElement | null>(null);
 
+    const [message, setMessage] = useState("");
+
     console.log('###### funcionario ######', funcionario.registro)
 
     let history = useHistory();
@@ -39,6 +41,40 @@ function Resumo(this: any) {
         }, 2000);
         return;
     }
+
+    function print() {
+
+        setMessage(barCode[0])
+        const options = {
+          method: 'POST',
+          url: 'http://127.0.0.1:5000/printer',
+          headers: {'Content-Type': 'application/json'},
+          data: {CMD: 'imprimir', PARAM: `${message}<l>`}
+        };
+        
+        axios.request(options).then(function (response) {
+          console.log(response.data);
+          gui()
+        }).catch(function (error) {
+          console.error(error);
+        });
+      }
+
+      function gui() {
+        const options = {
+          method: 'POST',
+          url: 'http://127.0.0.1:5000/printer',
+          headers: {'Content-Type': 'application/json'},
+          data: {CMD: 'acionarGuilhotina', PARAM: ''}
+        };
+        
+        axios.request(options).then(function (response) {
+          console.log(response.data);
+        }).catch(function (error) {
+          console.error(error);
+        });
+      }
+
 
     function printPwd(barCode:any|undefined) {
         const options = {
@@ -55,7 +91,7 @@ function Resumo(this: any) {
           url: 'http://127.0.0.1:5000/printer',
           headers: {'Content-Type': 'application/json'},
           // data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>BEM VINDO<l><l></dl></da><inv><eg>S123<l></eg></inv></b><da>Sua posicao na fila: 10<l><l></da>Conheca nossos produtos!<l>http://tectoy.com.br/<l><l>06/10/2023<l></ce><l><l><l><l><l>`}
-          data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>`+barCode+`<l><l></dl></da><inv><eg>S123<l></eg></inv></b><da>Sua posicao na fila: 10<l><l></da>Conheca nossos produtos!<l>http://tectoy.com.br/<l><l>06/10/2023<l></ce><l><l><l><l><l>`}
+          data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>`+barCode+`<l><l></dl></da><inv><eg>S124<l></eg></inv></b><da>Sua posicao na fila: 10<l><l></da>Conheca nossos produtos!<l>http://tectoy.com.br/<l><l>06/10/2023<l></ce><l><l><l><l><l>`}
         };
         
         axios.request(options).then(function (response) {
@@ -200,8 +236,11 @@ function Resumo(this: any) {
                                             onClick={handleClickHome} >
                                             Finalizar
                                         </button>
-                                        <button className="order-summary-make-order" color="primary" onClick={() => printPwd(barCode)}>
-                                            Imprimir cupom exemplo
+                                        <button className="order-summary-make-order" onClick={() => printPwd(barCode)}>
+                                            printPwd
+                                        </button>
+                                        <button className="order-summary-make-order" onClick={print}>
+                                            print
                                         </button>
                                     </div>
                                 </div>
