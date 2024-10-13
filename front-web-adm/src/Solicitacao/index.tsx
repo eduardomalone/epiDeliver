@@ -180,6 +180,9 @@ function Solicitacoes() {
             const { data, status } = await axios.request(options);
             console.log(status)
             alert(`recebeScanner2: `+data)
+            aoMudarTextoDeBusca(data[1].substring(0, data[1].length - 1));
+            setTextoDaBusca(data[1].substring(0, data[1].length - 1));
+            alert(`recebeScanner44: `+data[1].substring(0, data[1].length - 1))
             return data;
         }
         catch (ex) {
