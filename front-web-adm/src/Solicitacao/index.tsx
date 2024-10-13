@@ -154,6 +154,10 @@ function Solicitacoes() {
             console.log(valCodBar);
             setValCodBar(valCodBar);
             await new Promise(r => setTimeout(r, 500));
+            var myArray
+            myArray = valCodBar.split('VALUE=')
+            aoMudarTextoDeBusca(myArray[1].substring(0, myArray[1].length - 1));
+            setTextoDaBusca(myArray[1].substring(0, myArray[1].length - 1));
             alert(`valCodBar antes do if: `+valCodBar)
             if (valCodBar !== '') i = 10;
                 //aoMudarTextoDeBusca(valCodBar[1].substring(0, valCodBar[1].length - 1));
