@@ -315,11 +315,11 @@ function Solicitacoes() {
                             teste
                         </Typography>
                     </Button> */}
-                    <Button variant="contained" color="primary" onClick={lerScanner}>
+                    {/*<Button variant="contained" color="primary" onClick={lerScanner}>
                         Ler Scanner
-                    </Button>
+                    </Button>*/}
                     <Button variant="contained" color="primary" onClick={lerScanner2}>
-                        Ler Scanner 2
+                        Ler Scanner
                     </Button>
                     {/* {valCodBar}
                     {valCodBar.split('VALUE=')[1]}
