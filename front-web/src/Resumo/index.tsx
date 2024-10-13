@@ -12,6 +12,8 @@ import { useRef, useState } from "react"
 import ImpressaoList from "./ImpressaoList"
 import ImpressaoHeader from "./ImpressaoHeader"
 import ReactToPrint from 'react-to-print';
+import axios from "axios"
+import { Button } from "@mui/material"
 
 
 function Resumo(this: any) {
@@ -37,6 +39,45 @@ function Resumo(this: any) {
         }, 2000);
         return;
     }
+
+    function printPwd() {
+        const options = {
+          method: 'POST',
+          url: 'http://127.0.0.1:5000/printer',
+          headers: {'Content-Type': 'application/json'},
+          data: {CMD: 'imprimirBMP', PARAM: '/storage/emulated/0/tectoylogo.bmp'}
+          //informar sempre o path completo do arquivo da logo.bmp de até 200x200 px, que deve estar no dispositivo.
+        };
+        //a logo será impressa junto com o buffer de exemplo
+        axios.request(options).then(function (response) {
+        const options = {
+          method: 'POST',
+          url: 'http://127.0.0.1:5000/printer',
+          headers: {'Content-Type': 'application/json'},
+          // data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>BEM VINDO<l><l></dl></da><inv><eg>S123<l></eg></inv></b><da>Sua posicao na fila: 10<l><l></da>Conheca nossos produtos!<l>http://tectoy.com.br/<l><l>06/10/2023<l></ce><l><l><l><l><l>`}
+          data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>BEM VINDO<l><l></dl></da><inv><eg>S123<l></eg></inv></b><da>Sua posicao na fila: 10<l><l></da>Conheca nossos produtos!<l>http://tectoy.com.br/<l><l>06/10/2023<l></ce><l><l><l><l><l>`}
+        };
+        
+        axios.request(options).then(function (response) {
+          const options = {
+            method: 'POST',
+            url: 'http://127.0.0.1:5000/printer',
+            headers: {'Content-Type': 'application/json'},
+            data: {CMD: 'acionarGuilhotina', PARAM: ''}
+          };
+          
+          axios.request(options).then(function (response) {
+            console.log(response.data);
+          }).catch(function (error) {
+            console.error(error);
+          });
+        }).catch(function (error) {
+          console.error(error);
+        });
+      }).catch(function (error) {
+        console.error(error);
+      });
+      }
 
     function callImpSendOrder() {
         console.log('##### chamou imprimir 2 ####')
@@ -159,6 +200,9 @@ function Resumo(this: any) {
                                             onClick={handleClickHome} >
                                             Finalizar
                                         </button>
+                                        <Button variant="contained" color="primary" onClick={printPwd}>
+                                            Imprimir cupom exemplo
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
