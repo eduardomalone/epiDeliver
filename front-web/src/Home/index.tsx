@@ -17,6 +17,7 @@ function retornaCliente(x: string) {
     return y
 }
 
+
 function Home() {
 
     const [idCliente] = useState('_4');
@@ -32,6 +33,11 @@ function Home() {
         }, 1800000);
         return;
     }
+
+    function routeChange(func:any) {
+        let path = `/solicitacao/`+func+`&idCli=${idCliente}`;
+        history.push(path);
+      }
 
     return (
         <>
@@ -107,7 +113,7 @@ function Home() {
                                                 size="small"
                                                 placeholder="Funcional..."
                                                 value={value}
-                                                onChange={e => { setValue(e.target.value); }}
+                                                onChange={e => { setValue(e.target.value); routeChange?.(e.target.value)}}
                                             />
                                             <Box flex={1} display="flex" justifyContent="end">
 

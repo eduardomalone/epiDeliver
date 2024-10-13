@@ -183,9 +183,9 @@ function Resumo(this: any) {
         //salva a solicitacao
         fetchSalvarSolicitacao(payload)
             .then((response) => {
-                toast.error(`Pedido enviado com sucesso! - id: ${response.data.solicitacaoDTO.id}`, {
-                    position: toast.POSITION.TOP_CENTER
-                });
+                // toast.error(`Pedido enviado com sucesso! - id: ${response.data.solicitacaoDTO.id}`, {
+                //     position: toast.POSITION.TOP_CENTER
+                // });
                 setIdSolicitacao(response.data.solicitacaoDTO.id)
                 console.log('### solicitacao gerada com sucesso ###', idSolicitacao)
             })
