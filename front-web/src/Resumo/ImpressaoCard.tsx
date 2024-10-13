@@ -36,7 +36,7 @@ function ImpressaoCard({ product, registro, codBarras }: Props) {
               //marginRight= {20}
               // marginLeft={0}
               />
-              <h6 className="order-card-title-teste">
+              <h6 >
               {product.descricao}
             </h6>
             </h1>
