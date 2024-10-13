@@ -34,11 +34,11 @@ function Home() {
         return;
     }
 
-    function routeChange(func:string) {
-        alert(`aoMudarTextoDeBusca: ` + valuex)
-        let path = `/solicitacao/`+func+`&idCli=${idCliente}`;
-        history.push(path);
-      }
+    // function routeChange(func:string) {
+    //     alert(`aoMudarTextoDeBusca: ` + valuex)
+    //     let path = `/solicitacao/`+func+`&idCli=${idCliente}`;
+    //     history.push(path);
+    //   }
 
     return (
         <>
@@ -115,7 +115,7 @@ function Home() {
                                                 size="small"
                                                 placeholder="Funcional..."
                                                 value={valuex}
-                                                onChange={e => { setValuex(e.target.value); routeChange?.(e.target.value)}}
+                                                onChange={e => { setValuex(e.target.value); }}
                                             />
                                             <Box flex={1} display="flex" justifyContent="end">
 
