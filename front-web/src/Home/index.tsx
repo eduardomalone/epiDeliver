@@ -22,7 +22,7 @@ function Home() {
 
     const [idCliente] = useState('_4');
     //const [idCliente] = useState('_1');
-    const [value, setValue] = useState("");
+    const [valuex, setValuex] = useState("");
     const theme = useTheme();
 
     // redireciona para a pagina de descanso
@@ -35,7 +35,7 @@ function Home() {
     }
 
     function routeChange(func:string) {
-        alert(`aoMudarTextoDeBusca: ` + value)
+        alert(`aoMudarTextoDeBusca: ` + valuex)
         let path = `/solicitacao/`+func+`&idCli=${idCliente}`;
         history.push(path);
       }
@@ -114,15 +114,15 @@ function Home() {
                                                 fullWidth
                                                 size="small"
                                                 placeholder="Funcional..."
-                                                value={value}
-                                                onChange={e => { setValue(e.target.value); routeChange?.(e.target.value)}}
+                                                value={valuex}
+                                                onChange={e => { setValuex(e.target.value); routeChange?.(e.target.value)}}
                                             />
                                             <Box flex={1} display="flex" justifyContent="end">
 
                                                 <Link
                                                     to={{
-                                                        pathname: `/solicitacao/${value}&idCli=${idCliente}`,
-                                                        state: (retornaCliente(value as string))
+                                                        pathname: `/solicitacao/${valuex}&idCli=${idCliente}`,
+                                                        state: (retornaCliente(valuex as string))
                                                     }}
                                                     className="">
                                                     <Button
