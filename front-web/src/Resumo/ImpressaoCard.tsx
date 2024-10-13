@@ -24,7 +24,7 @@ function ImpressaoCard({ product, registro, codBarras }: Props) {
 
       {/* <Card>
         <CardContent> */}
-          <Box padding={10} display='flex' alignItems='center' justifyItems='center' >
+          <Box padding={5} display='flex' alignItems='center' justifyItems='center' >
             <div className="">
               <div className="">
               <h6 className="order-card-title-teste">
