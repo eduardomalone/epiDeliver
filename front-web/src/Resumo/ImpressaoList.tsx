@@ -14,8 +14,8 @@ function ImpressaoList({ selectedProducts, registro, listaCod }: Props) {
     <>
 
       {(
-        <div className="orders-list-container">
-          {/* <div className="orders-list-items-teste3"> */}
+        // <div className="orders-list-container">
+          <div className="orders-list-items-teste3">
             {selectedProducts.map((product, index) => (
               <ImpressaoCard
                 key={product.id}
