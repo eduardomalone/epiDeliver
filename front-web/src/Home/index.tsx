@@ -34,7 +34,8 @@ function Home() {
         return;
     }
 
-    function routeChange(func:any) {
+    function routeChange(func:string) {
+        alert(`aoMudarTextoDeBusca: ` + value)
         let path = `/solicitacao/`+func+`&idCli=${idCliente}`;
         history.push(path);
       }
