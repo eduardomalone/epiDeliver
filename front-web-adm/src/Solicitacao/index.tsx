@@ -145,6 +145,7 @@ function Solicitacoes() {
 
 
     async function lerScanner2() {
+        setValCodBar('');
         console.log(valCodBar)
         await ligarScanner2();
         await new Promise(r => setTimeout(r, 500));
@@ -159,6 +160,7 @@ function Solicitacoes() {
                 alert(`valCodBar in if: `+valCodBar)
             alert(`valCodBar out if: `+valCodBar)
         }
+        alert(`valCodBar 99: `+valCodBar)
         
     }
 
