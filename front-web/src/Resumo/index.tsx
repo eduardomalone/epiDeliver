@@ -76,6 +76,10 @@ function Resumo(this: any) {
 
 
     function printPwd(barCode:any|undefined) {
+
+        var React = require('react');
+        var Barcode = require('react-barcode');
+        
         const options = {
           method: 'POST',
           url: 'http://127.0.0.1:5000/printer',
@@ -90,7 +94,20 @@ function Resumo(this: any) {
           url: 'http://127.0.0.1:5000/printer',
           headers: {'Content-Type': 'application/json'},
           // data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>BEM VINDO<l><l></dl></da><inv><eg>S123<l></eg></inv></b><da>Sua posicao na fila: 10<l><l></da>Conheca nossos produtos!<l>http://tectoy.com.br/<l><l>06/10/2023<l></ce><l><l><l><l><l>`}
-          data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>`+barCode+`<l><l></dl></da><inv><eg>S124<l></eg></inv></b><da>Sua posicao na fila: 10<l><l></da>Conheca nossos produtos!<l>http://tectoy.com.br/<l><l>06/10/2023<l></ce><l><l><l><l><l>`}
+          //data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>`+barCode+`<l><l></dl></da><inv><eg>S124<l></eg></inv></b><da>Sua posicao na fila: 10<l><l></da>Conheca nossos produtos!<l>http://tectoy.com.br/<l><l>06/10/2023<l></ce><l><l><l><l><l>`}
+          data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>`+ <Barcode value={barCode}
+          //format={"CODE128"}
+          //format={"CODE12"}
+          // height={50}
+          // width={1}
+          // textAlign= {"center"}
+          // textPosition= {"bottom"}
+          //textMargin= {2}
+          // fontSize={5}
+          //marginRight= {20}
+          // marginLeft={0}
+          />+`<l>`}
+          
         };
         
         axios.request(options).then(function (response) {
