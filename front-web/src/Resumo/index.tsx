@@ -13,6 +13,11 @@ import ImpressaoList from "./ImpressaoList"
 import ImpressaoHeader from "./ImpressaoHeader"
 import ReactToPrint from 'react-to-print';
 import axios from "axios"
+//import { useToImage } from '@hcorta/react-to-image'
+import { useToPng } from '@hugocxl/react-to-image'
+
+
+
 
 
 function Resumo(this: any) {
@@ -28,6 +33,16 @@ function Resumo(this: any) {
     const arrayEpi: EpiDTO[] = location.state.selectedProducts as EpiDTO[]
     const [barCode, setBarcode] = useState<any>();
     const ref = useRef<HTMLDivElement | null>(null);
+    const [_, convert, ref2] = useToPng<HTMLDivElement>({
+        quality: 0.8,
+        onSuccess: data => {
+          const link = document.createElement('a');
+          link.download = 'my-image-name.jpeg';
+          link.href = data;
+          link.click();
+        }
+      })
+
 
     const [message, setMessage] = useState("");
 
@@ -74,12 +89,11 @@ function Resumo(this: any) {
         });
       }
 
+      
+
 
     function printPwd(barCode:any|undefined) {
 
-        var React = require('react');
-        var Barcode = require('react-barcode');
-        
         const options = {
           method: 'POST',
           url: 'http://127.0.0.1:5000/printer',
@@ -94,20 +108,8 @@ function Resumo(this: any) {
           url: 'http://127.0.0.1:5000/printer',
           headers: {'Content-Type': 'application/json'},
           // data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>BEM VINDO<l><l></dl></da><inv><eg>S123<l></eg></inv></b><da>Sua posicao na fila: 10<l><l></da>Conheca nossos produtos!<l>http://tectoy.com.br/<l><l>06/10/2023<l></ce><l><l><l><l><l>`}
-          //data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>`+barCode+`<l><l></dl></da><inv><eg>S124<l></eg></inv></b><da>Sua posicao na fila: 10<l><l></da>Conheca nossos produtos!<l>http://tectoy.com.br/<l><l>06/10/2023<l></ce><l><l><l><l><l>`}
-          data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>`+ <Barcode value={barCode}
-          //format={"CODE128"}
-          //format={"CODE12"}
-          // height={50}
-          // width={1}
-          // textAlign= {"center"}
-          // textPosition= {"bottom"}
-          //textMargin= {2}
-          // fontSize={5}
-          //marginRight= {20}
-          // marginLeft={0}
-          />+`<l>`}
-          
+          data: {CMD: 'imprimir', PARAM: `<ce><b><da><dl><l>`+barCode+`<l><l></dl></da><inv><eg>S124<l></eg></inv></b><da>Sua posicao na fila: 10<l><l></da>Conheca nossos produtos!<l>http://tectoy.com.br/<l><l>06/10/2023<l></ce><l><l><l><l><l>`}
+        
         };
         
         axios.request(options).then(function (response) {
@@ -147,6 +149,8 @@ function Resumo(this: any) {
         }, 5000);
         return;
     }
+
+    
 
     const date = new Date();
     let dataHMS = date.getFullYear() + "" + (date.getMonth() + 1) + "" + date.getHours() + "" + date.getMinutes() + "" + date.getSeconds();
@@ -225,7 +229,7 @@ function Resumo(this: any) {
                     )}
                     {statusImp && (
                         <>
-                            <div className="">
+                            <div className=""ref={ref2}>
                                 <div className="orders-container" ref={ref}>
                                     <ImpressaoHeader funcionario={funcionario} />
                                     <ImpressaoList
@@ -258,6 +262,7 @@ function Resumo(this: any) {
                                         <button className="order-summary-make-order" onClick={print}>
                                             print
                                         </button>
+                                        <button onClick={convert}>Download</button>
                                     </div>
                                 </div>
                             </div>
