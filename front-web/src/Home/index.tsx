@@ -4,8 +4,8 @@ import * as React from 'react';
 //import Footer from '../Footer';
 import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
-import { Box, Button, Card,  CardContent, debounce, Grid, Paper, TextField, Typography, useTheme } from '@mui/material';
-
+import { Box, Button, Card,  CardContent, Grid, Paper, TextField, Typography, useTheme } from '@mui/material';
+import { useDebounce } from '../hook/UseDebounce';
 
 
 
@@ -25,6 +25,7 @@ function Home() {
     //const [idCliente] = useState('_1');
     const [valuex, setValuex] = useState("");
     const theme = useTheme();
+    const { debounce } = useDebounce();
 
     // redireciona para a pagina de descanso
     let history = useHistory();
@@ -37,11 +38,13 @@ function Home() {
 
     
 
-    function routeChange(this: any, func:string) {
-        this.onChangeDebounced = debounce(this.onChangeDebounced, 2000)
-        alert(`aoMudarTextoDeBusca: ` + valuex)
-        let path = `/solicitacao/`+func+`&idCli=${idCliente}`;
-        history.push(path);
+    function aoMudarTextoDeBusca(func:string) {
+        debounce(() => {
+            alert(`aoMudarTextoDeBusca: ` + valuex)
+            let path = `/solicitacao/`+func+`&idCli=${idCliente}`;
+            history.push(path);
+       });
+      
       }
 
     return (
@@ -119,7 +122,7 @@ function Home() {
                                                 size="small"
                                                 placeholder="Funcional..."
                                                 value={valuex}
-                                                onChange={e => { setValuex(e.target.value);  routeChange?.(e.target.value) }}
+                                                onChange={e => { setValuex(e.target.value); aoMudarTextoDeBusca?.(e.target.value)}}
                                             />
                                             <Box flex={1} display="flex" justifyContent="end">
 
