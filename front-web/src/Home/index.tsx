@@ -43,10 +43,13 @@ function Home() {
             alert(`aoMudarTextoDeBusca: ` + retornaCliente(valuex as string))
             alert(`func: ` + func)
             alert(`valuex: ` + valuex)
-            let path = `/solicitacao/`+func+`&idCli=${idCliente}`;
+            //let path = `/solicitacao/`+func+`&idCli=${idCliente}`;
             //history.push(path);
             history.push({
-                pathname: path,
+                // pathname: path,
+                // state: (retornaCliente(valuex as string))
+
+                pathname: `/solicitacao/${valuex}&idCli=${idCliente}`,
                 state: (retornaCliente(valuex as string))
             });
             
