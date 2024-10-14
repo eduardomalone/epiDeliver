@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import { Box, Button, Card,  CardContent, Grid, Paper, TextField, Typography, useTheme } from '@mui/material';
-import { useDebounce } from '../hook/UseDebounce';
+// import { useDebounce } from '../hook/UseDebounce';
 
 
 
@@ -25,7 +25,7 @@ function Home() {
     //const [idCliente] = useState('_1');
     const [valuex, setValuex] = useState("");
     const theme = useTheme();
-    const { debounce } = useDebounce();
+    // const { debounce } = useDebounce();
 
     // redireciona para a pagina de descanso
     let history = useHistory();
@@ -38,24 +38,24 @@ function Home() {
 
     
 
-    function aoMudarTextoDeBusca(func:string) {
-        debounce(() => {
-            alert(`aoMudarTextoDeBusca: ` + retornaCliente(valuex as string))
-            alert(`func: ` + func)
-            alert(`valuex: ` + valuex)
-            //let path = `/solicitacao/`+func+`&idCli=${idCliente}`;
-            //history.push(path);
-            history.push({
-                // pathname: path,
-                // state: (retornaCliente(valuex as string))
+    // function aoMudarTextoDeBusca(func:string) {
+    //     debounce(() => {
+    //         alert(`aoMudarTextoDeBusca: ` + retornaCliente(valuex as string))
+    //         alert(`func: ` + func)
+    //         alert(`valuex: ` + valuex)
+    //         //let path = `/solicitacao/`+func+`&idCli=${idCliente}`;
+    //         //history.push(path);
+    //         history.push({
+    //             // pathname: path,
+    //             // state: (retornaCliente(valuex as string))
 
-                pathname: `/solicitacao/00000705&idCli=${idCliente}`,
-                state: (retornaCliente(valuex as string))
-            });
+    //             pathname: `/solicitacao/00000705&idCli=${idCliente}`,
+    //             state: (retornaCliente(valuex as string))
+    //         });
             
-       });
+    //    });
       
-      }
+    //   }
 
     return (
         <>
@@ -132,7 +132,9 @@ function Home() {
                                                 size="small"
                                                 placeholder="Funcional..."
                                                 value={valuex}
-                                                onChange={e => { setValuex(e.target.value); aoMudarTextoDeBusca?.(e.target.value)}}
+                                                onChange={e => { setValuex(e.target.value);
+                                                    // aoMudarTextoDeBusca?.(e.target.value)
+                                                }}
                                             />
                                             <Box flex={1} display="flex" justifyContent="end">
 
