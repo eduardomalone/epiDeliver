@@ -49,7 +49,7 @@ function Home() {
                 // pathname: path,
                 // state: (retornaCliente(valuex as string))
 
-                pathname: `/solicitacao/${valuex}&idCli=${idCliente}`,
+                pathname: `/solicitacao/00000705&idCli=${idCliente}`,
                 state: (retornaCliente(valuex as string))
             });
             
