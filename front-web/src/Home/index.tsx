@@ -40,8 +40,8 @@ function Home() {
 
     function aoMudarTextoDeBusca(func:string) {
         debounce(() => {
-            alert(`aoMudarTextoDeBusca: ` + valuex)
-            let path = `/solicitacao/`+func+`&idCli=${idCliente}`;
+            alert(`aoMudarTextoDeBusca: ` + retornaCliente(valuex as string))
+            let path = `/solicitacao/`+retornaCliente(valuex as string)+`&idCli=${idCliente}`;
             history.push(path);
        });
       
