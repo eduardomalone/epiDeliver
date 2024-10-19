@@ -39,9 +39,9 @@ function Home() {
 
 
     function aoMudarTextoDeBusca(func: string) {
-        alert(`aoMudarTextoDeBusca: ` + retornaCliente(valuex as string))
-        alert(`func: ` + func)
-        alert(`valuex: ` + valuex)
+        // alert(`aoMudarTextoDeBusca: ` + retornaCliente(valuex as string))
+        // alert(`func: ` + func)
+        // alert(`valuex: ` + valuex)
         debounce(() => {
            
             //let path = `/solicitacao/`+func+`&idCli=${idCliente}`;
@@ -51,7 +51,8 @@ function Home() {
                 // state: (retornaCliente(valuex as string))
 
                 pathname: `/solicitacao/00000705&idCli=${idCliente}`,
-                state: (retornaCliente(valuex as string))
+                state: (retornaCliente(func as string))
+                //state2: (retornaCliente(valuex as string))
             });
 
         });
