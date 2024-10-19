@@ -39,20 +39,10 @@ function Home() {
 
 
     function aoMudarTextoDeBusca(func: string) {
-        // alert(`aoMudarTextoDeBusca: ` + retornaCliente(valuex as string))
-        // alert(`func: ` + func)
-        // alert(`valuex: ` + valuex)
         debounce(() => {
-           
-            //let path = `/solicitacao/`+func+`&idCli=${idCliente}`;
-            //history.push(path);
             history.push({
-                // pathname: path,
-                // state: (retornaCliente(valuex as string))
-
-                pathname: `/solicitacao/00000705&idCli=${idCliente}`,
+                pathname: `/solicitacao/`+func+`&idCli=${idCliente}`,
                 state: (retornaCliente(func as string))
-                //state2: (retornaCliente(valuex as string))
             });
 
         });
