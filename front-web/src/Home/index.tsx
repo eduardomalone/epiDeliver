@@ -44,18 +44,12 @@ function Home() {
                 pathname: `/solicitacao/`+func+`&idCli=${idCliente}`,
                 state: (retornaCliente(func as string))
             });
-
         });
-
     }
 
     return (
         <>
-
-
-
             <Box height='100%' width='100%' display='flex' >
-
                 <Grid container margin={3} >
                     <Grid item container spacing={2}>
                         <Grid item xs={12} sm={6} xl={3}>
@@ -80,7 +74,7 @@ function Home() {
                                                 value={valuex}
                                                 onChange={e => {setValuex(e.target.value); aoMudarTextoDeBusca?.(e.target.value)}}
                                             />
-                                            <Box flex={1} display="flex" justifyContent="end">
+                                            {/* <Box flex={1} display="flex" justifyContent="end">
 
                                                 <Link
                                                     to={{
@@ -96,7 +90,7 @@ function Home() {
                                                         Buscar
                                                     </Button>
                                                 </Link>
-                                            </Box>
+                                            </Box> */}
                                         </Box>
                                     </Box>
                                 </CardContent>
